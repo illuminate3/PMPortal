@@ -7,6 +7,7 @@ class Project extends Model
 	protected $fillable = [
 		'title',
 		'user_id',
+		'pm',
 		'status',
 		'rationale',
 		'color',

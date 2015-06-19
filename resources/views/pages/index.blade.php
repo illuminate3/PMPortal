@@ -22,10 +22,8 @@
 							</tr>
 						</thead>
 						<tbody>
+							
 						@foreach ($projects as $project)
-							<?php 
-								$manager = App\User::find( $project-> user_id ); 
-							?>
 							<tr class = "project-row">
 								@if (Auth::guest())
 									<td><a href="{{ action('ProjectsController@show', [$project->id]) }}">{{ $project['title'] }}</a></td>
@@ -34,7 +32,7 @@
 								@else
 									<td><a href="{{ action('ProjectsController@show', [$project->id]) }}">{{ $project['title'] }}</a></td>
 								@endif
-								<td align="center">{{ $manager['name'] }} </td>
+								<td align="center">{{ $project['pm'] }} </td>
 								<td align="center">{{ $project['status'] }}</td>
 								<td align="center">{{ $project ['color'] }} </td>
 								<td align="center">{{ $project  ['target_date'] }} </td>

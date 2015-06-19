@@ -15,6 +15,7 @@ use Carbon\Carbon;
 use Auth;
 use App\Http\Controllers\PDF;
 use App\Http\Requests\CreateProjectRequest;
+use App\Http\Controllers\FiltersController;
 
 
 class ProjectsController extends Controller {
@@ -34,10 +35,8 @@ class ProjectsController extends Controller {
 	 */
 	public function index()
 	{
-		$managers = User::where('role','Project Manager')->get();		
 		$projects = Project::all();
-
-		return view('pages.index', compact('projects', 'managers'));
+		return view('pages.index', compact('projects'));
 	}
 
 	/**
@@ -46,10 +45,8 @@ class ProjectsController extends Controller {
 	 * @return Response
 	 */
 	public function create()
-	{
-		
+	{	
 		$managers = User::where('role','Project Manager')->get();
-		
 		return view('projects.create', compact('managers'));
 	}
 
@@ -68,9 +65,11 @@ class ProjectsController extends Controller {
 	{
 		$input = Request::all();
 		$id = Auth::user()->id;
+		$pm = Auth::user()->name;
 		Project::create([
 			'title' => $input['title'],
 			'user_id' => $id,
+			'pm' => $pm,
 			'status' => 'Not Yet Started',
 			'color' => 'Green',
 			'target_date' => $input['target_date'],
@@ -129,12 +128,25 @@ class ProjectsController extends Controller {
 	 */
 	public function update(CreateProjectRequest $request, $id)
 	{
-		$managers = User::where('role','Project Manager')->get();
+		//$managers = User::where('role','Project Manager')->get();
 		$project = Project::find($id);
+		//$id = Auth::user()->id;
+		
+		$users = User::all();
+
 		$input = Request::all();
+		foreach($users as $user){
+			if ($user->name == $input['pm'])
+			{
+				$pmid=$user->id;
+			}
+		}
+
+		
 			$project->update([
 			'title' => $input['title'],
-			'user_id' => $input['user_id'],
+			'user_id' => $pmid,
+			'pm' => $input['pm'],
 			'target_date' => $input['target_date'],
 			'status' => $input['status'],
 			'color' => $input['color'],
@@ -177,7 +189,8 @@ class ProjectsController extends Controller {
 
 	public function status($id)
 	{
-		$managers = User::where('role','Project Manager')->get();
+		//$managers = User::where('role','Project Manager')->get();
+		
 		$project = Project::find($id);
 		$accomplishments = Accomplishment::where('project_id', $id)->get();
 		$actions = Action::where('project_id', $id)->get();
@@ -186,7 +199,7 @@ class ProjectsController extends Controller {
 		$milestones = Milestone::where('project_id', $id)->get();
 		$risks = Risk::where('project_id', $id)->get();
 
-		return view('projects.status', compact('project', 'managers', 'actions', 'accomplishments', 'expenses', 'issues', 'milestones', 'risks', 'function'));
+		return view('projects.status', compact('project', 'actions', 'accomplishments', 'expenses', 'issues', 'milestones', 'risks', 'function'));
 	}
 
 	public function generate($id)
@@ -204,13 +217,13 @@ class ProjectsController extends Controller {
 
 	public function search()
 	{
-		$managers = User::where('role','Project Manager')->get();
+		//$managers = User::where('role','Project Manager')->get();
 		$input = Request::all();
 
 		$q = $input['query'];
 		$projects = Project::where('title', 'LIKE', "%$q%" )->get();
 
 		//$projects = Project::whereRAW("MATCH(title) AGAINST", [$q])->get();
-		return view('pages.index', compact('projects', 'managers'));
+		return view('pages.index', compact('projects'));
 	}
 }

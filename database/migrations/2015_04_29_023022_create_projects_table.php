@@ -15,7 +15,8 @@ class CreateProjectsTable extends Migration {
 		Schema::create('projects', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('user_id')->unsigned();
+			$table->integer('user_id')->unsigned()->nullable();
+			$table->string('pm');
 			$table->string('title');
 			$table->string('status');
 			$table->text('rationale');
@@ -27,10 +28,10 @@ class CreateProjectsTable extends Migration {
 		    $table->string('hardware');
 		    $table->integer('target_mandays')->unsigned();
 		    $table->integer('actual_mandays')->unsigned();
-
+/*
 			$table->foreign('user_id')
 				  ->references('id')
-				  ->on('users');
+				  ->on('users'); */
 		});
 	}
 

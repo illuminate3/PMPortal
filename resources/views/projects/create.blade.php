@@ -18,11 +18,11 @@
 								<td class="span3 right"> {!! Form::label('title', 'Title:')!!} </td>
 								<td> {!! Form::text('title', null, ['class' => 'span7']) !!} </td>
 							</tr>
-
+							<!--
 							<tr>
 								<td class="span3 right"> {!! Form::label('manager', 'Project Manager:') !!} </td>
-								<td>{!! Form::text('manager',Auth::user()->name, ['disabled' => 'disabled'], ['class' => 'span5']) !!}</td>
-								
+								<td> {!! Form::text('manager',Auth::user()->name, ['class' => 'span7' ]) !!} </td>
+							</tr> -->
 							<tr>
 								<td class="span3 right">{!! Form::label('target_date', 'Target Date:') !!}</td>
 								<td>{!! Form::input('date','target_date', date('Y-m-d'), ['class' => 'span5']) !!}</td>

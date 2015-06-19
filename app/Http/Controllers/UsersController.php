@@ -63,7 +63,7 @@ class UsersController extends Controller {
 			$project->users()->detach($user_id);
 			$project->save();
 		}
-		$user->Delete();
+		$user->Delete('set null');
 		session()->flash('flash_confirmation', 'User account has been successfully deleted!');
 
 
