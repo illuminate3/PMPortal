@@ -15,6 +15,7 @@ use Carbon\Carbon;
 use Auth;
 use App\Http\Controllers\PDF;
 use App\Http\Requests\CreateProjectRequest;
+use App\Http\Controllers\FiltersController;
 
 
 class ProjectsController extends Controller {
@@ -34,10 +35,20 @@ class ProjectsController extends Controller {
 	 */
 	public function index()
 	{
-		$managers = User::where('role','Project Manager')->get();		
 		$projects = Project::all();
 
-		return view('pages.index', compact('projects', 'managers'));
+		
+		/*
+		$fprojects = Project::where('pm', 'name')->get();
+
+		if ($fprojects == "[]")
+		{
+			return view('pages.index', compact('projects', 'managers', 'fprojects', 'fmanagers'));
+		}
+
+		*/
+		
+		return view('pages.index', compact('projects'));
 	}
 
 	/**
@@ -68,9 +79,11 @@ class ProjectsController extends Controller {
 	{
 		$input = Request::all();
 		$id = Auth::user()->id;
+		$pm = Auth::user()->name;
 		Project::create([
 			'title' => $input['title'],
 			'user_id' => $id,
+			'pm' => $pm,
 			'status' => 'Not Yet Started',
 			'color' => 'Green',
 			'target_date' => $input['target_date'],

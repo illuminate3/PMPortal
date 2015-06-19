@@ -32,8 +32,8 @@
 					<div id="collapsePM" class="panel-collapse collapse ">
 						<div class="panel-body">
 							<ul class="nav nav-list">
-							@foreach ($managers as $manager)
-							<li role="presentation"><a href="{{ action('FiltersController@showManager', $manager->id) }}"> {{ $manager-> name }}</a></li>
+							@foreach ($fmanagers as $fmanager)
+							<li role="presentation"><a href="{{ action('FiltersController@showManager', $fmanager) }}"> {{ $fmanager }}</a></li>
 							@endforeach	
 							</ul>
 						</div>

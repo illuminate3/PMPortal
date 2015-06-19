@@ -9,57 +9,44 @@ use Auth;
 use Illuminate\Http\Request;
 
 class FiltersController extends Controller {
-
-
-
-	public function showManager($id)
-	{		
-		$managers = User::where('role','Project Manager')->get();
-		$projects = Project::where('user_id', $id)->get();
+	
+	public function showManager($name)
+	{	
+		$projects = Project::where('pm', $name)->get();
 
 		if ($projects == "[]")
 		{
 			session()->flash('flash_important', 'There are no projects that match your query!');
-			return view('pages.index', compact('projects', 'managers'));
+			return view('pages.index', compact('projects'));
 		}
 
-		return view('pages.index', compact('projects', 'managers'));
+		return view('pages.index', compact('projects'));
 	}
 
 	public function showColor($color)
 	{		
-		$managers = User::where('role','Project Manager')->get();
 		$projects = Project::where('color', $color)->get();
-
-	
 		if ($projects == "[]")
 		{
 			session()->flash('flash_important', 'There are no projects that match your query!');
-			return view('pages.index', compact('projects', 'managers'));
+			return view('pages.index', compact('projects'));
 		}
-		
-
-		return view('pages.index', compact('projects', 'managers'));
+		return view('pages.index', compact('projects'));
 	}
 
 	public function showStatus($status)
 	{
-		$managers = User::where('role','Project Manager')->get();
 		$projects = Project::where('status', $status)->get();
-
 		if ($projects == "[]")
 		{
 			session()->flash('flash_important', 'There are no projects that match your query!');
-			return view('pages.index', compact('projects', 'managers'));
+			return view('pages.index', compact('projects'));
 		}
-
-		return view('pages.index', compact('projects', 'managers'));
+		return view('pages.index', compact('projects'));
 	}
 
 	public function showMonth($month)
 	{	 
-		$managers = User::where('role','Project Manager')->get();		
-
 		$projects = [];
 		$projects1 = Project::all();
 		foreach ($projects1 as $project) 
@@ -69,14 +56,12 @@ class FiltersController extends Controller {
 				$projects[] = $project;
 			}
 		}
-
 		if ($projects == null)
 		{
 			session()->flash('flash_important', 'There are no projects that match your query!');
-			return view('pages.index', compact('projects', 'managers'));
+			return view('pages.index', compact('projects'));
 		}
-
-		return view('pages.index', compact('projects', 'managers'));
+		return view('pages.index', compact('projects'));
 	}
 
 	/**

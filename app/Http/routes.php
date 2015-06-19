@@ -69,7 +69,7 @@ Route::patch('risks/{id}', 'RisksController@update');
 Route::delete('risks/{id}', ['as' => 'risks.destroy', 'uses' => 'RisksController@destroy']);
 //Route::resource('risks', 'RisksController');
 
-Route::get('filters/PM/{id}', ['as' => 'filter.manager', 'uses' => 'FiltersController@showManager']);
+Route::get('filters/PM/{name}', ['as' => 'filter.manager', 'uses' => 'FiltersController@showManager']);
 Route::get('filters/status/{status}', ['as' => 'filter.status', 'uses' => 'FiltersController@showStatus']);
 Route::get('filters/color/{color}', ['as' => 'filter.color', 'uses' => 'FiltersController@showColor']);
 Route::get('filters/month/{month}', ['as' => 'filter.month', 'uses' => 'FiltersController@showMonth']);
