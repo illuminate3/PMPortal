@@ -219,7 +219,7 @@ class FormRequest extends Request implements ValidatesWhenResolved {
 	{
 		return [];
 	}
-	
+
 	/**
 	 * Set custom attributes for validator errors.
 	 *
@@ -228,13 +228,6 @@ class FormRequest extends Request implements ValidatesWhenResolved {
 	public function attributes()
 	{
 		return [];
-	}
-
-	public function rules()
-	{
-		return [
-           
-        ];
 	}
 
 }

@@ -3,21 +3,20 @@
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
-use Auth;
 
 trait AuthenticatesAndRegistersUsers {
 
 	/**
 	 * The Guard implementation.
 	 *
-	 * @var Guard
+	 * @var \Illuminate\Contracts\Auth\Guard
 	 */
 	protected $auth;
 
 	/**
 	 * The registrar implementation.
 	 *
-	 * @var Registrar
+	 * @var \Illuminate\Contracts\Auth\Registrar
 	 */
 	protected $registrar;
 
@@ -60,12 +59,7 @@ trait AuthenticatesAndRegistersUsers {
 	 */
 	public function getLogin()
 	{
-		if (Auth::guest())
-		{
-			return view('auth.login');
-		}
-		session()->flash('flash_important', 'You must log out first.');
-		return redirect('/');
+		return view('auth.login');
 	}
 
 	/**
@@ -113,7 +107,7 @@ trait AuthenticatesAndRegistersUsers {
 	{
 		$this->auth->logout();
 
-		return redirect('/');
+		return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/');
 	}
 
 	/**
@@ -128,7 +122,7 @@ trait AuthenticatesAndRegistersUsers {
 			return $this->redirectPath;
 		}
 
-		return property_exists($this, 'redirectTo') ? $this->redirectTo : '/';
+		return property_exists($this, 'redirectTo') ? $this->redirectTo : '/home';
 	}
 
 	/**

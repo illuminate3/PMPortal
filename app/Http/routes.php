@@ -14,7 +14,7 @@
 Route::get('/', 'ProjectsController@index');
 
 //Route::get('projects/create','ProjectsController@create');
-//Route::get('home','ProjectsController@index');
+Route::get('home','ProjectsController@index');
 //Route::post('projects', 'ProjectsController@store');
 Route::get('projects/search', ['as' => 'projects.search', 'uses' => 'ProjectsController@search']);
 Route::get('projects/{projects}/status', ['as' => 'projects.status', 'uses' => 'ProjectsController@status']);
@@ -85,3 +85,5 @@ Route::get('users/search', ['as' => 'users.search', 'uses' => 'UsersController@s
 Route::delete('users/{id}', ['as' => 'users.destroy', 'uses' => 'UsersController@destroy']);
 Route::get('users/{id}/edit', ['as' => 'users.edit', 'uses' => 'UsersController@getUpdateAccount']);
 Route::post('users/{id}', 'UsersController@postUpdateAccount');
+
+Route::get('backup', 'BackupController@backup');

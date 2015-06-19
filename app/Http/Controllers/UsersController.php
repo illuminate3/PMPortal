@@ -36,7 +36,6 @@ class UsersController extends Controller {
 		$users = User::all();
 
 		return view('users.index', compact('users'));
-		$this->middleware('system_admin');
 	}
 
 	public function search()
@@ -46,7 +45,6 @@ class UsersController extends Controller {
 		$users = User::where('email', 'LIKE', "%$q%" )->get();
 
 		return view('users.results', compact('users'));
-		$this->middleware('system_admin');
 	}
 
 	public function show($id)

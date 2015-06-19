@@ -1,0 +1,4 @@
+No scheduled commands are ready to run.
+Running scheduled command: C:\xampp\php\php.exe artisan backup:run > /dev/null 2>&1 &
+Running scheduled command: C:\xampp\php\php.exe artisan backup:run > /dev/null 2>&1 &
+Running scheduled command: C:\xampp\php\php.exe artisan backup:run > /dev/null 2>&1 &

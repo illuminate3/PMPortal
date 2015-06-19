@@ -127,7 +127,7 @@
 	<ul class="nav nav-list nav-stacked">
 		@if (Auth::guest())
 		@elseif ((Auth::user()->role == 'Project Manager') || (Auth::user()->role == 'System Administrator'))
-		<li class="nav-header"> 
+		<li class="nav-header" style="margin-top: 10px;"> 
 			Options
 			<hr class="divider">
 		</li>
@@ -162,13 +162,22 @@
 			<div id="collapseAB" class="panel-collapse collapse ">
 				<div class="panel-body">
 					<ul class="nav nav-list">
-
 						<li role="presentation"><a role="menuitem" href="{{ url('/auth/register') }}">Add User</a></li>
 						<li role="presentation"><a role="menuitem" href="{{ url('/users') }}">Edit/Delete User</a></li>
 					</ul>
 				</div>
 			</div>
 		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<p class="panel-title">
+					<a style="font-size:13px" class="darker accordion-toggle" href="{{ url('/backup') }}">
+						Backup Database
+					</a>			
+				</p>
+			</div>
+		</div>
+	</div>
 		@else
 		@endif
 	</ul>

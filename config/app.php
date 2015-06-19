@@ -146,6 +146,7 @@ return [
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
 		'Barryvdh\DomPDF\ServiceProvider',
+		'Spatie\Backup\BackupServiceProvider',
 
 	],
 
