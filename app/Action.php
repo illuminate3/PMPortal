@@ -19,6 +19,7 @@ class Action extends Model implements LogsActivityInterface {
 		'comment'
 	];
 
+	protected $dates = ['target_date'];
 
 	protected $revisionEnabled = true;
 

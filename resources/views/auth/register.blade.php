@@ -2,7 +2,7 @@
 @section('header')
 	<link href="{{ asset('/css/signup.css') }}" rel="stylesheet">
 	<title>Add Users &diams; for Maybank Project Management Portal</title>
-@endsection
+@stop
 @section('content')
 
 
@@ -79,4 +79,4 @@
     <script src="js/tablesorter/jquery.tablesorter.js"></script>
     <script src="js/tablesorter/tables.js"></script>
 </body>
-@endsection
+@stop

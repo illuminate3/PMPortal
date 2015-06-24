@@ -2,7 +2,7 @@
 @section('header')
 	<link href="{{ asset('/css/signin.css') }}" rel="stylesheet">
 	<title>Login</title>
-@endsection
+@stop
 @section('content')
 <body class ="login-body" >
 	<div class="container login-container ">
@@ -39,4 +39,4 @@
 		</form>
 	</div>
 </body>
-@endsection
+@stop

@@ -18,6 +18,7 @@ class Milestone extends Model implements LogsActivityInterface{
 		'target_date',
 		'actual_date'
 	];
+	protected $dates = ['target_date','actual_date'];
 
 	protected $revisionEnabled = true;
 

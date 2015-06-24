@@ -14,20 +14,33 @@ class CreateProjectsTable extends Migration {
 	{
 		Schema::create('projects', function(Blueprint $table)
 		{
+			
 			$table->increments('id');
 			$table->integer('user_id')->unsigned()->nullable();
 			$table->string('pm');
+			$table->string('cac');
 			$table->string('title');
 			$table->string('status');
+			$table->double('percent')->unsigned();
 			$table->text('rationale');
-			$table->string('color');
-			$table->date('target_date');
-			$table->timestamp('last_updated');
-			$table->timestamps();
 			$table->string('software');
 		    $table->string('hardware');
-		    $table->integer('target_mandays')->unsigned();
+			$table->string('color');
+			$table->date('target_start');
+			$table->date('target_end');
+			$table->date('actual_start');
+			$table->date('actual_end');
+			$table->double('budget')->unsigned();
+			$table->double('utilization')->unsigned();
+			$table->string('importance');
+			$table->integer('target_mandays')->unsigned();
 		    $table->integer('actual_mandays')->unsigned();
+			$table->string('applicability');
+
+			$table->timestamp('last_updated');
+			$table->timestamps();
+			
+		    
 /*
 			$table->foreign('user_id')
 				  ->references('id')

@@ -40,7 +40,7 @@ class Authenticate {
 			}
 			else
 			{
-				session()->flash('flash_important', 'You must be logged on as Project Manager in order to proceed.');	
+				flash()->error('You must be logged on as Project Manager in order to proceed.');	
 				return redirect()->guest('auth/login');
 			}
 		}

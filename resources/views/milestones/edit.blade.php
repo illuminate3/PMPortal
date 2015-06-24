@@ -32,12 +32,13 @@
 
 							<tr>
 								<td class="span3 right">{!! Form::label('target_date', 'Target Date:') !!}</td>
-								<td>{!! Form::input('date','target_date', date('Y-m-d'), ['class' => 'span5']) !!}</td>
+								<td><input type="date" name="target_date" value="{{ old('custom_date', $milestone['target_date']->format('Y-m-d')) }}"></td>
+								
 							</tr>
 
 							<tr>
 								<td class="span3 right">{!! Form::label('actual_date', 'Actual Date:') !!}</td>
-								<td>{!! Form::input('date','actual_date', date('Y-m-d'), ['class' => 'span5']) !!}</td>
+								<td><input type="date" name="actual_date" value="{{ old('custom_date', $milestone['actual_date']->format('Y-m-d')) }}"></td>
 							</tr>
 
 						</tbody> </table>
@@ -56,5 +57,5 @@
 
 	{!! Form::close() !!}
 	
-@endsection
+
 @stop

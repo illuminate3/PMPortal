@@ -150,6 +150,8 @@ return [
 		'Spatie\Backup\BackupServiceProvider',
 		 'Spatie\Activitylog\ActivitylogServiceProvider',
 
+		'Laracasts\Flash\FlashServiceProvider',
+
 	],
 
 	/*
@@ -200,6 +202,7 @@ return [
 		'Form'		=> 'Illuminate\Html\FormFacade',
 		'Html'		=> 'Illuminate\Html\HtmlFacade',
 		'PDF'		=> 'Barryvdh\DomPDF\Facade',
+		'Flash'		=> 'Laracasts\Flash\Flash',
 		'Activity' => 'Spatie\Activitylog\ActivitylogFacade',
 	],
 

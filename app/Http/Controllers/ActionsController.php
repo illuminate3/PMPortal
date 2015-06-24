@@ -59,7 +59,7 @@ class ActionsController extends Controller {
 			'target_date' => $input['target_date']
 			]);
 
-		return redirect()->action('ProjectsController@status', [$id]);
+		return redirect()->action('ProjectsController@show', [$id]);
 	}
 
 	/**
@@ -105,7 +105,7 @@ class ActionsController extends Controller {
 			'target_date' => $input['target_date']
 			]);
 
-		return redirect()->action('ProjectsController@status', [$action->project_id]);	
+		return redirect()->action('ProjectsController@show', [$action->project_id]);	
 	}
 
 	/**
@@ -120,7 +120,7 @@ class ActionsController extends Controller {
 		$id = $action['project_id'];
 		$action->delete();
 
-		return redirect()->action('ProjectsController@status', $id);
+		return redirect()->action('ProjectsController@show', $id);
 	}
 
 }

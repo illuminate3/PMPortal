@@ -1,7 +1,7 @@
 @extends ('app')
 @section('header')
 	<script src="{{ asset('/sorttable.js') }}"></script>
-@endsection
+@stop
 @section('content')
 	<div class="row-fluid">
 		<!--sidebar content-->
@@ -13,30 +13,40 @@
 					<table class="sortable full">
 						<thead>
 							<tr>
-								<th width="30%">Title</th>
-								<th width="15%">Project Manager</th>
-								<th width="15%">Status</th>
-								<th width="10%">Color</th>
-								<th width="15%">Target Date</th>
-								<th width="20%">Last Update</th>
+								<th width="10%">CAC</th>
+								<th width="15%">Title</th>
+								<th width="10%">PM</th>								
+								<th width="13%">Status</th>
+								<th width="7%">% Done</th>
+								<th width="5%">Color</th>										
+								<th width="10%">Target Start</th>
+								<th width="10%">Target End</th>											
+								<th width="15%">Last Update</th>
 							</tr>
 						</thead>
 						<tbody>
 							
 						@foreach ($projects as $project)
 							<tr class = "project-row">
-								@if (Auth::guest())
-									<td><a href="{{ action('ProjectsController@show', [$project->id]) }}">{{ $project['title'] }}</a></td>
-								@elseif (Auth::user()->role == 'Project Manager')
-									<td><a href="{{ action('ProjectsController@status', [$project->id]) }}">{{ $project['title'] }}</a></td>
-								@else
-									<td><a href="{{ action('ProjectsController@show', [$project->id]) }}">{{ $project['title'] }}</a></td>
-								@endif
+								<td align="center">{{ $project['cac'] }}</td>
+								<td><a href="{{ action('ProjectsController@show', [$project->id]) }}">{{ $project['title'] }}</a></td>
 								<td align="center">{{ $project['pm'] }} </td>
 								<td align="center">{{ $project['status'] }}</td>
-								<td align="center">{{ $project ['color'] }} </td>
-								<td align="center">{{ $project  ['target_date'] }} </td>
-								<td align="center">{{ $project  ['updated_at'] }}</td>
+								<td align="center">{{ $project['percent']}}%</td>
+								<td align="center">
+									@if ($project-> color == "Green")
+										<img src="{{ asset('img/green.png') }}" class="color-img">
+									@elseif ($project-> color == "Amber")
+										<img src="{{ asset('img/amber.png') }}" class="color-img">
+									@elseif ($project-> color == "Red")
+										<img src="{{ asset('img/red.png') }}" class="color-img">
+									@elseif ($project-> color == "Blue")
+										<img src="{{ asset('img/blue.png') }}" class="color-img">
+									@endif
+								 </td>
+								<td align="center">{{ $project -> target_start->toFormattedDateString() }} </td>
+								<td align="center">{{ $project -> target_end->toFormattedDateString() }} </td>											
+								<td align="center">{{ $project -> updated_at->format('F j h:i A') }}</td>
 							</tr>
 						@endforeach
 						</tbody>
@@ -45,5 +55,4 @@
 			</div>
 		</div>
 	</div>
-@endsection
 @stop

@@ -1,9 +1,13 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+
+use Auth;
+
 use Spatie\Activitylog\LogsActivityInterface;
 use Spatie\Activitylog\LogsActivity;
 use Spatie\Activitylog\Models\Activity;
+
 
 
 
@@ -14,6 +18,7 @@ class Project extends Model implements LogsActivityInterface
 	use LogsActivity;
 
 	protected $fillable = [
+		'cac',
 		'title',
 		'user_id',
 		'pm',
@@ -21,7 +26,15 @@ class Project extends Model implements LogsActivityInterface
 		'rationale',
 		'color',
 		'last_updated',
-		'target_date',
+		'percent',
+		'target_start',
+		'target_end',
+		'actual_start',
+		'actual_end',
+		'budget',
+		'utilization',
+		'importance',
+		'applicability',
 		'target_mandays',
 		'actual_mandays',
 		'hardware',
@@ -66,6 +79,9 @@ class Project extends Model implements LogsActivityInterface
 	//Declaring 'target_date' as a Carbon instance
 	//protected $dates = ['target_date'];
 
+	protected $dates = ['target_start', 'target_end', 'actual_start', 'actual_end'];
+
+
 	public function user()
 	{
 		return $this->belongsTo('App\User');
@@ -101,6 +117,11 @@ class Project extends Model implements LogsActivityInterface
 		return $this->hasMany('App\Risk');
 	}
 
+	public function deliverables()
+	{
+		return $this->hasMany('App\Deliverable');
+	}
+
 	public function getActivityDescriptionForEvent($eventName)
 	{
 	    
@@ -130,4 +151,5 @@ class Project extends Model implements LogsActivityInterface
 	{
 		return 'Project';
 	}
+
 }

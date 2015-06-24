@@ -31,7 +31,8 @@
         "App\\Providers\\ViewComposerServiceProvider",
         "Barryvdh\\DomPDF\\ServiceProvider",
         "Spatie\\Backup\\BackupServiceProvider",
-        "Spatie\\Activitylog\\ActivitylogServiceProvider"
+        "Spatie\\Activitylog\\ActivitylogServiceProvider",
+        "Laracasts\\Flash\\FlashServiceProvider"
     ],
     "eager": [
         "Illuminate\\Auth\\AuthServiceProvider",
@@ -51,7 +52,8 @@
         "App\\Providers\\EventServiceProvider",
         "App\\Providers\\RouteServiceProvider",
         "App\\Providers\\ViewComposerServiceProvider",
-        "Spatie\\Activitylog\\ActivitylogServiceProvider"
+        "Spatie\\Activitylog\\ActivitylogServiceProvider",
+        "Laracasts\\Flash\\FlashServiceProvider"
     ],
     "deferred": {
         "command.app.name": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",

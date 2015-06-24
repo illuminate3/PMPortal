@@ -81,6 +81,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return false;			
 	}
 
+
+
 	public function isASystemAdministrator()
 	{
 		if ($this->attributes['role'] == 'System Administrator')
@@ -143,4 +145,5 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	{
 		return 'User';
 	}
+
 }

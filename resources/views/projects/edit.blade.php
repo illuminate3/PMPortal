@@ -14,6 +14,10 @@
 					<div class="panel-body">
 						<table class="table-condensed table-hover"> <tbody>
 							<tr>
+								<td class="span3 right"> {!! Form::label('cac', 'CAC:')!!} </td>
+								<td> {!! Form::text('cac', null, ['class' => 'span7']) !!} </td>
+							</tr>
+							<tr>
 								<td class="span3 right"> {!! Form::label('title', 'Title:')!!} </td>
 								<td> {!! Form::text('title', null, ['class' => 'span7']) !!} </td>
 							</tr>
@@ -26,10 +30,32 @@
 									@endforeach
 								</select> </td>
 							</tr>
+							<tr>
+								<td class="span3 right">{!! Form::label('percent', 'Percent:') !!}</td>
+								<td>{!! Form::input('number','percent',null,['class' => 'span5']) !!}</td>
+							</tr>
 
 							<tr>
+								<td class="span3 right">{!! Form::label('target_start', 'Target Start:') !!}</td>
+								<td><input type="date" name="target_start" value="{{ old('custom_date', $project->target_start->format('Y-m-d')) }}"></td>
+							</tr>
+
+							<tr>
+								<td class="span3 right">{!! Form::label('actual_start', 'Actual Start:') !!}</td>
+								<td><input type="date" name="actual_start" value="{{ old('custom_date', $project->actual_start->format('Y-m-d')) }}"></td>
+							</tr>
+
+							<tr>
+								<td class="span3 right">{!! Form::label('target_end', 'Target End:') !!}</td>
+								<td><input type="date" name="target_end" value="{{ old('custom_date', $project->target_end->format('Y-m-d')) }}"></td>
+							</tr>
+							
+							<tr>
+								<td class="span3 right">{!! Form::label('actual_end', 'Actual End:') !!}</td>
+								<td><input type="date" name="actual_end" value="{{ old('custom_date', $project->actual_end->format('Y-m-d')) }}"></td>
 								<td class="span3 right">{!! Form::label('target_date', 'Target Date:') !!}</td>
 								<td><input type="date" name="target_date" value="{{ old('custom_date', $project->target_date) }}"></td>
+
 							</tr>
 
 							<tr>
@@ -42,6 +68,25 @@
 								<td>{!! Form::input('number','actual_mandays',null,['class' => 'span5']) !!}</td>
 							</tr>
 
+
+
+							<tr>
+								<td class="span3 right">{!! Form::label('budget', 'Budget:') !!}</td>
+								<td>{!! Form::input('number','budget',null,['class' => 'span5']) !!}</td>
+							</tr>
+
+
+							<tr>
+								<td class="span3 right">{!! Form::label('utilization', 'Utilization:') !!}</td>
+								<td>{!! Form::input('number','utilization',null,['class' => 'span5']) !!}</td>
+							</tr><tr>
+								<td class="span3 right"> {!! Form::label('applicability', 'Applicability:') !!} </td>
+								<td> <select class="span5" name="applicability" value="{{ old('applicability') }}">
+									<option value="New or Replacement of IT Solution"> New or Replacement of IT Solution</option>
+									<option value="Enhancement or Application System Upgrade"> Enhancement or Application System Upgrade</option>
+									<option value="IT Infrastructure"> IT Infrastructure</option>
+								</select> </td>
+							</tr>
 							<tr>
 								<td class="span3 right"> {!! Form::label('hardware', 'Hardware:')!!} </td>
 								<td> {!! Form::text('hardware', null, ['class' => 'span7']) !!} </td>
@@ -92,5 +137,5 @@
 			</div>
 		</div>
 	</div>
-@endsection
+
 @stop

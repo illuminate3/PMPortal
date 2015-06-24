@@ -22,8 +22,12 @@ class CreateProjectRequest extends Request {
 	public function rules()
 	{
 		return [
+			'cac' => 'required',
 			'title' => 'required',		
-			'target_date' => 'required'	
+			'target_start' => 'required',
+			'target_end' => 'required',
+			'target_mandays' => 'required',
+			'budget' => 'required'
 		];
 	}
 

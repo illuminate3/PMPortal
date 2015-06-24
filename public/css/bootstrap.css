@@ -20,6 +20,10 @@ nav,
 section {
   display: block;
 }
+
+.color-img{
+    width:25px;
+}
 .dimension
 {
 -webkit-box-shadow: inset 0 3px 0 rgba(255, 255, 255, 0.2), 0 3px 6px rgba(0, 0, 0, 0.9);

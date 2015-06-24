@@ -21,11 +21,13 @@
 
 							<tr>
 								<td class="span3 right"> {!! Form::label('status', 'Status: ') !!} </td>
-								<td> <select class="span5" name="status" value="{{ old('status') }}">
-										<option value="Done"> Done</option>
-										<option value="In Process">In Process</option>
+								<td>
+									<select class="span5" name="status" value="{{ old('status') }}">
 										<option value="Not Started">Not Started</option>
-									</select> </td>
+										<option value="In Process">In Process</option>
+										<option value="Done">Done</option>
+									</select>
+								</td>
 							</tr>
 
 							<tr>
@@ -42,5 +44,5 @@
 			</div>
 		</div>
 	</div>
-@endsection
+
 @stop

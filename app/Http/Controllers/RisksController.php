@@ -59,7 +59,7 @@ class RisksController extends Controller {
 			'mitigation' => $input['mitigation']
 			]);
 
-		return redirect()->action('ProjectsController@status', [$id]);
+		return redirect()->action('ProjectsController@show', [$id]);
 	}
 
 	/**
@@ -104,7 +104,7 @@ class RisksController extends Controller {
 			'mitigation' => $input['mitigation']
 			]);
 
-		return redirect()->action('ProjectsController@status', [$risk->project_id]);
+		return redirect()->action('ProjectsController@show', [$risk->project_id]);
 	}
 
 	/**
@@ -119,7 +119,7 @@ class RisksController extends Controller {
 		$id = $risk['project_id'];
 		$risk->delete();
 
-		return redirect()->action('ProjectsController@status', $id);
+		return redirect()->action('ProjectsController@show', $id);
 	}
 
 }
