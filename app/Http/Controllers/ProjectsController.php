@@ -28,9 +28,7 @@ class ProjectsController extends Controller {
 	{
 		$this->middleware('auth', ['except' => ['index', 'show', 'search']]);
 		$this->middleware('system_admin_or_manager', ['except' => ['index', 'show', 'search']]);
-		$this->middleware('owner', ['only' => ['edit','update']]);
-		$this->middleware('auth', ['except' => ['index', 'show', 'generate', 'search']]);	
-		$this->middleware('manager', ['except' => ['index', 'show', 'generate', 'search']]);
+		$this->middleware('system_admin_or_owner', ['only' => ['edit','update','destroy']]);
 	}
 
 

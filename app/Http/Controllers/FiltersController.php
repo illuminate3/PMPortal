@@ -17,12 +17,13 @@ class FiltersController extends Controller {
 		if ($projects == "[]")
 		{
 			flash()->error('There are no projects that match your query!');
-			return view('pages.index', compact('projects'));
+			return redirect()->action('ProjectsController@index', compact('projects'));
 		}
+
 		else
-		{
-		return view('pages.index', compact('projects'));
-		}
+
+		return redirect()->action('ProjectsController@index', compact('projects'));
+
 	}
 
 	public function showColor($color)
@@ -32,12 +33,12 @@ class FiltersController extends Controller {
 		{
 			//flash()->overlay('There are no projects that match your query!','Good job');
 			flash()->error('There are no projects that match your query!');
-			return view('pages.index', compact('projects'));
+			return redirect()->action('ProjectsController@index', compact('projects'));
 		}
 		else
-		{
-		return view('pages.index', compact('projects'));
-		}
+		
+		return redirect()->action('ProjectsController@index', compact('projects'));
+
 	}
 
 	public function showStatus($status)
@@ -46,12 +47,13 @@ class FiltersController extends Controller {
 		if ($projects == "[]")
 		{
 			flash()->error('There are no projects that match your query!');
-			return view('pages.index', compact('projects'));
+			return redirect()->action('ProjectsController@index', compact('projects'));
 		}
+
 		else
-		{
-		return view('pages.index', compact('projects'));
-		}
+
+		return redirect()->action('ProjectsController@index', compact('projects'));
+
 	}
 
 	public function showMonth($month)
@@ -68,12 +70,13 @@ class FiltersController extends Controller {
 		if ($projects == null)
 		{
 			flash()->error('There are no projects that match your query!');
-			return view('pages.index', compact('projects'));
+			return redirect()->action('ProjectsController@index', compact('projects'));
 		}
+
 		else
-		{
-		return view('pages.index', compact('projects'));
-		}
+
+		return redirect()->action('ProjectsController@index', compact('projects'));
+
 	}
 
 	/**
