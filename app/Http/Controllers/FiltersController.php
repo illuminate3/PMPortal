@@ -19,8 +19,10 @@ class FiltersController extends Controller {
 			flash()->error('There are no projects that match your query!');
 			return view('pages.index', compact('projects'));
 		}
-
+		else
+		{
 		return view('pages.index', compact('projects'));
+		}
 	}
 
 	public function showColor($color)
@@ -32,7 +34,10 @@ class FiltersController extends Controller {
 			flash()->error('There are no projects that match your query!');
 			return view('pages.index', compact('projects'));
 		}
+		else
+		{
 		return view('pages.index', compact('projects'));
+		}
 	}
 
 	public function showStatus($status)
@@ -43,7 +48,10 @@ class FiltersController extends Controller {
 			flash()->error('There are no projects that match your query!');
 			return view('pages.index', compact('projects'));
 		}
+		else
+		{
 		return view('pages.index', compact('projects'));
+		}
 	}
 
 	public function showMonth($month)
@@ -62,7 +70,10 @@ class FiltersController extends Controller {
 			flash()->error('There are no projects that match your query!');
 			return view('pages.index', compact('projects'));
 		}
+		else
+		{
 		return view('pages.index', compact('projects'));
+		}
 	}
 
 	/**
