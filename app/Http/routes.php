@@ -17,7 +17,7 @@ Route::get('/', 'ProjectsController@index');
 Route::get('home','ProjectsController@index');
 //Route::post('projects', 'ProjectsController@store');
 Route::get('projects/search', ['as' => 'projects.search', 'uses' => 'ProjectsController@search']);
-Route::get('projects/{projects}/status', ['as' => 'projects.status', 'uses' => 'ProjectsController@status']);
+//Route::get('projects/{projects}/status', ['as' => 'projects.status', 'uses' => 'ProjectsController@status']);
 Route::get('projects/{projects}/generate', ['as' => 'projects.generatepdf', 'uses' => 'ProjectsController@generatepdf']);
 Route::resource('projects', 'ProjectsController');
 
@@ -70,10 +70,21 @@ Route::delete('risks/{id}', ['as' => 'risks.destroy', 'uses' => 'RisksController
 //Route::resource('risks', 'RisksController');
 
 Route::get('filters/PM/{name}', ['as' => 'filter.manager', 'uses' => 'FiltersController@showManager']);
+Route::get('filters/users/{role}', ['as' => 'filter.users', 'uses' => 'FiltersController@showUsers']);
+Route::get('filters/projects', ['as' => 'filters.projects', 'uses' => 'FiltersController@showProjects']);
+Route::get('filters/search', ['as' => 'filters.userSearch', 'uses' => 'FiltersController@userSearch']);
 Route::get('filters/status/{status}', ['as' => 'filter.status', 'uses' => 'FiltersController@showStatus']);
 Route::get('filters/color/{color}', ['as' => 'filter.color', 'uses' => 'FiltersController@showColor']);
 Route::get('filters/month/{month}', ['as' => 'filter.month', 'uses' => 'FiltersController@showMonth']);
 Route::resource('filters', 'FiltersController');
+
+/*
+* Deliverables routes: Check Controllers folder for specific controller 
+*/
+Route::get('projects/{id}/checklist', 'DeliverablesController@show');
+Route::get('projects/{id}/checklist/edit', ['as' => 'deliverables.edit', 'uses' => 'DeliverablesController@edit']);
+Route::patch('projects/{id}/checklist', ['as' => 'deliverables.update', 'uses' => 'DeliverablesController@update']);
+
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

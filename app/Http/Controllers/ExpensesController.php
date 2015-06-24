@@ -59,7 +59,7 @@ class ExpensesController extends Controller {
 			'comment' => $input['comment']
 			]);
 
-		return redirect()->action('ProjectsController@status', [$id]);
+		return redirect()->action('ProjectsController@show', [$id]);
 	}
 
 	/**
@@ -104,7 +104,7 @@ class ExpensesController extends Controller {
 			'comment' => $input['comment']
 			]);
 
-		return redirect()->action('ProjectsController@status', [$expense->project_id]);
+		return redirect()->action('ProjectsController@show', [$expense->project_id]);
 	}
 
 	/**
@@ -119,7 +119,7 @@ class ExpensesController extends Controller {
 		$id = $expense['project_id'];
 		$expense->delete();
 
-		return redirect()->action('ProjectsController@status', $id);
+		return redirect()->action('ProjectsController@show', $id);
 	}
 
 }

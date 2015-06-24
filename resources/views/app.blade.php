@@ -30,31 +30,35 @@
 			margin: 7px;
 		}
 	</style>
-</head>
-<body>
-	<div id = "SiteBody">
-		<div class="dimension">
-			<div class = "dimension-left">  
-				<img src="{{ asset('img/maybankLogo.png') }}"><a href="{{ url('/') }}" class = "dimension-home"> Maybank Project Management Portal</a>
+	</head>
+	<body>
+		<div id = "SiteBody">
+			<div class="dimension">
+				<div class = "dimension-left">  
+					<img src="{{ asset('img/maybankLogo.png') }}"><a href="{{ url('/') }}" class = "dimension-home"> Maybank Project Management Portal</a>
 
-				<div class="pull-right">
-						@if (Auth::guest())
-							<a href="{{ url('/auth/login') }}" class="logout">Login</a>
-						@else
-							<img src="{{ asset('img/admin.png') }}"> {{ Auth::user()->role }} - {{ Auth::user()->name }} | <a class="logout" href="{{ url('/auth/logout') }}">Logout</a>
-						@endif
-					</ul>
+					<div class="pull-right">
+							@if (Auth::guest())
+								<a href="{{ url('/auth/login') }}" class="logout">Login</a>
+							@else
+								<img src="{{ asset('img/admin.png') }}"> {{ Auth::user()->role }} - {{ Auth::user()->name }} | <a class="logout" href="{{ url('/auth/logout') }}">Logout</a>
+							@endif
+						</ul>
+					</div>
 				</div>
 			</div>
-		</div>
-		<br />
-		@include('includes/flash')	
-		
-		@yield('content')
+			<br />
 
-	<!-- Scripts -->
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
-	</div>
-</body>
+			@include('flash::message')
+			@yield('content')
+		</div>
+
+		
+		<!-- Scripts -->
+		<script>
+			$('#flash-overlay-modal').modal();
+			$('div.alert').not('alert-important').delay(3000).slideUp(300);
+		</script> 
+
+	</body>
 </html>

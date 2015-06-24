@@ -55,7 +55,18 @@
 		{{ $project-> updated_at }} <br /> <br />
 
 		Target Date: {{ $project-> target_date }} <br />
-		Project Status: {{ $project-> status }} - {{ $project-> color }} <br />
+		Project Status: {{ $project-> status }}
+		 - 
+		 @if ($project-> color == "Green")
+			<img src="{{ asset('img/green.png') }}" class="color-img">
+		@elseif ($project-> color == "Amber")
+			<img src="{{ asset('img/amber.png') }}" class="color-img">
+		@elseif ($project-> color == "Red")
+			<img src="{{ asset('img/red.png') }}" class="color-img">
+		@elseif ($project-> color == "Blue")
+			<img src="{{ asset('img/blue.png') }}" class="color-img">
+		@endif
+		 <br />
 		Rationale: {{ $project-> rationale }} <br /> <br />
 
 		Milestones: <br />

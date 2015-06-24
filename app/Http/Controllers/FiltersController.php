@@ -16,7 +16,7 @@ class FiltersController extends Controller {
 
 		if ($projects == "[]")
 		{
-			session()->flash('flash_important', 'There are no projects that match your query!');
+			flash()->error('There are no projects that match your query!');
 			return view('pages.index', compact('projects'));
 		}
 
@@ -28,7 +28,8 @@ class FiltersController extends Controller {
 		$projects = Project::where('color', $color)->get();
 		if ($projects == "[]")
 		{
-			session()->flash('flash_important', 'There are no projects that match your query!');
+			//flash()->overlay('There are no projects that match your query!','Good job');
+			flash()->error('There are no projects that match your query!');
 			return view('pages.index', compact('projects'));
 		}
 		return view('pages.index', compact('projects'));
@@ -39,7 +40,7 @@ class FiltersController extends Controller {
 		$projects = Project::where('status', $status)->get();
 		if ($projects == "[]")
 		{
-			session()->flash('flash_important', 'There are no projects that match your query!');
+			flash()->error('There are no projects that match your query!');
 			return view('pages.index', compact('projects'));
 		}
 		return view('pages.index', compact('projects'));
@@ -51,14 +52,14 @@ class FiltersController extends Controller {
 		$projects1 = Project::all();
 		foreach ($projects1 as $project) 
 		{
-			if ($project->target_date->month == $month)
+			if ($project['target_start']->month == $month)
 			{
 				$projects[] = $project;
 			}
 		}
 		if ($projects == null)
 		{
-			session()->flash('flash_important', 'There are no projects that match your query!');
+			flash()->error('There are no projects that match your query!');
 			return view('pages.index', compact('projects'));
 		}
 		return view('pages.index', compact('projects'));
@@ -103,7 +104,7 @@ class FiltersController extends Controller {
 	 */
 	public function showProjMan()
 	{
-		return 'pogi mo';
+		
 	}
 
 	/**

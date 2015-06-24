@@ -1,10 +1,12 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Auth;
 
 class Project extends Model 
 {
 	protected $fillable = [
+		'cac',
 		'title',
 		'user_id',
 		'pm',
@@ -12,7 +14,15 @@ class Project extends Model
 		'rationale',
 		'color',
 		'last_updated',
-		'target_date',
+		'percent',
+		'target_start',
+		'target_end',
+		'actual_start',
+		'actual_end',
+		'budget',
+		'utilization',
+		'importance',
+		'applicability',
 		'target_mandays',
 		'actual_mandays',
 		'hardware',
@@ -20,7 +30,8 @@ class Project extends Model
 	];
 
 	//Declaring 'target_date' as a Carbon instance
-	protected $dates = ['target_date'];
+	//protected $dates = ['target_date'];
+	protected $dates = ['target_start', 'target_end', 'actual_start', 'actual_end'];
 
 	public function user()
 	{
@@ -56,4 +67,9 @@ class Project extends Model
 	{
 		return $this->hasMany('App\Risk');
 	}
+		public function deliverables()
+	{
+		return $this->hasMany('App\Deliverable');
+	}
+
 }

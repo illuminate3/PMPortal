@@ -149,6 +149,8 @@ return [
 		'Barryvdh\DomPDF\ServiceProvider',
 		'Spatie\Backup\BackupServiceProvider',
 
+		'Laracasts\Flash\FlashServiceProvider',
+
 	],
 
 	/*
@@ -199,6 +201,7 @@ return [
 		'Form'		=> 'Illuminate\Html\FormFacade',
 		'Html'		=> 'Illuminate\Html\HtmlFacade',
 		'PDF'		=> 'Barryvdh\DomPDF\Facade',
+		'Flash'		=> 'Laracasts\Flash\Flash'
 	],
 
 ];

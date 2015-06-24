@@ -56,7 +56,7 @@ class AccomplishmentsController extends Controller {
 			'accomplishment' => $input['accomplishment']
 			]);
 
-		return redirect()->action('ProjectsController@status', [$id]);
+		return redirect()->action('ProjectsController@show', [$id]);
 	}
 
 	/**
@@ -98,7 +98,7 @@ class AccomplishmentsController extends Controller {
 			'accomplishment' => $input['accomplishment']
 			]);
 
-		return redirect()->action('ProjectsController@status', [$accomplishment->project_id]);	
+		return redirect()->action('ProjectsController@show', [$accomplishment->project_id]);	
 	}
 
 	/**
@@ -114,7 +114,7 @@ class AccomplishmentsController extends Controller {
 		$id = $accomplishment['project_id'];
 		$accomplishment->delete();
 
-		return redirect()->action('ProjectsController@status', $id);
+		return redirect()->action('ProjectsController@show', $id);
 	}
 
 }

@@ -18,7 +18,7 @@ class RedirectIfNotAManager {
 			return $next($request);
 		}
 
-		session()->flash('flash_important', 'You must be logged on as a Project Manager in order to proceed.');
+		flash()->error('You must be logged on as a Project Manager in order to proceed.');
 
 		return redirect('/');	
 	}

@@ -58,7 +58,7 @@ class MilestonesController extends Controller {
 			'target_date' => $input['target_date']
 			]);
 
-		return redirect()->action('ProjectsController@status', [$id]);
+		return redirect()->action('ProjectsController@show', [$id]);
 	}
 
 	/**
@@ -98,7 +98,7 @@ class MilestonesController extends Controller {
 		//
 		$milestone = Milestone::find($id);
 		$input = Request::all();
-		if ($input['status'] != "Done")
+		/*if ($input['status'] != "Done")
 		{
 			$milestone->update([
 				'milestone' => $input['milestone'],
@@ -115,8 +115,14 @@ class MilestonesController extends Controller {
 				'actual_date' => $input['actual_date']
 			]);
 		}
-
-		return redirect()->action('ProjectsController@status', [$milestone->project_id]);
+		*/
+		$milestone->update([
+				'milestone' => $input['milestone'],
+				'status' => $input['status'],
+				'target_date' => $input['target_date'],
+				'actual_date' => $input['actual_date']
+			]);
+		return redirect()->action('ProjectsController@show', [$milestone->project_id]);
 	}
 
 	/**
@@ -132,7 +138,7 @@ class MilestonesController extends Controller {
 		$id = $milestone['project_id'];
 		$milestone->delete();
 
-		return redirect()->action('ProjectsController@status', $id);
+		return redirect()->action('ProjectsController@show', $id);
 	}
 
 }

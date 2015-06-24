@@ -64,7 +64,7 @@ class UsersController extends Controller {
 			$project->save();
 		}
 		$user->Delete('set null');
-		session()->flash('flash_confirmation', 'User account has been successfully deleted!');
+		flash()->success('User account has been successfully deleted!');
 
 
 		return redirect()->action('UsersController@index');
@@ -111,7 +111,7 @@ class UsersController extends Controller {
 
 				if($user->save())
 				{
-					session()->flash('flash_confirmation', 'User account has been successfully updated!');
+					flash()->success('User account has been successfully updated!');
 	    			return redirect()->action('UsersController@index');
 				}
 			}

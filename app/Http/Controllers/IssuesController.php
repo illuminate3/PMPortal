@@ -60,7 +60,7 @@ class IssuesController extends Controller {
 			'comment' => $input['comment']
 			]);
 
-		return redirect()->action('ProjectsController@status', [$id]);
+		return redirect()->action('ProjectsController@show', [$id]);
 	}
 
 	/**
@@ -106,7 +106,7 @@ class IssuesController extends Controller {
 			'comment' => $input['comment']
 			]);
 
-		return redirect()->action('ProjectsController@status', [$issue->project_id]);
+		return redirect()->action('ProjectsController@show', [$issue->project_id]);
 	}
 
 	/**
@@ -121,7 +121,7 @@ class IssuesController extends Controller {
 		$id = $issue['project_id'];
 		$issue->delete();
 
-		return redirect()->action('ProjectsController@status', $id);
+		return redirect()->action('ProjectsController@show', $id);
 	}
 
 }

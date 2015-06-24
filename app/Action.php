@@ -13,7 +13,7 @@ class Action extends Model {
 		'target_date',
 		'comment'
 	];
-
+protected $dates = ['target_date'];
 	public function project()
 	{
 		return $this->belongsTo('App\Project');

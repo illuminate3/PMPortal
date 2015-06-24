@@ -12,6 +12,7 @@ class Milestone extends Model {
 		'target_date',
 		'actual_date'
 	];
+	protected $dates = ['target_date','actual_date'];
 
 	public function project()
 	{
