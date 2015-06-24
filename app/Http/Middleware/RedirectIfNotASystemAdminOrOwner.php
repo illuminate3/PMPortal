@@ -5,7 +5,7 @@ use App\Project;
 use Illuminate\Contracts\Auth\Guard;
 use Auth;
 
-class RedirectIfNotOwner {
+class RedirectIfNotASystemAdminOrOwner {
 
 	/**
      * The Guard implementation.
@@ -36,8 +36,11 @@ class RedirectIfNotOwner {
     {
         $id = $request->segments()[1];
         $project = Project::find($id);
-        if ($project['user_id'] != Auth::user()['id']) {
-            flash()->error('You can only edit your own project');
+
+
+        if (($project['user_id'] != Auth::user()['id']) || ($request->user()->isNotASystemAdministrator() == false))
+        {
+            flash()->error('You are not authorized to edit this project.');
             return redirect('/');
         }
         return $next($request);

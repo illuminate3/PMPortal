@@ -16,7 +16,7 @@ class RedirectIfNotASystemAdminOrManager {
 	{
 		if (Auth::guest())
 		{
-			session()->flash('flash_important', 'You must be logged on as a System Administrator or Project Manager in order to proceed.');
+			flash()->error('flash_important', 'You must be logged on as a System Administrator or Project Manager in order to proceed.');
 
 		return redirect('/');	
 		}
@@ -25,7 +25,7 @@ class RedirectIfNotASystemAdminOrManager {
 			return $next($request);
 		}
 		
-		session()->flash('flash_important', 'You must be logged on as a System Administrator or Project Manager in order to proceed.');
+		flash()->error('flash_important', 'You must be logged on as a System Administrator or Project Manager in order to proceed.');
 		return redirect('/');	
 	}
 

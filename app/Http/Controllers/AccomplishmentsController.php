@@ -14,7 +14,7 @@ class AccomplishmentsController extends Controller {
 	public function __construct()
 	{
 		$this->middleware('auth');	
-		$this->middleware('system_admin_or_manager');
+		$this->middleware('system_admin_or_owner');
 	}
 	
 	/**
