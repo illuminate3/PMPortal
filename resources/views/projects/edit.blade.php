@@ -29,7 +29,7 @@
 
 							<tr>
 								<td class="span3 right">{!! Form::label('target_date', 'Target Date:') !!}</td>
-								<td><input type="date" name="target_date" value="{{ old('custom_date', $project->target_date->format('Y-m-d')) }}"></td>
+								<td><input type="date" name="target_date" value="{{ old('custom_date', $project->target_date) }}"></td>
 							</tr>
 
 							<tr>

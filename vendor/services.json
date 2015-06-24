@@ -29,7 +29,9 @@
         "App\\Providers\\EventServiceProvider",
         "App\\Providers\\RouteServiceProvider",
         "App\\Providers\\ViewComposerServiceProvider",
-        "Barryvdh\\DomPDF\\ServiceProvider"
+        "Barryvdh\\DomPDF\\ServiceProvider",
+        "Spatie\\Backup\\BackupServiceProvider",
+        "Spatie\\Activitylog\\ActivitylogServiceProvider"
     ],
     "eager": [
         "Illuminate\\Auth\\AuthServiceProvider",
@@ -48,7 +50,8 @@
         "App\\Providers\\ConfigServiceProvider",
         "App\\Providers\\EventServiceProvider",
         "App\\Providers\\RouteServiceProvider",
-        "App\\Providers\\ViewComposerServiceProvider"
+        "App\\Providers\\ViewComposerServiceProvider",
+        "Spatie\\Activitylog\\ActivitylogServiceProvider"
     ],
     "deferred": {
         "command.app.name": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",
@@ -129,7 +132,9 @@
         "translation.loader": "Illuminate\\Translation\\TranslationServiceProvider",
         "html": "Illuminate\\Html\\HtmlServiceProvider",
         "form": "Illuminate\\Html\\HtmlServiceProvider",
-        "dompdf": "Barryvdh\\DomPDF\\ServiceProvider"
+        "dompdf": "Barryvdh\\DomPDF\\ServiceProvider",
+        "command.backup:run": "Spatie\\Backup\\BackupServiceProvider",
+        "command.backup:clean": "Spatie\\Backup\\BackupServiceProvider"
     },
     "when": {
         "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider": [],
@@ -144,6 +149,7 @@
         "Illuminate\\Auth\\Passwords\\PasswordResetServiceProvider": [],
         "Illuminate\\Translation\\TranslationServiceProvider": [],
         "Illuminate\\Html\\HtmlServiceProvider": [],
-        "Barryvdh\\DomPDF\\ServiceProvider": []
+        "Barryvdh\\DomPDF\\ServiceProvider": [],
+        "Spatie\\Backup\\BackupServiceProvider": []
     }
 }

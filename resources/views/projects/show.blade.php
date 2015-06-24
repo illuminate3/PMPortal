@@ -12,6 +12,7 @@
 			<div class="panel-heading">
 				{{ $project-> title }} - {{ $project-> updated_at }}
 			</div>
+
 			<div class ="panel-body">
 			<table class="etable table-condensed table-hover project-show"> <tbody>
 

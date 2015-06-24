@@ -177,6 +177,15 @@
 				</p>
 			</div>
 		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<p class="panel-title">
+					<a style="font-size:13px" class="darker accordion-toggle" href="{{ url('/change_log') }}">
+						Audit Trail
+					</a>			
+				</p>
+			</div>
+		</div>
 	</div>
 		@else
 		@endif

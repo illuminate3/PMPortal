@@ -1,3 +1,5 @@
+backups
+
 1) AUTOMATIC BACKUP
 
 I created a batch file scheduler.bat with the following contents:
@@ -41,3 +43,9 @@ go to command line
 >> create database PMPortal; //if not exists
 >> use database PMPortal;
 >> source dump.sql;
+
+
+--------------------
+
+activity log: 
+By default records older than 2 months will be deleted. The number of months can be modified in the config-file of the package.

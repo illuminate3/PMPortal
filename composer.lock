@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "64f375aa8d9fedd45afb8a25e4eb77bb",
+    "hash": "600c9f9bb281a333faeaa8cfed92d793",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -1105,6 +1105,57 @@
                 "shell"
             ],
             "time": "2015-03-26 18:43:54"
+        },
+        {
+            "name": "spatie/activitylog",
+            "version": "2.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/activitylog.git",
+                "reference": "87d61723954f312fe4c0fe3e98edc96955f71b09"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/activitylog/zipball/87d61723954f312fe4c0fe3e98edc96955f71b09",
+                "reference": "87d61723954f312fe4c0fe3e98edc96955f71b09",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.9.*",
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/migrations"
+                ],
+                "psr-0": {
+                    "Spatie\\Activitylog\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be"
+                }
+            ],
+            "description": "A very simple activity logger to monitor the users of your website or application",
+            "homepage": "https://github.com/spatie/activitylog",
+            "keywords": [
+                "activity",
+                "laravel",
+                "log",
+                "user"
+            ],
+            "time": "2015-05-22 20:30:30"
         },
         {
             "name": "spatie/laravel-backup",

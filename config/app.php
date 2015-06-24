@@ -148,6 +148,7 @@ return [
 		'App\Providers\ViewComposerServiceProvider',
 		'Barryvdh\DomPDF\ServiceProvider',
 		'Spatie\Backup\BackupServiceProvider',
+		 'Spatie\Activitylog\ActivitylogServiceProvider',
 
 	],
 
@@ -199,6 +200,7 @@ return [
 		'Form'		=> 'Illuminate\Html\FormFacade',
 		'Html'		=> 'Illuminate\Html\HtmlFacade',
 		'PDF'		=> 'Barryvdh\DomPDF\Facade',
+		'Activity' => 'Spatie\Activitylog\ActivitylogFacade',
 	],
 
 ];

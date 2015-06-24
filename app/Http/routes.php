@@ -87,3 +87,21 @@ Route::get('users/{id}/edit', ['as' => 'users.edit', 'uses' => 'UsersController@
 Route::post('users/{id}', 'UsersController@postUpdateAccount');
 
 Route::get('backup', 'BackupController@backup');
+Route::get('change_log', 'AuditController@changeLog');
+Route::get('activity_log/clean', ['middleware' => 'system_admin', function()
+{
+	Activity::cleanLog();
+	session()->flash('flash_confirmation', 'Activity Log has been successfully cleared!');
+	return redirect()->action('AuditController@changeLog');
+}]);
+
+//By default records older than 2 months will be deleted. The number of months can be modified in the config-file of the spatie/activitylog package.
+Route::get('change_log/clean', ['middleware' => 'system_admin', function()
+{
+	
+	DB::table('revisions')->delete();
+	session()->flash('flash_confirmation', 'Change Log has been successfully cleared!');
+	return redirect()->action('AuditController@changeLog');
+}]);
+Route::get('change_log/deleteOldest', 'AuditController@deleteOldestFiftyChanges');
+Route::get('activity_log/deleteOldest', 'AuditController@deleteOldestFiftyActivities');
