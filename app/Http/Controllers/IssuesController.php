@@ -14,7 +14,7 @@ class IssuesController extends Controller {
 	public function __construct()
 	{
 		$this->middleware('auth');	
-		$this->middleware('manager'); 		
+		$this->middleware('system_admin_or_manager');	
 	}
 	
 	/**

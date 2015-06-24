@@ -27,6 +27,7 @@ class BackupController extends Controller {
 	 */
 	public function __construct(Guard $auth, Registrar $registrar)
 	{
+		$this->middleware('auth');
 		$this->middleware('system_admin');
 	}
 

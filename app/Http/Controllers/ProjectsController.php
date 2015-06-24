@@ -23,8 +23,8 @@ class ProjectsController extends Controller {
 	//CONSTRUCTOR!!!!!!!! 
 	public function __construct()
 	{
-		$this->middleware('auth', ['except' => ['index', 'show', 'generate', 'search']]);	
-		$this->middleware('manager', ['except' => ['index', 'show', 'generate', 'search']]);
+		$this->middleware('auth', ['except' => ['index', 'show', 'search']]);
+		$this->middleware('system_admin_or_manager', ['except' => ['index', 'show', 'search']]);
 	}
 
 

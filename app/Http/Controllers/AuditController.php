@@ -31,7 +31,7 @@ class AuditController extends Controller {
 	 */
 	public function changeLog()
 	{
-		$activities = Activity::where('action','!=','Deleting')->get();
+		$activities = Activity::whereIn('action',array('Created','Deleted','Updated'))->get();
 								//->where(user('name'),'!=','name')->get(); 
 		$projects = Project::all();
 		$milestones = Milestone::all();
