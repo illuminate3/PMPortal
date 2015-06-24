@@ -22,7 +22,7 @@ use App\Http\Controllers\DeliverablesController;
 
 
 class ProjectsController extends Controller {
-	
+
 	//CONSTRUCTOR!!!!!!!! 
 	public function __construct()
 	{
@@ -296,6 +296,7 @@ class ProjectsController extends Controller {
 			}
 		}
 
+
 		if ($input['target_mandays'] >= 60 or $input['budget'] >= 2000000)
 		{
 			$importance = "MAJOR";
@@ -328,9 +329,10 @@ class ProjectsController extends Controller {
 			'actual_mandays' => $input['actual_mandays'],
 			'hardware' => $input['hardware'],
 			'software' => $input['software'],
+
 			'importance' => $importance,
 			'applicability' => $input['applicability'],
-			'rationale' => $input['rationale']
+			
 			]);
 
 		if ($input['status'] != 'Not Started')
@@ -390,6 +392,7 @@ class ProjectsController extends Controller {
 
 
 		return redirect()->action('ProjectsController@show', [$id]);
+
 	}
 
 	/**
@@ -430,7 +433,7 @@ class ProjectsController extends Controller {
 		$issues = Issue::where('project_id', $id)->get();
 		$milestones = Milestone::where('project_id', $id)->get();
 		$risks = Risk::where('project_id', $id)->get();
-
+		
 		return view('projects.status', compact('project', 'actions', 'accomplishments', 'expenses', 'issues', 'milestones', 'risks', 'function'));
 	}
 

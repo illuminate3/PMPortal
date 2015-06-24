@@ -53,6 +53,9 @@
 							<tr>
 								<td class="span3 right">{!! Form::label('actual_end', 'Actual End:') !!}</td>
 								<td><input type="date" name="actual_end" value="{{ old('custom_date', $project->actual_end->format('Y-m-d')) }}"></td>
+								<td class="span3 right">{!! Form::label('target_date', 'Target Date:') !!}</td>
+								<td><input type="date" name="target_date" value="{{ old('custom_date', $project->target_date) }}"></td>
+
 							</tr>
 
 							<tr>

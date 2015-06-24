@@ -31,6 +31,7 @@
         "App\\Providers\\ViewComposerServiceProvider",
         "Barryvdh\\DomPDF\\ServiceProvider",
         "Spatie\\Backup\\BackupServiceProvider",
+        "Spatie\\Activitylog\\ActivitylogServiceProvider",
         "Laracasts\\Flash\\FlashServiceProvider"
     ],
     "eager": [
@@ -51,6 +52,7 @@
         "App\\Providers\\EventServiceProvider",
         "App\\Providers\\RouteServiceProvider",
         "App\\Providers\\ViewComposerServiceProvider",
+        "Spatie\\Activitylog\\ActivitylogServiceProvider",
         "Laracasts\\Flash\\FlashServiceProvider"
     ],
     "deferred": {
