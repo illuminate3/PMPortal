@@ -15,7 +15,7 @@ class CreateProjectsTable extends Migration {
 		Schema::create('projects', function(Blueprint $table)
 		{
 			
-			$table->increments('id');
+			$table->increments('id')->unsigned()->index();
 			$table->integer('user_id')->unsigned()->nullable();
 			$table->string('pm');
 			$table->string('cac');
@@ -36,6 +36,7 @@ class CreateProjectsTable extends Migration {
 			$table->integer('target_mandays')->unsigned();
 		    $table->integer('actual_mandays')->unsigned();
 			$table->string('applicability');
+			$table->string('confidentiality');
 
 			$table->timestamp('last_updated');
 			$table->timestamps();

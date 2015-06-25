@@ -29,7 +29,8 @@ class Kernel extends HttpKernel {
 		'guest' => 'App\Http\Middleware\RedirectIfAuthenticated',
 		'system_admin' => 'App\Http\Middleware\RedirectIfNotASystemAdmin',
 		'system_admin_or_manager'  => 'App\Http\Middleware\RedirectIfNotASystemAdminOrManager',
-		'system_admin_or_owner' => 'App\Http\Middleware\RedirectIfNotASystemAdminOrOwner'
+		'system_admin_or_owner' => 'App\Http\Middleware\RedirectIfNotASystemAdminOrOwner',
+		'manager_or_member' => 'App\Http\Middleware\RedirectIfANotProjectManagerOrMember',
 	];
 
 }

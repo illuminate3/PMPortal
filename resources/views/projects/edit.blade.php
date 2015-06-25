@@ -30,6 +30,16 @@
 									@endforeach
 								</select> </td>
 							</tr>
+
+							<tr>
+								<td class="span3 right"> {!! Form::label('users', 'Personnel:') !!} </td>
+								<td> <select class="span7" name="users[]" value="{{ old('users') }}" multiple>
+									@foreach ($users as $user)
+										<option value= {{ $user->id }}> {{ $user->name }}</option>
+									@endforeach
+								</select> </td>
+							</tr>
+
 							<tr>
 								<td class="span3 right">{!! Form::label('percent', 'Percent:') !!}</td>
 								<td>{!! Form::input('number','percent',null,['class' => 'span5']) !!}</td>
@@ -79,7 +89,17 @@
 							<tr>
 								<td class="span3 right">{!! Form::label('utilization', 'Utilization:') !!}</td>
 								<td>{!! Form::input('number','utilization',null,['class' => 'span5']) !!}</td>
-							</tr><tr>
+							</tr>
+
+							<tr>
+								<td class="span3 right"> {!! Form::label('confidentiality', 'Confidentiality:') !!} </td>
+								<td> <select class="span5" name="confidentiality" value="{{ old('confidentiality') }}">
+									<option value="Confidential">Confidential</option>
+									<option value="Public">Public</option>
+								</select> </td>
+							</tr>
+
+							<tr>
 								<td class="span3 right"> {!! Form::label('applicability', 'Applicability:') !!} </td>
 								<td> <select class="span5" name="applicability" value="{{ old('applicability') }}">
 									<option value="New or Replacement of IT Solution"> New or Replacement of IT Solution</option>

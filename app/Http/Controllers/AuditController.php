@@ -48,7 +48,7 @@ class AuditController extends Controller {
 		$revisions = DB::table('revisions')->orderBy('created_at','asc')->take(50)->get();
 		foreach ($revisions as $revision)
 			DB::table('revisions')->where('id', '=', $revision->id)->delete();
-		flash()->success('flash_confirmation', 'Oldest fifty records have been successfully deleted!'); //go to PMPortal/storage/app/backups
+		flash()->success('Oldest fifty records have been successfully deleted!'); //go to PMPortal/storage/app/backups
 		return redirect()->action('AuditController@changeLog');
 	}
 
@@ -57,7 +57,7 @@ class AuditController extends Controller {
 		$activities = DB::table('activity_log')->orderBy('created_at','asc')->take(50)->get();
 		foreach ($activities as $activity)
 			DB::table('activity_log')->where('id', '=', $activity->id)->delete();
-		flash()->success('flash_confirmation', 'Oldest fifty records have been successfully deleted!'); //go to PMPortal/storage/app/backups
+		flash()->success('Oldest fifty records have been successfully deleted!'); //go to PMPortal/storage/app/backups
 		return redirect()->action('AuditController@changeLog');
 	}
 

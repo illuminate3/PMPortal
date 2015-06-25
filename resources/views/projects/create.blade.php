@@ -23,16 +23,22 @@
 								<td class="span3 right"> {!! Form::label('title', 'Title:')!!} </td>
 								<td> {!! Form::text('title', null, ['class' => 'span7']) !!} </td>
 							</tr>
-							<!--
+
+														
+							<!--<tr>
+								<td class="span3 right"> {!! Form::label('users', 'Members:')!!} </td>
+								<td> {!! Form::select('users[]', $users, null,['class' => 'span7','multiple']) !!} </td>
+							</tr>-->
+
 							<tr>
-								<td class="span3 right"> {!! Form::label('manager', 'Project Manager:') !!} </td>
-								<td> <select class="span5" name="user_id" value="{{ old('user_id') }}">
-									@foreach ($managers as $manager)
-										<option value= {{ $manager-> id }}> {{ $manager-> name }}</option>
+								<td class="span3 right"> {!! Form::label('users', 'Personnel:') !!} </td>
+								<td> <select class="span7" name="users[]" value="{{ old('users') }}" multiple>
+									@foreach ($users as $user)
+										<option value= {{ $user->id }}> {{ $user->name }}</option>
 									@endforeach
 								</select> </td>
 							</tr>
-							-->
+							
 							<tr>
 								<td class="span3 right">{!! Form::label('target_start', 'Target Start:') !!}</td>
 								<td>{!! Form::input('date','target_start', date('Y-m-d'), ['class' => 'span5']) !!}</td>
@@ -41,6 +47,11 @@
 							<tr>
 								<td class="span3 right">{!! Form::label('target_end', 'Target End:') !!}</td>
 								<td>{!! Form::input('date','target_end', date('Y-m-d'), ['class' => 'span5']) !!}</td>
+							</tr>
+
+							<tr>
+								<td class="span3 right"> {!! Form::label('target_mandays', 'Target mandays: ') !!}</td>
+								<td> {!! Form::input('number','target_mandays', null, ['class' => 'span5', 'step' => '1']) !!} </td>
 							</tr>
 
 							<tr>
@@ -59,8 +70,11 @@
 							</tr>
 
 							<tr>
-								<td class="span3 right"> {!! Form::label('target_mandays', 'Target mandays: ') !!}</td>
-								<td> {!! Form::input('number','target_mandays', null, ['class' => 'span5', 'step' => '1']) !!} </td>
+								<td class="span3 right"> {!! Form::label('confidentiality', 'Confidentiality:') !!} </td>
+								<td> <select class="span5" name="confidentiality" value="{{ old('confidentiality') }}">
+									<option value="Confidential">Confidential</option>
+									<option value="Public">Public</option>
+								</select> </td>
 							</tr>
 
 							<tr>

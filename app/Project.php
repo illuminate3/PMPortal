@@ -38,7 +38,8 @@ class Project extends Model implements LogsActivityInterface
 		'target_mandays',
 		'actual_mandays',
 		'hardware',
-		'software'
+		'software',
+		'confidentiality'
 	];
 
 	protected $revisionEnabled = true;
@@ -85,6 +86,11 @@ class Project extends Model implements LogsActivityInterface
 	public function user()
 	{
 		return $this->belongsTo('App\User');
+	}
+
+	public function users()
+	{
+		return $this->belongsToMany('App\User')->withTimestamps();
 	}
 
 	public function accomplishments()
@@ -150,6 +156,11 @@ class Project extends Model implements LogsActivityInterface
 	public function getType()
 	{
 		return 'Project';
+	}
+
+	public function getUserListAttributes()
+	{
+		return $this->users->lists('id');
 	}
 
 }

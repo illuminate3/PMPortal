@@ -102,7 +102,7 @@ Route::get('change_log', 'AuditController@changeLog');
 Route::get('activity_log/clean', ['middleware' => 'system_admin', function()
 {
 	Activity::cleanLog();
-	session()->flash('flash_confirmation', 'Activity Log has been successfully cleared!');
+	flash()->success('Activity Log has been successfully cleared!');
 	return redirect()->action('AuditController@changeLog');
 }]);
 
@@ -110,7 +110,7 @@ Route::get('activity_log/clean', ['middleware' => 'system_admin', function()
 Route::get('change_log/clean', ['middleware' => 'system_admin', function()
 {	
 	DB::table('revisions')->delete();
-	flash()->success('flash_confirmation', 'Change Log has been successfully cleared!');
+	flash()->success('Change Log has been successfully cleared!');
 	return redirect()->action('AuditController@changeLog');
 }]);
 Route::get('change_log/deleteOldest', 'AuditController@deleteOldestFiftyChanges');

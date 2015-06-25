@@ -12,43 +12,53 @@ class FiltersController extends Controller {
 	
 	public function showManager($name)
 	{	
-		$projects = Project::where('pm', $name)->get();
-
+		if (Auth::guest())
+			$projects = Project::where('pm',$name)->where('confidentiality','Public')->get();
+		else
+			$projects = Project::where('pm',$name)->get();
 		if ($projects == "[]")
 		{
 			flash()->error('There are no projects that match your query!');
 			return redirect()->action('ProjectsController@index', compact('projects'));
 		}
-		return redirect()->action('ProjectsController@index', compact('projects'));
+		return view('pages.index', compact('projects'));
 	}
 
 	public function showColor($color)
 	{		
-		$projects = Project::where('color', $color)->get();
+		if (Auth::guest())
+			$projects = Project::where('color',$color)->where('confidentiality','Public')->get();
+		else
+			$projects = Project::where('color',$color)->get();
 		if ($projects == "[]")
 		{
-			//flash()->overlay('There are no projects that match your query!','Good job');
 			flash()->error('There are no projects that match your query!');
 			return redirect()->action('ProjectsController@index', compact('projects'));
 		}
-		return redirect()->action('ProjectsController@index', compact('projects'));
+		return view('pages.index', compact('projects'));
 	}
 
 	public function showStatus($status)
 	{
-		$projects = Project::where('status', $status)->get();
+		if (Auth::guest())
+			$projects = Project::where('status',$status)->where('confidentiality','Public')->get();
+		else
+			$projects = Project::where('status',$status)->get();
 		if ($projects == "[]")
 		{
 			flash()->error('There are no projects that match your query!');
 			return redirect()->action('ProjectsController@index', compact('projects'));
 		}
-		return redirect()->action('ProjectsController@index', compact('projects'));
+		return view('pages.index', compact('projects'));
 	}
 
 	public function showMonth($month)
 	{	 
 		$projects = [];
-		$projects1 = Project::all();
+		if (Auth::guest())
+			$projects1 = Project::where('confidentiality','Public')->get();
+		else
+			$projects1 = Project::all();
 		foreach ($projects1 as $project) 
 		{
 			if ($project['target_start']->month == $month)
@@ -61,7 +71,7 @@ class FiltersController extends Controller {
 			flash()->error('There are no projects that match your query!');
 			return redirect()->action('ProjectsController@index', compact('projects'));
 		}
-		return redirect()->action('ProjectsController@index', compact('projects'));
+		return view('pages.index', compact('projects'));
 	}
 
 	/**
