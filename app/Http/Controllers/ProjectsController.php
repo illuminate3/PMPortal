@@ -19,6 +19,9 @@ use App\Http\Requests\CreateProjectRequest;
 use App\Http\Controllers\FiltersController;
 use App\Http\Controllers\DeliverablesController;
 
+use Session;
+
+
 
 
 class ProjectsController extends Controller {
@@ -400,25 +403,24 @@ class ProjectsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
+
+
 	public function destroy($id)
 	{
 		$project = Project::find($id);
+		$status = $project->status;
 
 		if ($project->status == 'Cancelled')
 		{
-			$project->forceDelete();
-
-			flash()->success('Project has been successfully deleted!');
-
-			return redirect('/');
+	    	$project->forceDelete();
+	    	flash()->success('Project deleted successfully!');
+	    	return redirect('/');
 		}
-
-		else 
-		{
-			flash()->error('Projects can only be deleted when they are "Cancelled"');
-
+    	else
+    	{
+    		flash()->error('Projects can only be deleted when they are "Cancelled"');
 			return redirect()->action('ProjectsController@show', [$id]);
-		}
+    	}
 	}
 
 	public function status($id)

@@ -69,7 +69,7 @@ class Project extends Model implements LogsActivityInterface
 		'status' => 'Status',
 		'rationale' => 'Rationale',
 		'color' => 'Project Manager',
-		'target_date' => 'Target Date',
+		
 		'target_mandays'  => 'Target Mandays',
 		'actual_mandays' => 'Actual Mandays',
 		'hardware' => 'Hardware',
@@ -79,7 +79,7 @@ class Project extends Model implements LogsActivityInterface
 	//Declaring 'target_date' as a Carbon instance
 	//protected $dates = ['target_date'];
 
-	protected $dates = ['target_start', 'target_end', 'actual_start', 'actual_end'];
+	protected $dates = ['target_start', 'target_end', 'actual_start', 'actual_end', 'updated_at'];
 
 
 	public function user()

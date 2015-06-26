@@ -1,7 +1,4 @@
 @extends ('app')
-@section('header')
-	<script src="{{ asset('/sorttable.js') }}"></script>
-@stop
 @section('content')
 	<div class="row-fluid">
 		<!--sidebar content-->

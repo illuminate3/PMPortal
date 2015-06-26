@@ -133,27 +133,25 @@
 			@if (Auth::guest())
 				<ul class="nav nav-list nav-stacked">
 					<li>
-						{!! Form::open(['route' => ['projects.generatepdf', $project->id], 'method' => 'get' ]) !!}
+						{!! Form::open(['route' => ['projects.generatepdf', $project['id']], 'method' => 'get' ]) !!}
 							{!! Form::button('<i class="glyphicon glyphicon-file"></i> Generate Report', ['type' => 'submit', 'class' => 'btn btn-warning span12 option']) !!}
 						{!! Form::close() !!}
 					</li>
 				</ul>	
 			
-			@elseif ((Auth::user()->role == 'Project Manager') || (Auth::user()->role == 'System Administrator'))		
+				@elseif ((Auth::user()->role == 'Project Manager') || (Auth::user()->role == 'System Administrator'))		
 				<ul class="nav nav-list nav-stacked">
 					<li>
 						{!! Form::open(['route' => ['projects.create'], 'method' => 'get' ]) !!}
 							{!! Form::button('<i class="glyphicon glyphicon-pencil"></i> Create Project', ['type' => 'submit', 'class' => 'btn btn-warning span12 option']) !!}
 						{!! Form::close() !!}
 					</li>
+					<li>
+						@include('includes.confirm')
 					</li>
 					<li>
-						{!! Form::open(['route' => ['projects.destroy', $project->id], 'method' => 'delete' ]) !!}
-							{!! Form::button('<i class="glyphicon glyphicon-trash"></i> Delete Project', ['type' => 'submit', 'class' => 'btn btn-warning span12 option']) !!}
-						{!! Form::close() !!}
-					</li>
-					<li>
-						{!! Form::open(['route' => ['projects.generatepdf', $project->id], 'method' => 'get' ]) !!}
+
+						{!! Form::open(['route' => ['projects.generatepdf', $project['id']], 'method' => 'get' ]) !!}
 							{!! Form::button('<i class="glyphicon glyphicon-file"></i> Generate Report', ['type' => 'submit', 'class' => 'btn btn-warning span12 option']) !!}
 						{!! Form::close() !!}
 					</li>

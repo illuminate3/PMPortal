@@ -34,7 +34,7 @@
 			</div>
 
 			<div class="form-group login-email">
-					<button type="submit" class="btn btn-warning login-email">Login</button>
+					<button type="submit" class="btn btn-warning login-email option">Login</button>
 			</div>
 		</form>
 	</div>

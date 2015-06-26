@@ -1,13 +1,19 @@
+
 body {
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #eee;
+  background: url(../img/bg.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .form-signin {
   max-width: 330px;
   padding: 15px;
   margin: 0 auto;
+
 }
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
@@ -39,19 +45,6 @@ body {
   border-top-right-radius: 0;
 }
 
-body{
-background-color: #AAAAAA;
-}
-
-.login-body{
-  background-color:#222222;background: url(../img/bg.png) no-repeat center center fixed;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-    background-attachment:fixed;background-size:100%;
-}
-
 .login-container{
   background-image:url('img/white-bg.jpg');
   background-color:white;
@@ -77,4 +70,55 @@ background-color: #AAAAAA;
   margin-left: 6%;
   width: 80%;
   text-align: left;
+}
+
+
+.textcontainer
+{
+  margin-top: -15px;
+  
+  width:100%;
+  
+}
+.btn-half
+{
+  width: 49%;
+}
+.btncontainer
+{
+  margin-top: 10px;
+  width:100%;
+  
+  height:50px;
+}
+.btn-right
+{
+  float: right;
+}
+.resultscontainer
+{
+  margin-top:-20px;
+}
+
+.allheading{
+
+  margin-top:-10px;
+  text-align: center;
+  font-family: inherit;
+  font-weight: bold;
+
+  color: inherit;
+  font-size: 15px;
+  text-rendering: optimizelegibility;
+ 
+  height:50px;
+  padding-bottom:0px;
+}
+
+.panel-custom
+{
+  border:1px; 
+  -webkit-box-shadow: 0 0px 0 rgba(255, 255, 255, 0.2), 0 0px 0px rgba(0, 0, 0, 0.4);
+     -moz-box-shadow: 0 0px 0 rgba(255, 255, 255, 0.2), 0 0px 0px rgba(0, 0, 0, 0.4);
+     box-shadow:0 0px 0 rgba(255, 255, 255, 0.2), 0 0px 0px rgba(0, 0, 0, 0.4);
 }

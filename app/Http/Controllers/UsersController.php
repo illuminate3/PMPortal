@@ -45,7 +45,7 @@ class UsersController extends Controller {
 		$q = $input['query'];
 		$users = User::where('email', 'LIKE', "%$q%" )->get();
 
-		return view('users.results', compact('users'));
+		return view('users.results', compact('users', 'q'));
 	}
 
 	public function show($id)
