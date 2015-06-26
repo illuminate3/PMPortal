@@ -36,15 +36,42 @@ class RedirectIfNotASystemAdminOrOwner {
     {
         $id = $request->segments()[1];
         $project = Project::find($id);
+        //dd($project['attributes']['user_id']);
 
 
-        if ($request->user()->isASystemAdministrator() == false && $project['user_id'] != Auth::user()['id'])
+        if (Auth::guest())
         {
-            flash()->error('You are not authorized to edit this project.');
-            return redirect('/');
+             flash()->error('You are not authorized to edit or delete this project.');
+             return redirect()->action('ProjectsController@index');
         }
+        else
 
-        return $next($request);
+        {
+            if ($request->user()->isASystemAdministrator())
+            {
+                return $next($request);
+            }
+            else
+            {
+                if($project['user_id'] == null)
+                {
+                    flash()->error('You are not authorized to edit or delete this project.');
+                    return redirect()->action('ProjectsController@index');
+                }
+                else
+                {
+                    if ($project['user_id'] == Auth::user()['id'])
+                    {
+                        return $next($request);
+                    }
+                    else
+                    {
+                        flash()->error('You are not authorized to edit or delete this project.');
+                        return redirect()->action('ProjectsController@index');
+                    }
+                }
+            }
+        }
 
     }
 

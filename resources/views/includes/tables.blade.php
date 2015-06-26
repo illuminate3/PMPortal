@@ -2,7 +2,7 @@
 				<tr> 
 					<th colspan="2"> Milestones: </th>
 					@if (Auth::guest())
-					@elseif (Auth::user()->role == 'Project Manager')
+					@elseif ((Auth::user()['id'] == $project['user_id']) || (Auth::user()->role == 'System Administrator'))
 						<th class="pull-right add"><a href="{{ action('MilestonesController@create', [$project->id] ) }}" class="add"> <i class="glyphicon glyphicon-plus"></i> Add Milestone</a></th> 
 					@else
 					@endif
@@ -36,7 +36,7 @@
 
 							<td align="center">{{ $actual_date}}</td>
 							@if (Auth::guest())
-							@elseif (Auth::user()->role == 'Project Manager')
+								@elseif ((Auth::user()['id'] == $project['user_id']) || (Auth::user()->role == 'System Administrator'))
 								<td><a href="{{ action('MilestonesController@edit', [$milestone->id] ) }}"> Edit</a></td>
 							@else
 							@endif
@@ -51,7 +51,7 @@
 				<tr> 
 					<th colspan="2"> Last Week's Accomplishments: </th> 
 					@if (Auth::guest())
-					@elseif (Auth::user()->role == 'Project Manager')
+					@elseif ((Auth::user()['id'] == $project['user_id']) || (Auth::user()->role == 'System Administrator'))
 						<th class="pull-right add">	<a class="add" href="{{ action('AccomplishmentsController@create', [$project->id] ) }}"> <i class="glyphicon glyphicon-plus"></i> Add Accomplishment</a></th>
 					@else
 					@endif
@@ -63,7 +63,7 @@
 							<td>
 								{{ $accomplishment-> accomplishment }} |
 								@if (Auth::guest())
-								@elseif (Auth::user()->role == 'Project Manager')
+								@elseif ((Auth::user()['id'] == $project['user_id']) || (Auth::user()->role == 'System Administrator'))
 									<a href="{{ action('AccomplishmentsController@edit', [$accomplishment->id] ) }}"> Edit</a>
 								@else
 								@endif
@@ -77,7 +77,7 @@
 				<tr> 
 					<th colspan="2"> Week's Action Items: </th> 
 					@if (Auth::guest())
-					@elseif (Auth::user()->role == 'Project Manager')
+					@elseif ((Auth::user()['id'] == $project['user_id']) || (Auth::user()->role == 'System Administrator'))
 						<th class="pull-right add"><a class="add" href="{{ action('ActionsController@create', [$project->id] ) }}"> <i class="glyphicon glyphicon-plus"></i> Add Action Item</a> </th> 
 					@else
 					@endif
@@ -105,7 +105,7 @@
 							<td align="center">{{ $action -> target_date ->toFormattedDateString()}} </td>
 							<td>{{ $action -> comment }} </td>
 							@if (Auth::guest())
-								@elseif (Auth::user()->role == 'Project Manager')
+							@elseif ((Auth::user()['id'] == $project['user_id']) || (Auth::user()->role == 'System Administrator'))
 									<td><a href="{{ action('ActionsController@edit', [$action->id] ) }}"> Edit</a></td>
 								@else
 								@endif
@@ -120,7 +120,7 @@
 				<tr> 
 					<th colspan="2"> Issues: </th> 
 					@if (Auth::guest())
-					@elseif (Auth::user()->role == 'Project Manager')
+					@elseif ((Auth::user()['id'] == $project['user_id']) || (Auth::user()->role == 'System Administrator'))
 						<th class="pull-right add"><a class="add" href="{{ action('IssuesController@create', [$project->id] ) }}"> <i class="glyphicon glyphicon-plus"></i> Add Issue</a></th> 
 					@else
 					@endif
@@ -148,7 +148,7 @@
 							<td align="center">{{ $issue -> owner }} </td>
 							<td>{{ $issue -> comment }} </td>
 							@if (Auth::guest())
-								@elseif (Auth::user()->role == 'Project Manager')
+							@elseif ((Auth::user()['id'] == $project['user_id']) || (Auth::user()->role == 'System Administrator'))
 									<td><a href="{{ action('IssuesController@edit', [$issue->id] ) }}"> Edit</a></td>
 								@else
 							@endif
@@ -163,7 +163,7 @@
 				<tr> 
 					<th colspan="2"> Risks: </th>
 					@if (Auth::guest())
-					@elseif (Auth::user()->role == 'Project Manager')
+					@elseif ((Auth::user()['id'] == $project['user_id']) || (Auth::user()->role == 'System Administrator'))
 						<th class="pull-right add"><a class="add" href="{{ action('RisksController@create', [$project->id] ) }}"> <i class="glyphicon glyphicon-plus"></i> Add Risk</a></th>
 					@else
 					@endif
@@ -189,7 +189,7 @@
 							<td align="center">{{ $risk-> probability }}</td>
 							<td>{{ $risk -> mitigation }} </td>
 							@if (Auth::guest())
-								@elseif (Auth::user()->role == 'Project Manager')
+								@elseif ((Auth::user()['id'] == $project['user_id']) || (Auth::user()->role == 'System Administrator'))
 									<td><a href="{{ action('RisksController@edit', [$risk->id] ) }}"> Edit</a></td>
 								@else
 								@endif
@@ -204,7 +204,7 @@
 				<tr> 
 					<th colspan="2"> Expenses: </th> 
 					@if (Auth::guest())
-					@elseif (Auth::user()->role == 'Project Manager')
+					@elseif ((Auth::user()['id'] == $project['user_id']) || (Auth::user()->role == 'System Administrator'))
 						<th class="pull-right add"><a class="add" href="{{ action('ExpensesController@create', [$project->id] ) }}"> <i class="glyphicon glyphicon-plus"></i> Add Expense</a>  </th>
 					@else
 					@endif
@@ -230,7 +230,7 @@
 							<td align="center">{{ $expense-> balance }}</td>
 							<td>{{ $expense -> comment }} </td>
 							@if (Auth::guest())
-								@elseif (Auth::user()->role == 'Project Manager')
+								@elseif ((Auth::user()['id'] == $project['user_id']) || (Auth::user()->role == 'System Administrator'))
 									<td><a href="{{ action('ExpensesController@edit', [$expense->id] ) }}"> Edit</a></td>
 								@else
 								@endif

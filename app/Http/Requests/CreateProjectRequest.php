@@ -27,7 +27,8 @@ class CreateProjectRequest extends Request {
 			'target_start' => 'required',
 			'target_end' => 'required',
 			'target_mandays' => 'required',
-			'budget' => 'required'
+			'budget' => 'required',
+			'confidentiality' => 'required'
 		];
 	}
 

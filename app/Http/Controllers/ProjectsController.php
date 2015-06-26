@@ -18,6 +18,7 @@ use App\Http\Controllers\PDF;
 use App\Http\Requests\CreateProjectRequest;
 use App\Http\Controllers\FiltersController;
 use App\Http\Controllers\DeliverablesController;
+use DB;
 
 use Session;
 
@@ -32,8 +33,8 @@ class ProjectsController extends Controller {
 		$this->middleware('auth', ['except' => ['index', 'show', 'search']]);
 		$this->middleware('system_admin_or_manager', ['except' => ['index', 'show', 'search']]);
 		$this->middleware('system_admin_or_owner', ['only' => ['edit','update','destroy']]);
+		$this->middleware('manager_or_member', ['except' => ['index','search','create','store']]);
 	}
-
 
 	/**
 	 * Display a listing of the resource.
@@ -52,8 +53,12 @@ class ProjectsController extends Controller {
 		$greenProj = Project::where('color', 'Green')->get();
 		$blueProj = Project::where('color', 'Blue')->get();	
 
-		$projects = Project::all();
-
+		if (Auth::guest())
+			$projects = Project::where('confidentiality','Public')->get();
+		else
+			$projects = Project::all();
+		
+		
 		/* Declaring variables. */
 		$manCount = 0;	
 		$viewCount = 0;	
@@ -94,7 +99,7 @@ class ProjectsController extends Controller {
 		}
 
 		/* Redirect to view page and pass variables. */
-		return view('pages.index', compact('projects', 'manCount', 'viewCount', 'blueCount', 'redCount', 'greenCount', 'amberCount'));
+		return view('pages.index', compact('projects','manCount', 'viewCount', 'blueCount', 'redCount', 'greenCount', 'amberCount'));
 
 		//return view('pages.index', compact('projects'));
 	}
@@ -106,8 +111,8 @@ class ProjectsController extends Controller {
 	 */
 	public function create()
 	{	
-		$managers = User::where('role','Project Manager')->get();
-		return view('projects.create', compact('managers'));
+		$users = User::where('role','!=','System Administrator')->where('id','!=',Auth::user()->id)->get();//('role','Project Manager')->where('id','!=',Auth::user()->id)->get();
+		return view('projects.create', compact('users'));
 	}
 
 	public function generatepdf($id)
@@ -123,9 +128,9 @@ class ProjectsController extends Controller {
 	 */
 	public function store(CreateProjectRequest $request)
 	{
+		//dd($request->input('users'));
+
 		$input = Request::all();
-
-
 
 		if ($input['target_mandays'] >= 60 or $input['budget'] >= 2000000)
 		{
@@ -157,11 +162,13 @@ class ProjectsController extends Controller {
 			'hardware' => $input['hardware'],
 			'software' => $input['software'],
 			'importance' => $importance,
-			'applicability' => $input['applicability']
-
+			'applicability' => $input['applicability'],
+			'confidentiality' => $input['confidentiality']
 			]);
 
 		$project = Project::all()->last();
+		$project->users()->attach($request->input('users'));
+
 		/* Upon creation of new project, checklist of deliverables are also created */
 		$deliverables = [];
 		$deliverables = ['Project Approval', 'Product Sign-off', 'Conceptual Solution Architecture Document', 
@@ -247,9 +254,6 @@ class ProjectsController extends Controller {
 	 */
 	public function show($id)
 	{
-
-		$managers = User::where('role','Project Manager')->get();
-		//
 		$project = Project::find($id);
 		$accomplishments = Accomplishment::where('project_id', $id)->get();
 		$actions = Action::where('project_id', $id)->get();
@@ -258,7 +262,7 @@ class ProjectsController extends Controller {
 		$milestones = Milestone::where('project_id', $id)->get();
 		$risks = Risk::where('project_id', $id)->get();
 
-		return view('projects.show', compact('project', 'managers', 'actions', 'accomplishments', 'expenses', 'issues', 'milestones', 'risks'));
+		return view('projects.show', compact('project', 'actions', 'accomplishments', 'expenses', 'issues', 'milestones', 'risks'));
 	}
 
 	/**
@@ -270,9 +274,19 @@ class ProjectsController extends Controller {
 	public function edit($id)
 	{	
 		$project = Project::find($id);
+		
+		if($project['user_id'] == null)
+		{
+			$users = User::where('role','!=','System Administrator')->where('id','!=',Auth::user()->id)->get();
+		}
+		else
+		{
+			$users = User::where('role','!=','System Administrator')->where('id','!=',Auth::user()->id)->where('id','!=',$project['user_id'])->get();//('role','Project Manager')->where('id','!=',Auth::user()->id)->get();
+		}
+		
 		$managers = User::where('role','Project Manager')->get();
 
-		return view('projects.edit', compact('project','managers'));
+		return view('projects.edit', compact('project','managers','users'));
 	}
 
 	/**
@@ -334,6 +348,7 @@ class ProjectsController extends Controller {
 
 			'importance' => $importance,
 			'applicability' => $input['applicability'],
+			'confidentiality' => $input['confidentiality']
 			
 			]);
 
@@ -347,6 +362,11 @@ class ProjectsController extends Controller {
 			$project->update([
 				'actual_end' => $input['actual_end']
 				]);	
+		
+		if($request->input('users'))
+		{
+			$project->users()->sync($request->input('users'));
+		}
 		
 
 		$deliverables = Deliverable::where('project_id', $id)->get();
@@ -392,7 +412,7 @@ class ProjectsController extends Controller {
 			$i = $i + 1;
 		}
 
-
+		flash()->success('Your project has been successfully updated!');
 		return redirect()->action('ProjectsController@show', [$id]);
 
 	}
@@ -412,13 +432,14 @@ class ProjectsController extends Controller {
 
 		if ($project->status == 'Cancelled')
 		{
+
 	    	$project->forceDelete();
 	    	flash()->success('Project deleted successfully!');
 	    	return redirect('/');
 		}
-    	else
-    	{
-    		flash()->error('Projects can only be deleted when they are "Cancelled"');
+		else 
+		{
+			flash()->error('Projects can only be deleted when they are "Cancelled"');
 			return redirect()->action('ProjectsController@show', [$id]);
     	}
 	}
@@ -456,25 +477,19 @@ class ProjectsController extends Controller {
 		//$managers = User::where('role','Project Manager')->get();
 		
 		$input = Request::all();
-
-		$q = $input['query'];
-		$projects = Project::where('title', 'LIKE', "%$q%" )->get();
-		
 		$q = $input['query'];
 		
-		$projects = Project::where('title', 'LIKE', "%$q%" )->get();					
+		if (Auth::guest())
+			$projects = Project::where('confidentiality','Public')->where('title', 'LIKE', "%$q%" )->orWhere('cac', 'LIKE', "%$q%" )->get();
+		else
+			$projects = Project::where('title', 'LIKE', "%$q%" )->orWhere('cac', 'LIKE', "%$q%" )->get();
+				
 
 		if ($projects == "[]")
-			{
-				$projects = Project::where('cac', 'LIKE', "%$q%" )->get();
-
-				if ($projects == "[]")
-					{
-						flash()->error('There are no projects that match your query!');
-						return view('pages.index', compact('projects', 'managers'));
-					}
-			}
-			
+		{
+			flash()->error('There are no projects that match your query!');
+			return redirect()->action('ProjectsController@index', compact('projects','managers'));		
+		}
 				
 		return view('pages.index', compact('projects', 'managers'));
 	}

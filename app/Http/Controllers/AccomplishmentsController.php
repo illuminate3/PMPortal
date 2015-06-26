@@ -14,7 +14,7 @@ class AccomplishmentsController extends Controller {
 	public function __construct()
 	{
 		$this->middleware('auth');	
-		$this->middleware('system_admin_or_owner');
+		$this->middleware('system_admin_or_owner',['except' => ['store']]); 	
 	}
 	
 	/**
@@ -48,7 +48,6 @@ class AccomplishmentsController extends Controller {
 	 */
 	public function store(CreateAccomplishmentRequest $request)
 	{
-		//
 		$input = Request::all();
 		$id = $input['project_id'];
 		Accomplishment::create([

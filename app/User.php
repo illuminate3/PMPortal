@@ -24,6 +24,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return $this->belongsTo('App\Project');
 	}
 
+	public function projects()
+	{
+		return $this->belongsToMany('App\Project');
+	}
+
 	/**
 	 * The database table used by the model.
 	 *
@@ -67,21 +72,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	);
 
 
-	public function projects()
-	{
-		return $this->belongsToMany('App\Project');
-	}
-
-	public function isAProjectManager()
-	{
-		if ($this->attributes['role'] == 'Project Manager')
-		{
-			return true;
-		}				
-		return false;			
-	}
-
-
 
 	public function isASystemAdministrator()
 	{
@@ -93,7 +83,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		{
 			return false;
 		}
-		return false;			
+		else
+		{
+			return false;		
+		}	
 	}
 
 	public function isASystemAdministratorOrProjectManager()
@@ -145,5 +138,5 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	{
 		return 'User';
 	}
-
+	
 }

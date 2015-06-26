@@ -4,6 +4,7 @@
 					<td class="span3 left"> {{ $project['cac'] }} </td>
 				</tr>
 				<tr>
+
 					<td class= "span3 right">Project Status: </td>
 					<td class="span3 left">{{ $project['status'] }} - 
 						@if ($project-> color == "Green")
@@ -73,5 +74,24 @@
 					<td class= "span3 right">Importance: </td>
 					<td>{{ $project['importance'] }}</td>
 				</tr>
-				
+
+				<tr>
+					<td class= "span3 right">Applicability: </td>
+					<td>{{ $project-> applicability }}</td>
+				</tr>
+
+				<tr>
+					<td class= "span3 right">Confidentiality: </td>
+					<td>{{ $project-> confidentiality }}</td>
+				</tr>
+
+				<tr>
+					<td class= "span3 right">Personnel: </td>
+					<td>
+						@foreach($project->users as $user)
+							{{ $user->name }}<br>
+						@endforeach
+					</td>
+				</tr>
+
 </tbody> </table>
