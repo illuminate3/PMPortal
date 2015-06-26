@@ -14,6 +14,7 @@
 			</div>
 			{!!  Form::submit('Search', ['class' => 'btn', 'style' => 'width:100%; position:relative;'])  !!}
 			{!!  Form::close() !!}
+
 			
 			<li class="nav-header" style="margin-top: 10px;"> 
 				Filters 
@@ -132,21 +133,13 @@
 				<hr class="divider">
 			</li>
 			@if (Auth::guest())
-
-				<ul class="nav nav-list nav-stacked">
-					<li>
-						{!! Form::open(['route' => ['projects.generatepdf', $project['id']], 'method' => 'get' ]) !!}
-							{!! Form::button('<i class="glyphicon glyphicon-file"></i> Generate Report', ['type' => 'submit', 'class' => 'btn btn-warning span12 option']) !!}
-						{!! Form::close() !!}
-					</li>
-				</ul>	
-			
-				@elseif ((Auth::user()->role == 'Project Manager') || (Auth::user()->role == 'System Administrator'))		
-				<ul class="nav nav-list nav-stacked">
-
+				<li>
+					{!! Form::open(['route' => ['projects.generatepdf', $project['id']], 'method' => 'get' ]) !!}
+						{!! Form::button('<i class="glyphicon glyphicon-file"></i> Generate Report', ['type' => 'submit', 'class' => 'btn btn-warning span12 option']) !!}
+					{!! Form::close() !!}
+				</li>	
 			@else
-				@if (Auth::user()->role == 'System Administrator'))
-
+				@if (Auth::user()->role == 'System Administrator')
 					<li>
 						{!! Form::open(['route' => ['projects.create'], 'method' => 'get' ]) !!}
 						{!! Form::button('<i class="glyphicon glyphicon-pencil"></i> Create Project', ['type' => 'submit', 'class' => 'btn btn-warning span12 option']) !!}
@@ -154,16 +147,6 @@
 					</li>
 					<li>
 						@include('includes.confirm')
-					</li>
-					<li>
-
-						{!! Form::open(['route' => ['projects.generatepdf', $project['id']], 'method' => 'get' ]) !!}
-							{!! Form::button('<i class="glyphicon glyphicon-file"></i> Generate Report', ['type' => 'submit', 'class' => 'btn btn-warning span12 option']) !!}
-
-						{!! Form::open(['route' => ['projects.destroy', $project->id], 'method' => 'delete' ]) !!}
-						{!! Form::button('<i class="glyphicon glyphicon-trash"></i> Delete Project', ['type' => 'submit', 'class' => 'btn btn-warning span12 option']) !!}
-
-						{!! Form::close() !!}
 					</li>
 				@elseif (Auth::user()->role = "Project Manager") 
 					@if ($project->user_id == null)
@@ -175,9 +158,7 @@
 								{!! Form::close() !!}
 							</li>
 							<li>
-								{!! Form::open(['route' => ['projects.destroy', $project->id], 'method' => 'delete' ]) !!}
-								{!! Form::button('<i class="glyphicon glyphicon-trash"></i> Delete Project', ['type' => 'submit', 'class' => 'btn btn-warning span12 option']) !!}
-								{!! Form::close() !!}
+								@include('includes.confirm')
 							</li>
 						@else
 						@endif
