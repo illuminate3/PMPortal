@@ -14,7 +14,7 @@ class MilestonesController extends Controller {
 	public function __construct()
 	{
 		$this->middleware('auth');	
-		$this->middleware('system_admin_or_owner'); 			
+		$this->middleware('system_admin_or_owner',['except' => ['store']]); 			
 	}
 	
 	/**
@@ -46,11 +46,10 @@ class MilestonesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(CreateMilestoneRequest $request, $id)
+	public function store(CreateMilestoneRequest $request)
 	{
 		$input = Request::all();
-		//dd($id);
-		//$id = $input['project_id'];
+		$id = $input['project_id'];
 		Milestone::create([
 			'project_id' => $id,
 			'milestone' => $input['milestone'],

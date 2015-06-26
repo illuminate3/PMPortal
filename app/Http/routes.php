@@ -58,7 +58,7 @@ Route::get('milestones/{id}/edit', 'MilestonesController@edit');
 Route::put('milestones/{id}', 'MilestonesController@update');
 Route::patch('milestones/{id}', 'MilestonesController@update');
 Route::delete('milestones/{id}', ['as' => 'milestones.destroy', 'uses' => 'MilestonesController@destroy']);
-Route::post('milestones/{id}', ['as' => 'milestones.store', 'uses' => 'MilestonesController@store']);
+Route::post('milestones', ['as' => 'milestones.store', 'uses' => 'MilestonesController@store']);
 //Route::resource('milestones', 'MilestonesController');
 
 Route::get('risks/{id}/create', 'RisksController@create');
