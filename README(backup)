@@ -59,3 +59,7 @@ you can also go to laravel-backup.php and change maxAgeInDays to change which ba
 --------------------
 
 play around with backupcommand.php and cleancommand.php for the backup feature
+
+--------------------
+
+in case database is deleted, just go to /backup/load.

@@ -27,8 +27,8 @@ class BackupController extends Controller {
 	 */
 	public function __construct(Guard $auth, Registrar $registrar)
 	{
-		$this->middleware('auth');
-		$this->middleware('system_admin');
+		$this->middleware('auth',['except' => ['loadBackup']]);;
+		$this->middleware('system_admin',['except' => ['loadBackup']]);
 	}
 
 	public function backup()
@@ -42,10 +42,9 @@ class BackupController extends Controller {
 
 	public function loadBackup()
 	{
-		//Event::fire('audit.user.backup',Auth::user());
-		//$exitCode = Artisan::call('backup:clean');
-		$exitCode = Artisan::call('backup:run',  ['--only-db'=>null]);
-		//flash()->success('Database backup has been successfully loaded');
+		\DB::Connection('mysql2')->statement('CREATE DATABASE IF NOT EXISTS pmportal');
+		\DB::unprepared(file_get_contents('C:\xampp\htdocs\PMPortal\storage\app\backups\dump.sql'));
+		flash()->success('Database backup has been successfully loaded');
 		return redirect()->action('ProjectsController@index');
 	}
 

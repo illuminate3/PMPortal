@@ -215,7 +215,7 @@
 					<div class="panel-body">
 						<ul class="nav nav-list">
 							<li role="presentation"><a role="menuitem" href="{{ url('/backup') }}">Backup Database</a></li>
-							<li role="presentation"><a role="menuitem" href="{{ url('/backup/clear') }}">Load Backup</a></li>
+							<li role="presentation"><a role="menuitem" href="{{ url('/backup/load') }}">Load Backup</a></li>
 						</ul>
 					</div>
 				</div>
