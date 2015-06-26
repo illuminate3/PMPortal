@@ -16,7 +16,7 @@ class RedirectIfNotASystemAdmin {
 	{
 		if (Auth::guest())
 		{
-			flash()->error('You must be logged on as a System Administrator in order to proceed.');
+			flash()->error('You are not authorized to proceed.');
 
 		return redirect('/');	
 		}
@@ -25,7 +25,7 @@ class RedirectIfNotASystemAdmin {
 			return $next($request);
 		}
 		
-		flash()->error('You must be logged on as a System Administrator in order to proceed.');
+		flash()->error('You are not authorized to proceed.');
 		return redirect('/');	
 	}
 

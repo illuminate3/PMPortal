@@ -46,13 +46,13 @@ class MilestonesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(CreateMilestoneRequest $request)
+	public function store(CreateMilestoneRequest $request, $id)
 	{
-		//
 		$input = Request::all();
-		$id = $input['project_id'];
+		//dd($id);
+		//$id = $input['project_id'];
 		Milestone::create([
-			'project_id' => $input['project_id'],
+			'project_id' => $id,
 			'milestone' => $input['milestone'],
 			'status' => $input['status'],
 			'target_date' => $input['target_date']

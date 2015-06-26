@@ -72,16 +72,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	);
 
 
-	public function isAProjectManager()
-	{
-		if ($this->attributes['role'] == 'Project Manager')
-		{
-			return true;
-		}				
-		return false;			
-	}
-
-
 
 	public function isASystemAdministrator()
 	{
@@ -148,5 +138,5 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	{
 		return 'User';
 	}
-
+	
 }

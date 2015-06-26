@@ -33,7 +33,6 @@ class ProjectsController extends Controller {
 		$this->middleware('manager_or_member', ['except' => ['index','search','create','store']]);
 	}
 
-
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -252,9 +251,6 @@ class ProjectsController extends Controller {
 	 */
 	public function show($id)
 	{
-
-		$managers = User::where('role','Project Manager')->get();
-		//
 		$project = Project::find($id);
 		$accomplishments = Accomplishment::where('project_id', $id)->get();
 		$actions = Action::where('project_id', $id)->get();
@@ -263,7 +259,7 @@ class ProjectsController extends Controller {
 		$milestones = Milestone::where('project_id', $id)->get();
 		$risks = Risk::where('project_id', $id)->get();
 
-		return view('projects.show', compact('project', 'managers', 'actions', 'accomplishments', 'expenses', 'issues', 'milestones', 'risks'));
+		return view('projects.show', compact('project', 'actions', 'accomplishments', 'expenses', 'issues', 'milestones', 'risks'));
 	}
 
 	/**
@@ -413,6 +409,7 @@ class ProjectsController extends Controller {
 			$i = $i + 1;
 		}
 
+		flash()->success('Your project has been successfully updated!');
 		return redirect()->action('ProjectsController@show', [$id]);
 
 	}

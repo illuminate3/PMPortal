@@ -48,7 +48,6 @@ class AccomplishmentsController extends Controller {
 	 */
 	public function store(CreateAccomplishmentRequest $request)
 	{
-		//
 		$input = Request::all();
 		$id = $input['project_id'];
 		Accomplishment::create([

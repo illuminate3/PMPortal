@@ -69,7 +69,7 @@ class Project extends Model implements LogsActivityInterface
 		'pm' => 'Project Manager',
 		'status' => 'Status',
 		'rationale' => 'Rationale',
-		'color' => 'Project Manager',
+		'color' => 'Color',
 		'target_date' => 'Target Date',
 		'target_mandays'  => 'Target Mandays',
 		'actual_mandays' => 'Actual Mandays',
@@ -162,5 +162,6 @@ class Project extends Model implements LogsActivityInterface
 	{
 		return $this->users->lists('id');
 	}
+
 
 }

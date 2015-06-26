@@ -13,7 +13,7 @@
 
 Route::get('/', 'ProjectsController@index');
 
-//Route::get('projects/create','ProjectsController@create');
+//Route::get('projects/{id}/create','ProjectsController@create');
 Route::get('home','ProjectsController@index');
 //Route::post('projects', 'ProjectsController@store');
 Route::get('projects/search', ['as' => 'projects.search', 'uses' => 'ProjectsController@search']);
@@ -21,7 +21,7 @@ Route::get('projects/search', ['as' => 'projects.search', 'uses' => 'ProjectsCon
 Route::get('projects/{projects}/generate', ['as' => 'projects.generatepdf', 'uses' => 'ProjectsController@generatepdf']);
 Route::resource('projects', 'ProjectsController');
 
-Route::get('accomplishments/create/{id}', 'AccomplishmentsController@create');
+Route::get('accomplishments/{id}/create', 'AccomplishmentsController@create');
 Route::get('accomplishments/{id}/edit', 'AccomplishmentsController@edit');
 Route::put('accomplishments/{id}', 'AccomplishmentsController@update');
 Route::patch('accomplishments/{id}', 'AccomplishmentsController@update');
@@ -29,7 +29,7 @@ Route::delete('accomplishments/{id}', ['as' => 'accomplishments.destroy', 'uses'
 Route::post('accomplishments', ['as' => 'accomplishments.store', 'uses' => 'AccomplishmentsController@store']);
 //Route::resource('accomplishments', 'AccomplishmentsController');
 
-Route::get('actions/create/{id}', 'ActionsController@create');
+Route::get('actions/{id}/create', 'ActionsController@create');
 Route::post('actions', ['as' => 'actions.store', 'uses' => 'ActionsController@store']);
 Route::get('actions/{id}/edit', 'ActionsController@edit');
 Route::put('actions/{id}', 'ActionsController@update');
@@ -37,7 +37,7 @@ Route::patch('actions/{id}', 'ActionsController@update');
 Route::delete('actions/{id}', ['as' => 'actions.destroy', 'uses' => 'ActionsController@destroy']);
 //Route::resource('actions', 'ActionsController');
 
-Route::get('expenses/create/{id}', 'ExpensesController@create');
+Route::get('expenses/{id}/create', 'ExpensesController@create');
 Route::post('expenses', ['as' => 'expenses.store', 'uses' => 'ExpensesController@store']);
 Route::get('expenses/{id}/edit', 'ExpensesController@edit');
 Route::put('expenses/{id}', 'ExpensesController@update');
@@ -45,7 +45,7 @@ Route::patch('expenses/{id}', 'ExpensesController@update');
 Route::delete('expenses/{id}', ['as' => 'expenses.destroy', 'uses' => 'ExpensesController@destroy']);
 //Route::resource('expenses', 'ExpensesController');
 
-Route::get('issues/create/{id}', 'IssuesController@create');
+Route::get('issues/{id}/create', 'IssuesController@create');
 Route::post('issues', ['as' => 'issues.store', 'uses' => 'IssuesController@store']);
 Route::get('issues/{id}/edit', 'IssuesController@edit');
 Route::put('issues/{id}', 'IssuesController@update');
@@ -53,15 +53,15 @@ Route::patch('issues/{id}', 'IssuesController@update');
 Route::delete('issues/{id}', ['as' => 'issues.destroy', 'uses' => 'IssuesController@destroy']);
 //Route::get('issues', 'IssuesController');
 
-Route::get('milestones/create/{id}', 'MilestonesController@create');
+Route::get('milestones/{id}/create', 'MilestonesController@create');
 Route::get('milestones/{id}/edit', 'MilestonesController@edit');
 Route::put('milestones/{id}', 'MilestonesController@update');
 Route::patch('milestones/{id}', 'MilestonesController@update');
 Route::delete('milestones/{id}', ['as' => 'milestones.destroy', 'uses' => 'MilestonesController@destroy']);
-Route::post('milestones', ['as' => 'milestones.store', 'uses' => 'MilestonesController@store']);
+Route::post('milestones/{id}', ['as' => 'milestones.store', 'uses' => 'MilestonesController@store']);
 //Route::resource('milestones', 'MilestonesController');
 
-Route::get('risks/create/{id}', 'RisksController@create');
+Route::get('risks/{id}/create', 'RisksController@create');
 Route::post('risks', ['as' => 'risks.store', 'uses' => 'RisksController@store']);
 Route::get('risks/{id}/edit', 'RisksController@edit');
 Route::put('risks/{id}', 'RisksController@update');
