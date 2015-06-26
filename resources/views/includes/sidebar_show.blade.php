@@ -184,7 +184,7 @@
 				<hr class="divider">
 			</li>
 			<div class="panel-group filters" id="accordion">
-			<!-- PROJECT MANAGERS DROPDOWN -->
+		<!-- PROJECT MANAGERS DROPDOWN -->
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<p class="panel-title">
@@ -202,13 +202,22 @@
 					</div>
 				</div>
 			</div>
+			<!-- PROJECT MANAGERS DROPDOWN -->
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<p class="panel-title">
-						<a style="font-size:13px" class="darker accordion-toggle" href="{{ url('/backup') }}">
-							Backup Database
+						<a style="font-size:13px" class="darker accordion-toggle" data-toggle="collapse" href="#collapseAC">
+							Database Management
 						</a>			
 					</p>
+				</div>
+				<div id="collapseAC" class="panel-collapse collapse ">
+					<div class="panel-body">
+						<ul class="nav nav-list">
+							<li role="presentation"><a role="menuitem" href="{{ url('/backup') }}">Backup Database</a></li>
+							<li role="presentation"><a role="menuitem" href="{{ url('/backup/clear') }}">Load Backup</a></li>
+						</ul>
+					</div>
 				</div>
 			</div>
 			<div class="panel panel-default">
@@ -220,6 +229,7 @@
 					</p>
 				</div>
 			</div>
+		</div>
 		@else
 		@endif
 	</ul>

@@ -49,3 +49,13 @@ go to command line
 
 activity log: 
 By default records older than 2 months will be deleted. The number of months can be modified in the config-file of the package.
+
+---------------------
+
+current: delete backups = delete all backups
+to delete backups older than a certain date, go to fileselector.php and uncomment the commented code under filterFilesOnDate.
+you can also go to laravel-backup.php and change maxAgeInDays to change which backups should be deleted depending on how old they are.
+
+--------------------
+
+play around with backupcommand.php and cleancommand.php for the backup feature

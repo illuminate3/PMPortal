@@ -59,7 +59,7 @@ class FileSelector
     private function filterFilesOnDate($files, DateTime $date)
     {
         return array_filter($files, function ($file) use ($date) {
-            return $this->disk->lastModified($file) < $date->getTimeStamp();
+            return $this->disk->lastModified($file);// < $date->getTimeStamp();
         });
     }
 }

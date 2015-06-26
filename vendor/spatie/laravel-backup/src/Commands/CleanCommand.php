@@ -34,7 +34,8 @@ class CleanCommand extends Command
             $disk = Storage::disk($filesystem);
             $path = config('laravel-backup.destination.path');
 
-            $filesToBeDeleted = (new FileSelector($disk, $path))->getFilesOlderThan($expireDate, ['zip']);
+            //$filesToBeDeleted = (new FileSelector($disk, $path))->getFilesOlderThan($expireDate, ['zip']);
+            $filesToBeDeleted = (new FileSelector($disk, $path))->getFilesOlderThan($expireDate, ['sql']);
 
             $filesDeleted = 0;
             foreach ($filesToBeDeleted as $file) {

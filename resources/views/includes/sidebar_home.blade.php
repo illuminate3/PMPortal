@@ -1,3 +1,4 @@
+
 <!-- sidebar nav -->
 <div class="well span3 sidebar">
 <div id="sidebar-wrapper">
@@ -151,41 +152,50 @@
 		</li>
 		<div class="panel-group filters" id="accordion">
 		<!-- PROJECT MANAGERS DROPDOWN -->
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<p class="panel-title">
-					<a style="font-size:13px" class="darker accordion-toggle" data-toggle="collapse" href="#collapseAB">
-						User Management
-					</a>			
-				</p>
-			</div>
-			<div id="collapseAB" class="panel-collapse collapse ">
-				<div class="panel-body">
-					<ul class="nav nav-list">
-						<li role="presentation"><a role="menuitem" href="{{ url('/auth/register') }}">Add User</a></li>
-						<li role="presentation"><a role="menuitem" href="{{ url('/users') }}">Edit/Delete User</a></li>
-					</ul>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<p class="panel-title">
+						<a style="font-size:13px" class="darker accordion-toggle" data-toggle="collapse" href="#collapseAB">
+							User Management
+						</a>			
+					</p>
+				</div>
+				<div id="collapseAB" class="panel-collapse collapse ">
+					<div class="panel-body">
+						<ul class="nav nav-list">
+							<li role="presentation"><a role="menuitem" href="{{ url('/auth/register') }}">Add User</a></li>
+							<li role="presentation"><a role="menuitem" href="{{ url('/users') }}">Edit/Delete User</a></li>
+						</ul>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<p class="panel-title">
-					<a style="font-size:13px" class="darker accordion-toggle" href="{{ url('/backup') }}">
-						Backup Database
-					</a>			
-				</p>
+			<!-- PROJECT MANAGERS DROPDOWN -->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<p class="panel-title">
+						<a style="font-size:13px" class="darker accordion-toggle" data-toggle="collapse" href="#collapseAC">
+							Database Management
+						</a>			
+					</p>
+				</div>
+				<div id="collapseAC" class="panel-collapse collapse ">
+					<div class="panel-body">
+						<ul class="nav nav-list">
+							<li role="presentation"><a role="menuitem" href="{{ url('/backup') }}">Backup Database</a></li>
+							<li role="presentation"><a role="menuitem" href="{{ url('/backup/clear') }}">Load Backup</a></li>
+						</ul>
+					</div>
+				</div>
 			</div>
-		</div>
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<p class="panel-title">
-					<a style="font-size:13px" class="darker accordion-toggle" href="{{ url('/change_log') }}">
-						Audit Trail
-					</a>			
-				</p>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<p class="panel-title">
+						<a style="font-size:13px" class="darker accordion-toggle" href="{{ url('/change_log') }}">
+							Audit Trail
+						</a>			
+					</p>
+				</div>
 			</div>
-		</div>
 	</div>
 		@else
 		@endif

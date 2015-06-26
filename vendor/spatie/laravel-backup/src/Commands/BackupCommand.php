@@ -38,10 +38,14 @@ class BackupCommand extends Command
             return true;
         }
 
-        $backupZipFile = $this->createZip($files);
+        /*$backupZipFile = $this->createZip($files); 
 
         foreach ($this->getTargetFileSystems() as $fileSystem) {
             $this->copyFileToFileSystem($backupZipFile, $fileSystem);
+        }*/
+        
+        foreach ($this->getTargetFileSystems() as $fileSystem) {
+            $this->copyFileToFileSystem($files['0']['realFile'], $fileSystem);
         }
 
         $this->info('Backup successfully completed');
@@ -61,7 +65,7 @@ class BackupCommand extends Command
         if (config('laravel-backup.source.backup-db')) {
             $databaseBackupHandler = app()->make('Spatie\Backup\BackupHandlers\Database\DatabaseBackupHandler');
             foreach ($databaseBackupHandler->getFilesToBeBackedUp() as $file) {
-                $files[] = ['realFile' => $file, 'fileInZip' => 'db/dump.sql'];
+               $files[] = ['realFile' => $file, 'fileInZip' => 'db/dump.sql'];
             }
             $this->comment('Database dumped');
         }
@@ -100,13 +104,16 @@ class BackupCommand extends Command
         foreach ($files as $file) {
             if (file_exists($file['realFile'])) {
                 $zip->addFile($file['realFile'], $file['fileInZip']);
+
             }
         }
+
 
         $zip->close();
 
         $this->comment('Zip created!');
 
+        
         return $tempZipFile;
     }
 
@@ -171,7 +178,8 @@ class BackupCommand extends Command
     protected function getBackupDestinationFileName()
     {
         $backupDirectory = config('laravel-backup.destination.path');
-        $backupFilename = $this->getPrefix().date('YmdHis').$this->getSuffix().'.zip';
+        //$backupFilename = $this->getPrefix().date('YmdHis').$this->getSuffix().'.zip';
+        $backupFilename = 'dump.sql';
 
         return $backupDirectory.'/'.$backupFilename;
     }
