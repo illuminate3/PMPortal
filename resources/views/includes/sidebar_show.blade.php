@@ -139,16 +139,7 @@
 					{!! Form::close() !!}
 				</li>	
 			@else
-				@if (Auth::user()->role == 'System Administrator')
-					<li>
-						{!! Form::open(['route' => ['projects.create'], 'method' => 'get' ]) !!}
-						{!! Form::button('<i class="glyphicon glyphicon-pencil"></i> Create Project', ['type' => 'submit', 'class' => 'btn btn-warning span12 option']) !!}
-						{!! Form::close() !!}
-					</li>
-					<li>
-						@include('includes.confirm')
-					</li>
-				@elseif (Auth::user()->role = "Project Manager") 
+				@if (Auth::user()->role = "Project Manager") 
 					@if ($project->user_id == null)
 					@else
 						@if (Auth::user()->id == $project->user_id)

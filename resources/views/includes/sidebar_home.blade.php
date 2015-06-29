@@ -127,7 +127,7 @@
 	<div>
 	<ul class="nav nav-list nav-stacked">
 		@if (Auth::guest())
-		@elseif ((Auth::user()->role == 'Project Manager') || (Auth::user()->role == 'System Administrator'))
+		@elseif ((Auth::user()->role == 'Project Manager'))
 		<li class="nav-header" style="margin-top: 10px;"> 
 			Options
 			<hr class="divider">

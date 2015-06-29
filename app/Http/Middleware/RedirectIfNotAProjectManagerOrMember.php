@@ -5,7 +5,7 @@ use App\Project;
 use Illuminate\Contracts\Auth\Guard;
 use Auth;
 
-class RedirectIfANotProjectManagerOrMember {
+class RedirectIfNotAProjectManagerOrMember {
 
 	/**
      * The Guard implementation.
@@ -51,33 +51,11 @@ class RedirectIfANotProjectManagerOrMember {
             }
             else
             {
-                if (($request->user()->isASystemAdministrator()) || ($project['user_id'] == Auth::user()['id']) )
+                if ($project['user_id'] != null)
                 {
-                    return $next($request);
-                }
-                else
-                {
-                    if ($project['user_id'] != null)
+                    if ($project['user_id'] == Auth::user()['id'])
                     {
-                        if ($project['user_id'] == Auth::user()['id'])
-                        {
-                            return $next($request);
-                        }
-                        else
-                        {
-                            if ($project->getUserListAttributes() == null)
-                            {
-                                flash()->error('You are not authorized to view this project.');
-                                return redirect()->action('ProjectsController@index');
-                            }
-                            else
-                            {
-                                if (in_array(Auth::user()['id'],$project->getUserListAttributes()))
-                                {
-                                    return $next($request);
-                                }
-                            }
-                        }
+                        return $next($request);
                     }
                     else
                     {
@@ -95,11 +73,24 @@ class RedirectIfANotProjectManagerOrMember {
                         }
                     }
                 }
+                else 
+                {
+                    if ($project->getUserListAttributes() == null)
+                    {
+                        flash()->error('You are not authorized to view this project.');
+                        return redirect()->action('ProjectsController@index');
+                    }
+                    else
+                    {
+                        if (in_array(Auth::user()['id'],$project->getUserListAttributes()))
+                        {
+                            return $next($request);
+                        }
+                    }
+                }
             }
-            flash()->error('You are not authorized to view this project.');
-            return redirect()->action('ProjectsController@index');
         }
-       
+        flash()->error('You are not authorized to view this project.');
+        return redirect()->action('ProjectsController@index');
     }
-
 }

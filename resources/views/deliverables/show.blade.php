@@ -11,8 +11,14 @@
 			<div class="panel-heading">
 				{{ $project-> title }} - SDLC Deliverables Checklist
 			@if (Auth::guest())
-			@elseif ((Auth::user()['id'] == $project['user_id']) || (Auth::user()->role == 'System Administrator'))
-				<a class="pull-right add" href="{{ action('DeliverablesController@edit', [$project->id] ) }}"> <i class="glyphicon glyphicon-pencil"></i> Edit Checklist</a>
+			@else
+				@if ($project['user_id'] == null)
+				@else
+					@if ($project['user_id'] == Auth::user()['id'])
+						<a class="pull-right add" href="{{ action('DeliverablesController@edit', [$project->id] ) }}"> <i class="glyphicon glyphicon-pencil"></i> Edit Checklist</a>
+					@else
+					@endif
+				@endif
 			@endif
 			</div>
 			<div class ="panel-body">

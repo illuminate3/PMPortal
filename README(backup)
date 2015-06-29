@@ -36,7 +36,7 @@ Then right-click on your task in the middle pane and click Run to initiate it.
 go to PMPortal/config/filesystems.php and change 'local' to whatever root directory you want
 then go PMPortal/config/laravel-backup.php and change 'path' under 'destination' to whatever folder you want under the root directory
 
-3) to restore database
+3) to manually restore database backup
 go to command line
 >> cd C:\['insert path where dump file is stored']
 >> mysql -u root

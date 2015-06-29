@@ -26,7 +26,7 @@ class DeliverablesController extends Controller {
 
 	public function __construct()
 	{
-		$this->middleware('system_admin_or_owner', ['only' => ['edit','update']]);
+		$this->middleware('owner', ['only' => ['edit','update']]);
 		$this->middleware('auth', ['except' => ['show']]);	 	
 	}
 

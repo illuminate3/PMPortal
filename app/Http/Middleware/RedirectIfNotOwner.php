@@ -5,7 +5,7 @@ use App\Project;
 use Illuminate\Contracts\Auth\Guard;
 use Auth;
 
-class RedirectIfNotASystemAdminOrOwner {
+class RedirectIfNotOwner {
 
 	/**
      * The Guard implementation.
@@ -45,34 +45,27 @@ class RedirectIfNotASystemAdminOrOwner {
              return redirect()->action('ProjectsController@index');
         }
         else
-
         {
-            if ($request->user()->isASystemAdministrator())
+             if($project['user_id'] == null)
             {
-                return $next($request);
+                flash()->error('You are not authorized to edit or delete this project.');
+                return redirect()->action('ProjectsController@index');
             }
             else
             {
-                if($project['user_id'] == null)
+                if ($project['user_id'] == Auth::user()['id'])
+                {
+                    return $next($request);
+                }
+                else
                 {
                     flash()->error('You are not authorized to edit or delete this project.');
                     return redirect()->action('ProjectsController@index');
                 }
-                else
-                {
-                    if ($project['user_id'] == Auth::user()['id'])
-                    {
-                        return $next($request);
-                    }
-                    else
-                    {
-                        flash()->error('You are not authorized to edit or delete this project.');
-                        return redirect()->action('ProjectsController@index');
-                    }
-                }
             }
         }
-
+        flash()->error('You are not authorized to edit or delete this project.');
+        return redirect()->action('ProjectsController@index');
     }
 
 }

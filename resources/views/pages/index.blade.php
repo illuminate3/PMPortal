@@ -32,13 +32,24 @@
 								@if ($project['confidentiality'] == 'Public')
 									@include('includes.index_details')	
 								@else
-									@if ( ($project['user_id'] == Auth::user()->id) || (Auth::user()->role == 'System Administrator') )
-										@include('includes.index_details')
-									@else
+									@if ($project['user_id'] == null)
 										@if ($project->getUserListAttributes() == null)
 										@else
 											@if (in_array(Auth::user()->id,$project->getUserListAttributes()))
 												@include('includes.index_details')
+											@else
+											@endif
+										@endif
+									@else
+										@if ($project['user_id'] == Auth::user()->id)
+											@include('includes.index_details')
+										@else
+											@if ($project->getUserListAttributes() == null)
+											@else
+												@if (in_array(Auth::user()->id,$project->getUserListAttributes()))
+													@include('includes.index_details')
+												@else
+												@endif
 											@endif
 										@endif
 									@endif

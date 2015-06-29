@@ -3,7 +3,7 @@
 use Closure;
 use Auth;
 
-class RedirectIfNotASystemAdminOrManager {
+class RedirectIfNotAManager {
 
 	/**
 	 * Handle an incoming request.
@@ -19,12 +19,11 @@ class RedirectIfNotASystemAdminOrManager {
 			flash()->error('You are not authorized to proceed.');
 			return redirect('/');	
 		}
-		elseif ( $request->user()->isASystemAdministratorOrProjectManager())
+		elseif ( $request->user()->isAProjectManager())
 
 		{			
 			return $next($request);
 		}
-		
 		flash()->error('You are not authorized to proceed.');
 		return redirect('/');	
 	}

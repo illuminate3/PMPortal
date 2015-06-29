@@ -14,7 +14,7 @@ class ActionsController extends Controller {
 	public function __construct()
 	{
 		$this->middleware('auth');	
-		$this->middleware('system_admin_or_owner',['except' => ['store']]); 	
+		$this->middleware('owner',['except' => ['store']]); 	
 	}
 	
 	/**
