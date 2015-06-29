@@ -85,6 +85,34 @@ Route::get('projects/{id}/checklist', 'DeliverablesController@show');
 Route::get('projects/{id}/checklist/edit', ['as' => 'deliverables.edit', 'uses' => 'DeliverablesController@edit']);
 Route::patch('projects/{id}/checklist', ['as' => 'deliverables.update', 'uses' => 'DeliverablesController@update']);
 
+Route::get('charts/{id}/create', 'ChartsController@create');
+Route::post('charts', ['as' => 'charts.store', 'uses' => 'ChartsController@store']);
+Route::get('charts/{id}/edit', 'ChartsController@edit');
+Route::put('charts/{id}', 'ChartsController@update');
+Route::patch('charts/{id}', 'ChartsController@update');
+Route::delete('charts/{id}', ['as' => 'charts.destroy', 'uses' => 'ChartsController@destroy']);
+Route::get('charts/{id}', ['as' => 'charts.show', 'uses' => 'ChartsController@show']);
+
+Route::get('support_team/{id}/create', 'SupportTeamMembersController@create');
+Route::post('support_team', ['as' => 'support_team_members.store', 'uses' => 'SupportTeamMembersController@store']);
+Route::get('support_team/{id}/edit', 'SupportTeamMembersController@edit');
+Route::put('support_team/{id}', 'SupportTeamMembersController@update');
+Route::patch('support_team/{id}', 'SupportTeamMembersController@update');
+Route::delete('support_team/{id}', ['as' => 'support_team_members.destroy', 'uses' => 'SupportTeamMembersController@destroy']);
+
+Route::get('technical_project_team/{id}/create', 'TechnicalProjectTeamMembersController@create');
+Route::post('technical_project_team', ['as' => 'technical_project_team_members.store', 'uses' => 'TechnicalProjectTeamMembersController@store']);
+Route::get('technical_project_team/{id}/edit', 'TechnicalProjectTeamMembersController@edit');
+Route::put('technical_project_team/{id}', 'TechnicalProjectTeamMembersController@update');
+Route::patch('technical_project_team/{id}', 'TechnicalProjectTeamMembersController@update');
+Route::delete('technical_project_team/{id}', ['as' => 'technical_project_team_members.destroy', 'uses' => 'TechnicalProjectTeamMembersController@destroy']);
+
+Route::get('business_project_team/{id}/create', 'BusinessProjectTeamMembersController@create');
+Route::post('business_project_team', ['as' => 'business_project_team_members.store', 'uses' => 'BusinessProjectTeamMembersController@store']);
+Route::get('business_project_team/{id}/edit', 'BusinessProjectTeamMembersController@edit');
+Route::put('business_project_team/{id}', 'BusinessProjectTeamMembersController@update');
+Route::patch('business_project_team/{id}', 'BusinessProjectTeamMembersController@update');
+Route::delete('business_project_team/{id}', ['as' => 'business_project_team_members.destroy', 'uses' => 'BusinessProjectTeamMembersController@destroy']);
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

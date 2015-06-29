@@ -95,6 +95,26 @@ class Project extends Model implements LogsActivityInterface
 		return $this->belongsToMany('App\User')->withTimestamps();
 	}
 
+	public function chart()
+	{
+		return $this->hasOne('App\Chart');
+	}
+
+	public function businessProjectTeamMembers()
+	{
+		return $this->hasMany('App\BusinessProjectTeamMember');
+	}
+
+	public function technicalProjectTeamMembers()
+	{
+		return $this->hasMany('App\TechnicalProjectTeamMember');
+	}
+
+	public function supportTeamMembers()
+	{
+		return $this->hasMany('App\SupportTeamMember');
+	}
+
 	public function accomplishments()
 	{
 		return $this->hasMany('App\Accomplishment');

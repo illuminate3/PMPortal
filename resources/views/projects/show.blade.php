@@ -28,6 +28,7 @@
 							@endif
 						@endif
 						<a class="add" href="{{ action('DeliverablesController@show', [$project->id] ) }}"> <i class="glyphicon glyphicon-check"></i> View Checklist</a>
+						<a class="add" href="{{ action('ChartsController@show', [$project->id] ) }}"> <i class="glyphicon glyphicon-check"></i> View Org Chart</a>
 					</div>
 					
 			</div>

@@ -36,7 +36,7 @@ class RedirectIfNotOwner {
     {
         $id = $request->segments()[1];
         $project = Project::find($id);
-        //dd($project['attributes']['user_id']);
+       // dd($request);//dd($project['attributes']['user_id']);
 
 
         if (Auth::guest())

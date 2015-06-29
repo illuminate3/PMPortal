@@ -19,6 +19,8 @@ use App\Http\Requests\CreateProjectRequest;
 use App\Http\Controllers\FiltersController;
 use App\Http\Controllers\DeliverablesController;
 use DB;
+use App\Http\Controllers\ChartsController;
+use App\Chart;
 
 use Session;
 
@@ -168,6 +170,11 @@ class ProjectsController extends Controller {
 
 		$project = Project::all()->last();
 		$project->users()->attach($request->input('users'));
+
+		Chart::create([
+			'project_id' => $project['id'],
+			'project_manager' => $project['pm']
+			]);
 
 		/* Upon creation of new project, checklist of deliverables are also created */
 		$deliverables = [];
