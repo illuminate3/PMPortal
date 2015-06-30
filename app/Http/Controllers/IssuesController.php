@@ -60,6 +60,7 @@ class IssuesController extends Controller {
 			'comment' => $input['comment']
 			]);
 
+		flash()->success('Issue has been successfully created!');
 		return redirect()->action('ProjectsController@show', [$id]);
 	}
 
@@ -80,7 +81,7 @@ class IssuesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($project_id, $id)
 	{
 		$issue = Issue::find($id);
 		$managers = User::where('role','Project Manager')->get();		
@@ -94,7 +95,7 @@ class IssuesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update(CreateIssueRequest $request, $id)
+	public function update(CreateIssueRequest $request, $project_id, $id)
 	{
 		$issue = Issue::find($id);
 		$input = Request::all();
@@ -105,8 +106,8 @@ class IssuesController extends Controller {
 			'owner' => $input['owner'],
 			'comment' => $input['comment']
 			]);
-
-		return redirect()->action('ProjectsController@show', [$issue->project_id]);
+		flash()->success('Issue has been successfully updated!');
+		return redirect()->action('ProjectsController@show', [$project_id]);
 	}
 
 	/**
@@ -115,13 +116,12 @@ class IssuesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($project_id, $id)
 	{
 		$issue = Issue::find($id);
-		$id = $issue['project_id'];
 		$issue->delete();
-
-		return redirect()->action('ProjectsController@show', $id);
+		flash()->success('Issue has been successfully deleted!');
+		return redirect()->action('ProjectsController@show', $project_id);
 	}
 
 }

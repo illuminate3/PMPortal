@@ -8,13 +8,14 @@ use App\User;
 use Request;
 use App\Chart;
 use App\TechnicalProjectTeamMember;
+use App\Http\Requests\CreateTeamMemberRequest;
 
 class TechnicalProjectTeamMembersController extends Controller {
 
 	public function __construct()
 	{
 		$this->middleware('auth');	
-		$this->middleware('owner',['except' => ['store','show']]); 	
+		$this->middleware('owner',['except' => ['store']]); 	
 	}
 	
 	/**
@@ -34,7 +35,6 @@ class TechnicalProjectTeamMembersController extends Controller {
 	 */
 	public function create($id)
 	{
-		//
 		$project = Project::find($id);
 		return view('technical_project_team_members.create', compact('project'));
 	}
@@ -44,7 +44,7 @@ class TechnicalProjectTeamMembersController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Request $request)
+	public function store(CreateTeamMemberRequest $request)
 	{
 		$input = Request::all();
 		$id = $input['project_id'];
@@ -67,10 +67,6 @@ class TechnicalProjectTeamMembersController extends Controller {
 	public function show($id)
 	{
 		
-		$technical_project_team_member = TechnicalProjectTeamMember::where('project_id', $id)->first();
-		$project = Project::find($id);
-
-		return view('technical_project_team_members.show', compact('technical_project_team_member', 'project'));
 	}
 
 	/**
@@ -79,12 +75,11 @@ class TechnicalProjectTeamMembersController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	
+	public function edit($project_id, $id)
 	{
-		//
-		$technical_project_team_member = TechnicalProjectTeamMember::where('project_id', $id)->first();
-		$project = Project::find($id);
-
+		$technical_project_team_member = TechnicalProjectTeamMember::find($id);
+		$project = Project::find($project_id);
 
 		return view('technical_project_team_members.edit', compact('technical_project_team_member', 'project'));
 	}
@@ -95,9 +90,9 @@ class TechnicalProjectTeamMembersController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update(Request $request, $id)
+	public function update(CreateTeamMemberRequest $request, $project_id, $id)
 	{
-		$technical_project_team_member = TechnicalProjectTeamMember::where('project_id', $id)->first();
+		$technical_project_team_member = TechnicalProjectTeamMember::find($id);
 		$input = Request::all();
 		$technical_project_team_member->update([
 			'name' => $input['name'],
@@ -105,7 +100,7 @@ class TechnicalProjectTeamMembersController extends Controller {
 			]);
 
 		flash()->success('Technical Project Team Member has been successfully updated');
-		return redirect()->action('ChartsController@show', [$id]);
+		return redirect()->action('ChartsController@show', [$project_id]);
 	}
 
 	/**
@@ -114,16 +109,13 @@ class TechnicalProjectTeamMembersController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($project_id, $id)
 	{
-		//
-		//$chart = Chart::find($id);
-		//$id = $accomplishment['project_id'];
-		$technical_project_team_member = TechnicalProjectTeamMember::where('project_id', $id)->first();
+		$technical_project_team_member = TechnicalProjectTeamMember::find($id);
 		$technical_project_team_member->delete();
 
 		flash()->success('Technical Project Team Member has been successfully deleted');
-		return redirect()->action('ChartsController@show', [$id]);
+		return redirect()->action('ChartsController@show', [$project_id]);
 	}
 
 }

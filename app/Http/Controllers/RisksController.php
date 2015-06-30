@@ -58,7 +58,7 @@ class RisksController extends Controller {
 			'probability' => $input['probability'],
 			'mitigation' => $input['mitigation']
 			]);
-
+		flash()->success('Risk has been successfully created!');
 		return redirect()->action('ProjectsController@show', [$id]);
 	}
 
@@ -79,7 +79,7 @@ class RisksController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($project_id, $id)
 	{
 		$risk = Risk::find($id);
 		$managers = User::where('role','Project Manager')->get();
@@ -93,7 +93,7 @@ class RisksController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update(CreateRiskRequest $request, $id)
+	public function update(CreateRiskRequest $request, $project_id, $id)
 	{
 		$risk = Risk::find($id);
 		$input = Request::all();
@@ -103,8 +103,8 @@ class RisksController extends Controller {
 			'probability' => $input['probability'],
 			'mitigation' => $input['mitigation']
 			]);
-
-		return redirect()->action('ProjectsController@show', [$risk->project_id]);
+		flash()->success('Risk has been successfully updated!');
+		return redirect()->action('ProjectsController@show', [$project_id]);
 	}
 
 	/**
@@ -113,13 +113,12 @@ class RisksController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($project_id, $id)
 	{
 		$risk = Risk::find($id);
-		$id = $risk['project_id'];
 		$risk->delete();
-
-		return redirect()->action('ProjectsController@show', $id);
+		flash()->success('Risk has been successfully deleted!');
+		return redirect()->action('ProjectsController@show', $project_id);
 	}
 
 }

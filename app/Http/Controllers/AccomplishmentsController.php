@@ -54,7 +54,7 @@ class AccomplishmentsController extends Controller {
 			'project_id' => $input['project_id'],
 			'accomplishment' => $input['accomplishment']
 			]);
-
+		flash()->success('Accomplishment has been successfully created!');
 		return redirect()->action('ProjectsController@show', [$id]);
 	}
 
@@ -75,7 +75,7 @@ class AccomplishmentsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($project_id, $id)
 	{
 		$accomplishment = Accomplishment::find($id);
 		$managers = User::where('role','Project Manager')->get();
@@ -89,15 +89,15 @@ class AccomplishmentsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update(CreateAccomplishmentRequest $request, $id)
+	public function update(CreateAccomplishmentRequest $request, $project_id, $id)
 	{
 		$accomplishment = Accomplishment::find($id);
 		$input = Request::all();
 		$accomplishment->update([
 			'accomplishment' => $input['accomplishment']
 			]);
-
-		return redirect()->action('ProjectsController@show', [$accomplishment->project_id]);	
+		flash()->success('Accomplishment has been successfully updated!');
+		return redirect()->action('ProjectsController@show', [$project_id]);	
 	}
 
 	/**
@@ -106,14 +106,12 @@ class AccomplishmentsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($project_id, $id)
 	{
-		//
 		$accomplishment = Accomplishment::find($id);
-		$id = $accomplishment['project_id'];
 		$accomplishment->delete();
-
-		return redirect()->action('ProjectsController@show', $id);
+		flash()->success('Accomplishment has been successfully deleted!');
+		return redirect()->action('ProjectsController@show', $project_id);
 	}
 
 }

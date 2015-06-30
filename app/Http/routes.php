@@ -21,52 +21,52 @@ Route::get('projects/search', ['as' => 'projects.search', 'uses' => 'ProjectsCon
 Route::get('projects/{projects}/generate', ['as' => 'projects.generatepdf', 'uses' => 'ProjectsController@generatepdf']);
 Route::resource('projects', 'ProjectsController');
 
-Route::get('accomplishments/{id}/create', 'AccomplishmentsController@create');
-Route::get('accomplishments/{id}/edit', 'AccomplishmentsController@edit');
-Route::put('accomplishments/{id}', 'AccomplishmentsController@update');
-Route::patch('accomplishments/{id}', 'AccomplishmentsController@update');
-Route::delete('accomplishments/{id}', ['as' => 'accomplishments.destroy', 'uses' => 'AccomplishmentsController@destroy']);
+Route::get('accomplishments/{project_id}/create', 'AccomplishmentsController@create');
+Route::get('accomplishments/{project_id}/{id}/edit', 'AccomplishmentsController@edit');
+Route::put('accomplishments/{project_id}/{id}', 'AccomplishmentsController@update');
+Route::patch('accomplishments/{project_id}/{id}', 'AccomplishmentsController@update');
+Route::delete('accomplishments/{project_id}/{id}', ['as' => 'accomplishments.destroy', 'uses' => 'AccomplishmentsController@destroy']);
 Route::post('accomplishments', ['as' => 'accomplishments.store', 'uses' => 'AccomplishmentsController@store']);
 //Route::resource('accomplishments', 'AccomplishmentsController');
 
-Route::get('actions/{id}/create', 'ActionsController@create');
+Route::get('actions/{project_id}/create', 'ActionsController@create');
 Route::post('actions', ['as' => 'actions.store', 'uses' => 'ActionsController@store']);
-Route::get('actions/{id}/edit', 'ActionsController@edit');
-Route::put('actions/{id}', 'ActionsController@update');
-Route::patch('actions/{id}', 'ActionsController@update');
-Route::delete('actions/{id}', ['as' => 'actions.destroy', 'uses' => 'ActionsController@destroy']);
+Route::get('actions/{project_id}/{id}/edit', 'ActionsController@edit');
+Route::put('actions/{project_id}/{id}', 'ActionsController@update');
+Route::patch('actions/{project_id}/{id}', 'ActionsController@update');
+Route::delete('actions/{project_id}/{id}', ['as' => 'actions.destroy', 'uses' => 'ActionsController@destroy']);
 //Route::resource('actions', 'ActionsController');
 
-Route::get('expenses/{id}/create', 'ExpensesController@create');
+Route::get('expenses/{project_id}/create', 'ExpensesController@create');
 Route::post('expenses', ['as' => 'expenses.store', 'uses' => 'ExpensesController@store']);
-Route::get('expenses/{id}/edit', 'ExpensesController@edit');
-Route::put('expenses/{id}', 'ExpensesController@update');
-Route::patch('expenses/{id}', 'ExpensesController@update');
-Route::delete('expenses/{id}', ['as' => 'expenses.destroy', 'uses' => 'ExpensesController@destroy']);
+Route::get('expenses/{project_id}/{id}/edit', 'ExpensesController@edit');
+Route::put('expenses/{project_id}/{id}', 'ExpensesController@update');
+Route::patch('expenses/{project_id}/{id}', 'ExpensesController@update');
+Route::delete('expenses/{project_id}/{id}', ['as' => 'expenses.destroy', 'uses' => 'ExpensesController@destroy']);
 //Route::resource('expenses', 'ExpensesController');
 
-Route::get('issues/{id}/create', 'IssuesController@create');
+Route::get('issues/{project_id}/create', 'IssuesController@create');
 Route::post('issues', ['as' => 'issues.store', 'uses' => 'IssuesController@store']);
-Route::get('issues/{id}/edit', 'IssuesController@edit');
-Route::put('issues/{id}', 'IssuesController@update');
-Route::patch('issues/{id}', 'IssuesController@update');
-Route::delete('issues/{id}', ['as' => 'issues.destroy', 'uses' => 'IssuesController@destroy']);
+Route::get('issues/{project_id}/{id}/edit', 'IssuesController@edit');
+Route::put('issues/{project_id}/{id}', 'IssuesController@update');
+Route::patch('issues/{project_id}/{id}', 'IssuesController@update');
+Route::delete('issues/{project_id}/{id}', ['as' => 'issues.destroy', 'uses' => 'IssuesController@destroy']);
 //Route::get('issues', 'IssuesController');
 
-Route::get('milestones/{id}/create', 'MilestonesController@create');
-Route::get('milestones/{id}/edit', 'MilestonesController@edit');
-Route::put('milestones/{id}', 'MilestonesController@update');
-Route::patch('milestones/{id}', 'MilestonesController@update');
-Route::delete('milestones/{id}', ['as' => 'milestones.destroy', 'uses' => 'MilestonesController@destroy']);
+Route::get('milestones/{project_id}/create', 'MilestonesController@create');
+Route::get('milestones/{project_id}/{id}/edit', 'MilestonesController@edit');
+Route::put('milestones/{project_id}/{id}', 'MilestonesController@update');
+Route::patch('milestones/{project_id}/{id}', 'MilestonesController@update');
+Route::delete('milestones/{project_id}/{id}', ['as' => 'milestones.destroy', 'uses' => 'MilestonesController@destroy']);
 Route::post('milestones', ['as' => 'milestones.store', 'uses' => 'MilestonesController@store']);
 //Route::resource('milestones', 'MilestonesController');
 
-Route::get('risks/{id}/create', 'RisksController@create');
+Route::get('risks/{project_id}/create', 'RisksController@create');
 Route::post('risks', ['as' => 'risks.store', 'uses' => 'RisksController@store']);
-Route::get('risks/{id}/edit', 'RisksController@edit');
-Route::put('risks/{id}', 'RisksController@update');
-Route::patch('risks/{id}', 'RisksController@update');
-Route::delete('risks/{id}', ['as' => 'risks.destroy', 'uses' => 'RisksController@destroy']);
+Route::get('risks/{project_id}/{id}/edit', 'RisksController@edit');
+Route::put('risks/{project_id}/{id}', 'RisksController@update');
+Route::patch('risks/{project_id}/{id}', 'RisksController@update');
+Route::delete('risks/{project_id}/{id}', ['as' => 'risks.destroy', 'uses' => 'RisksController@destroy']);
 //Route::resource('risks', 'RisksController');
 
 Route::get('filters/PM/{name}', ['as' => 'filter.manager', 'uses' => 'FiltersController@showManager']);
@@ -93,26 +93,26 @@ Route::patch('charts/{id}', 'ChartsController@update');
 Route::delete('charts/{id}', ['as' => 'charts.destroy', 'uses' => 'ChartsController@destroy']);
 Route::get('charts/{id}', ['as' => 'charts.show', 'uses' => 'ChartsController@show']);
 
-Route::get('support_team/{id}/create', 'SupportTeamMembersController@create');
+Route::get('support_team/{project_id}/create', 'SupportTeamMembersController@create');
 Route::post('support_team', ['as' => 'support_team_members.store', 'uses' => 'SupportTeamMembersController@store']);
-Route::get('support_team/{id}/edit', 'SupportTeamMembersController@edit');
-Route::put('support_team/{id}', 'SupportTeamMembersController@update');
-Route::patch('support_team/{id}', 'SupportTeamMembersController@update');
-Route::delete('support_team/{id}', ['as' => 'support_team_members.destroy', 'uses' => 'SupportTeamMembersController@destroy']);
+Route::get('support_team/{project_id}/{id}/edit', 'SupportTeamMembersController@edit');
+Route::put('support_team/{project_id}/{id}', 'SupportTeamMembersController@update');
+Route::patch('support_team/{project_id}/{id}', 'SupportTeamMembersController@update');
+Route::delete('support_team/{project_id}/{id}', ['as' => 'support_team_members.destroy', 'uses' => 'SupportTeamMembersController@destroy']);
 
-Route::get('technical_project_team/{id}/create', 'TechnicalProjectTeamMembersController@create');
+Route::get('technical_project_team/{project_id}/create', 'TechnicalProjectTeamMembersController@create');
 Route::post('technical_project_team', ['as' => 'technical_project_team_members.store', 'uses' => 'TechnicalProjectTeamMembersController@store']);
-Route::get('technical_project_team/{id}/edit', 'TechnicalProjectTeamMembersController@edit');
-Route::put('technical_project_team/{id}', 'TechnicalProjectTeamMembersController@update');
-Route::patch('technical_project_team/{id}', 'TechnicalProjectTeamMembersController@update');
-Route::delete('technical_project_team/{id}', ['as' => 'technical_project_team_members.destroy', 'uses' => 'TechnicalProjectTeamMembersController@destroy']);
+Route::get('technical_project_team/{project_id}/{id}/edit', 'TechnicalProjectTeamMembersController@edit');
+Route::put('technical_project_team/{project_id}/{id}', 'TechnicalProjectTeamMembersController@update');
+Route::patch('technical_project_team/{project_id}/{id}', 'TechnicalProjectTeamMembersController@update');
+Route::delete('technical_project_team/{project_id}/{id}', ['as' => 'technical_project_team_members.destroy', 'uses' => 'TechnicalProjectTeamMembersController@destroy']);
 
-Route::get('business_project_team/{id}/create', 'BusinessProjectTeamMembersController@create');
+Route::get('business_project_team/{project_id}/create', 'BusinessProjectTeamMembersController@create');
 Route::post('business_project_team', ['as' => 'business_project_team_members.store', 'uses' => 'BusinessProjectTeamMembersController@store']);
-Route::get('business_project_team/{id}/edit', 'BusinessProjectTeamMembersController@edit');
-Route::put('business_project_team/{id}', 'BusinessProjectTeamMembersController@update');
-Route::patch('business_project_team/{id}', 'BusinessProjectTeamMembersController@update');
-Route::delete('business_project_team/{id}', ['as' => 'business_project_team_members.destroy', 'uses' => 'BusinessProjectTeamMembersController@destroy']);
+Route::get('business_project_team/{project_id}/{id}/edit', 'BusinessProjectTeamMembersController@edit');
+Route::put('business_project_team/{project_id}/{id}', 'BusinessProjectTeamMembersController@update');
+Route::patch('business_project_team/{project_id}/{id}', 'BusinessProjectTeamMembersController@update');
+Route::delete('business_project_team/{project_id}/{id}', ['as' => 'business_project_team_members.destroy', 'uses' => 'BusinessProjectTeamMembersController@destroy']);
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

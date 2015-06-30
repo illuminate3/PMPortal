@@ -15,8 +15,8 @@ class ChartsController extends Controller {
 
 	public function __construct()
 	{
-		$this->middleware('auth');	
-		$this->middleware('owner',['except' => ['store','show']]); 	
+		$this->middleware('owner', ['only' => ['edit','update','destroy']]);
+		$this->middleware('auth', ['except' => ['show']]);	
 	}
 	
 	/**
@@ -143,10 +143,8 @@ class ChartsController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
-		//$chart = Chart::find($id);
-		//$id = $accomplishment['project_id'];
-		$chart = Chart::where('project_id', $id)->first();
+		$chart = Chart::find($id);
+		$id = $chart['project_id'];
 		$chart->delete();
 
 		return redirect()->action('ProjectsController@show', $id);

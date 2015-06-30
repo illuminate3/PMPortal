@@ -58,7 +58,7 @@ class ActionsController extends Controller {
 			'comment' => $input['comment'],
 			'target_date' => $input['target_date']
 			]);
-
+		flash()->success('Action has been successfully created!');
 		return redirect()->action('ProjectsController@show', [$id]);
 	}
 
@@ -79,7 +79,7 @@ class ActionsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($project_id, $id)
 	{
 		$action = Action::find($id);
 		$managers = User::where('role','Project Manager')->get();		
@@ -93,7 +93,7 @@ class ActionsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update(CreateActionRequest $request, $id)
+	public function update(CreateActionRequest $request, $project_id, $id)
 	{
 		$action = Action::find($id);
 		$input = Request::all();
@@ -104,8 +104,8 @@ class ActionsController extends Controller {
 			'comment' => $input['comment'],
 			'target_date' => $input['target_date']
 			]);
-
-		return redirect()->action('ProjectsController@show', [$action->project_id]);	
+		flash()->success('Action has been successfully updated!');
+		return redirect()->action('ProjectsController@show', [$project_id]);	
 	}
 
 	/**
@@ -114,13 +114,12 @@ class ActionsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($project_id, $id)
 	{		
 		$action = Action::find($id);
-		$id = $action['project_id'];
 		$action->delete();
-
-		return redirect()->action('ProjectsController@show', $id);
+		flash()->success('Action has been successfully deleted!');
+		return redirect()->action('ProjectsController@show', $project_id);
 	}
 
 }

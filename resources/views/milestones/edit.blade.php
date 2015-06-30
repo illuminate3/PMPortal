@@ -10,7 +10,7 @@
 				<div class="panel-heading">
 					Edit Milestone
 				</div>
-				{!! Form::model($milestone, ['method' => 'PATCH', 'action' => ['MilestonesController@update', $milestone->id]]) !!}
+				{!! Form::model($milestone, ['method' => 'PATCH', 'action' => ['MilestonesController@update',  $milestone->project_id, $milestone->id]]) !!}
 					<div class="panel-body">
 						<table class="table-condensed table-hover"> <tbody>
 							<tr>
@@ -45,9 +45,6 @@
 
 						<div class = "submit">
 							{!! Form::submit('Submit', ['class' => 'btn btn-warning']) !!}
-							{!! Form::close() !!}
-							{!! Form::open(['route' => ['milestones.destroy', $milestone->id], 'method' => 'delete', 'class' => 'delete' ]) !!}
-								{!! Form::submit('Delete', [ 'class' => 'btn btn-danger']) !!}
 							{!! Form::close() !!}
 						</div>
 					</div>
