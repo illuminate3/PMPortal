@@ -10,7 +10,7 @@
 				<div class="panel-heading">
 					Edit Risk
 				</div>
-				{!! Form::model($risk, ['method' => 'PATCH', 'action' => ['RisksController@update', $risk->id]]) !!}
+				{!! Form::model($risk, ['method' => 'PATCH', 'action' => ['RisksController@update', $risk->project_id, $risk->id]]) !!}
 					<div class="panel-body">
 						<table class="table-condensed table-hover"> <tbody>
 							<tr>
@@ -52,9 +52,7 @@
 						<div class = "submit">
 							{!! Form::submit('Submit', ['class' => 'btn btn-warning']) !!}
 							{!! Form::close() !!}
-							{!! Form::open(['route' => ['risks.destroy', $risk->id], 'method' => 'delete', 'class' => 'delete' ]) !!}
-								{!! Form::submit('Delete', [ 'class' => 'btn btn-danger']) !!}
-							{!! Form::close() !!}
+							
 						</div>
 					</div>
 			</div>

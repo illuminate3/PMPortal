@@ -44,7 +44,12 @@
 								@if ($project->user_id == null)
 								@else
 									@if (Auth::user()->id == $project->user_id)
-									<td><a href="{{ action('MilestonesController@edit', [$milestone->id] ) }}"> Edit</a></td>
+									<td><a href="{{ action('MilestonesController@edit', [$milestone->project_id, $milestone->id] ) }}"> Edit</a></td>
+									<td>
+										{!! Form::open(['route' => ['milestones.destroy', $milestone->project_id, $milestone->id], 'method' => 'delete', 'class' => 'delete' ]) !!}
+     									{!! Form::submit('Delete') !!}
+		 								{!! Form::close() !!}
+		 							</td>
 									@endif
 								@endif
 							@endif
@@ -79,7 +84,12 @@
 									@if ($project->user_id == null)
 									@else
 										@if (Auth::user()->id == $project->user_id)
-										<a href="{{ action('AccomplishmentsController@edit', [$accomplishment->id] ) }}"> Edit</a>
+										<a href="{{ action('AccomplishmentsController@edit', [$accomplishment->project_id, $accomplishment->id] ) }}"> Edit</a>
+										<td>
+											{!! Form::open(['route' => ['accomplishments.destroy', $accomplishment->project_id, $accomplishment->id], 'method' => 'delete', 'class' => 'delete' ]) !!}
+	     									{!! Form::submit('Delete') !!}
+			 								{!! Form::close() !!}
+		 								</td>
 										@endif
 									@endif
 								@endif
@@ -129,7 +139,12 @@
 								@if ($project->user_id == null)
 								@else
 									@if (Auth::user()->id == $project->user_id)
-									<td><a href="{{ action('ActionsController@edit', [$action->id] ) }}"> Edit</a></td>
+									<td><a href="{{ action('ActionsController@edit', [$action->project_id, $action->id] ) }}"> Edit</a></td>
+									<td>
+										{!! Form::open(['route' => ['actions.destroy', $action->project_id, $action->id], 'method' => 'delete', 'class' => 'delete' ]) !!}
+     									{!! Form::submit('Delete') !!}
+		 								{!! Form::close() !!}
+	 								</td>
 									@endif
 								@endif
 							@endif
@@ -176,9 +191,18 @@
 							<td align="center">{{ $issue -> owner }} </td>
 							<td>{{ $issue -> comment }} </td>
 							@if (Auth::guest())
-							@elseif ((Auth::user()['id'] == $project['user_id']))
-									<td><a href="{{ action('IssuesController@edit', [$issue->id] ) }}"> Edit</a></td>
+							@else
+								@if ($project->user_id == null)
 								@else
+									@if (Auth::user()->id == $project->user_id)
+									<td><a href="{{ action('IssuesController@edit', [$issue->project_id, $issue->id] ) }}"> Edit</a></td>
+									<td>
+										{!! Form::open(['route' => ['issues.destroy', $issue->project_id, $issue->id], 'method' => 'delete', 'class' => 'delete' ]) !!}
+     									{!! Form::submit('Delete') !!}
+		 								{!! Form::close() !!}
+	 								</td>
+									@endif
+								@endif
 							@endif
 						</tr>
 						<?php $number = $number + 1 ?>
@@ -225,7 +249,12 @@
 								@if ($project->user_id == null)
 								@else
 									@if (Auth::user()->id == $project->user_id)
-									<td><a href="{{ action('RisksController@edit', [$risk->id] ) }}"> Edit</a></td>
+									<td><a href="{{ action('RisksController@edit', [$risk->project_id, $risk->id] ) }}"> Edit</a></td>
+									<td>
+										{!! Form::open(['route' => ['risks.destroy', $risk->project_id, $risk->id], 'method' => 'delete', 'class' => 'delete' ]) !!}
+     									{!! Form::submit('Delete') !!}
+		 								{!! Form::close() !!}
+	 								</td>
 									@endif
 								@endif
 							@endif
@@ -274,7 +303,12 @@
 								@if ($project->user_id == null)
 								@else
 									@if (Auth::user()->id == $project->user_id)
-									<td><a href="{{ action('ExpensesController@edit', [$expense->id] ) }}"> Edit</a></td>
+									<td><a href="{{ action('ExpensesController@edit', [$expense->project_id, $expense->id] ) }}"> Edit</a></td>
+									<td>
+										{!! Form::open(['route' => ['expenses.destroy', $expense->project_id, $expense->id], 'method' => 'delete', 'class' => 'delete' ]) !!}
+     									{!! Form::submit('Delete') !!}
+		 								{!! Form::close() !!}
+	 								</td>
 									@endif
 								@endif
 							@endif

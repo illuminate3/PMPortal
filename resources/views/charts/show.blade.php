@@ -111,8 +111,13 @@
 								@if ($project->user_id == null)
 								@else
 									@if (Auth::user()->id == $project->user_id)
-									<td><a href="{{ action('SupportTeamMembersController@edit', [$support_team_member->id] ) }}"> Edit</a></td>
-									@endif
+									<td><a href="{{ action('SupportTeamMembersController@edit', [$support_team_member->project_id, $support_team_member->id]) }}"> Edit</a></td>
+									<td>
+										{!! Form::open(['route' => ['support_team_members.destroy', $support_team_member->project_id, $support_team_member->id], 'method' => 'delete', 'class' => 'delete' ]) !!}
+     									{!! Form::submit('Delete') !!}
+		 								{!! Form::close() !!}
+		 							</td>
+   								 	@endif
 								@endif
 							@endif
 							</tr>
@@ -152,8 +157,13 @@
 								@if ($project->user_id == null)
 								@else
 									@if (Auth::user()->id == $project->user_id)
-									<td><a href="{{ action('TechnicalProjectTeamMembersController@edit', [$technical_project_team_member->id] ) }}"> Edit</a></td>
-									@endif
+									<td><a href="{{ action('TechnicalProjectTeamMembersController@edit', [$technical_project_team_member->project_id, $technical_project_team_member->id] ) }}"> Edit</a></td>
+									<td>
+										{!! Form::open(['route' => ['technical_project_team_members.destroy', $technical_project_team_member->project_id, $technical_project_team_member->id], 'method' => 'delete', 'class' => 'delete' ]) !!}
+     									{!! Form::submit('Delete') !!}
+		 								{!! Form::close() !!}
+		 							</td>
+		 							@endif
 								@endif
 							@endif
 							</tr>
@@ -193,8 +203,13 @@
 								@if ($project->user_id == null)
 								@else
 									@if (Auth::user()->id == $project->user_id)
-									<td><a href="{{ action('BusinessProjectTeamMembersController@edit', [$business_project_team_member->id] ) }}"> Edit</a></td>
-									@endif
+									<td><a href="{{ action('BusinessProjectTeamMembersController@edit', [$business_project_team_member->project_id, $business_project_team_member->id] ) }}"> Edit</a></td>
+									<td>
+										{!! Form::open(['route' => ['business_project_team_members.destroy', $business_project_team_member->project_id, $business_project_team_member->id], 'method' => 'delete', 'class' => 'delete' ]) !!}
+     									{!! Form::submit('Delete') !!}
+		 								{!! Form::close() !!}
+		 							</td>
+		 							@endif
 								@endif
 							@endif
 							</tr>

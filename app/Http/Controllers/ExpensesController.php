@@ -58,7 +58,7 @@ class ExpensesController extends Controller {
 			'balance' => $input['balance'],
 			'comment' => $input['comment']
 			]);
-
+		flash()->success('Expense has been successfully created!');
 		return redirect()->action('ProjectsController@show', [$id]);
 	}
 
@@ -79,7 +79,7 @@ class ExpensesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($project_id, $id)
 	{
 		$expense = Expense::find($id);
 		$managers = User::where('role','Project Manager')->get();		
@@ -93,7 +93,7 @@ class ExpensesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update(CreateExpenseRequest $request, $id)
+	public function update(CreateExpenseRequest $request, $project_id, $id)
 	{
 		$expense = Expense::find($id);
 		$input = Request::all();
@@ -103,8 +103,8 @@ class ExpensesController extends Controller {
 			'balance' => $input['balance'],
 			'comment' => $input['comment']
 			]);
-
-		return redirect()->action('ProjectsController@show', [$expense->project_id]);
+		flash()->success('Expense has been successfully updated!');
+		return redirect()->action('ProjectsController@show', [$project_id]);
 	}
 
 	/**
@@ -113,13 +113,12 @@ class ExpensesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($project_id, $id)
 	{
 		$expense = Expense::find($id);
-		$id = $expense['project_id'];
 		$expense->delete();
-
-		return redirect()->action('ProjectsController@show', $id);
+		flash()->success('Expense has been successfully deleted!');
+		return redirect()->action('ProjectsController@show', $project_id);
 	}
 
 }

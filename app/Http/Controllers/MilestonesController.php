@@ -56,7 +56,7 @@ class MilestonesController extends Controller {
 			'status' => $input['status'],
 			'target_date' => $input['target_date']
 			]);
-
+		flash()->success('Milestone has been successfully created!');
 		return redirect()->action('ProjectsController@show', [$id]);
 	}
 
@@ -77,7 +77,7 @@ class MilestonesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($project_id, $id)
 	{
 		//
 		$milestone = Milestone::find($id);
@@ -92,7 +92,7 @@ class MilestonesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update(CreateMilestoneRequest $request, $id)
+	public function update(CreateMilestoneRequest $request, $project_id, $id)
 	{
 		//
 		$milestone = Milestone::find($id);
@@ -121,7 +121,8 @@ class MilestonesController extends Controller {
 				'target_date' => $input['target_date'],
 				'actual_date' => $input['actual_date']
 			]);
-		return redirect()->action('ProjectsController@show', [$milestone->project_id]);
+		flash()->success('Milestone has been successfully updated!');
+		return redirect()->action('ProjectsController@show', [$project_id]);
 	}
 
 	/**
@@ -130,14 +131,13 @@ class MilestonesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($project_id, $id)
 	{
 		//
 		$milestone = Milestone::find($id);
-		$id = $milestone['project_id'];
 		$milestone->delete();
-
-		return redirect()->action('ProjectsController@show', $id);
+		flash()->success('Milestone has been successfully deleted!');
+		return redirect()->action('ProjectsController@show', $project_id);
 	}
 
 }

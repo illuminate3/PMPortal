@@ -10,7 +10,7 @@
 				<div class="panel-heading">
 					Edit Expense
 				</div>
-				{!! Form::model($expense, ['method' => 'PATCH', 'action' => ['ExpensesController@update', $expense->id]]) !!}
+				{!! Form::model($expense, ['method' => 'PATCH', 'action' => ['ExpensesController@update', $expense->project_id, $expense->id]]) !!}
 					<div class="panel-body">
 						<table class="table-condensed table-hover"> <tbody>
 							<tr>
@@ -37,10 +37,7 @@
 						<div class = "submit">
 							{!! Form::submit('Submit', ['class' => 'btn btn-warning']) !!}
 							{!! Form::close() !!}
-							{!! Form::open(['route' => ['expenses.destroy', $expense->id], 'method' => 'delete', 'class' => 'delete' ]) !!}
-								{!! Form::submit('Delete', [ 'class' => 'btn btn-danger']) !!}
-							{!! Form::close() !!}
-						</div>
+							</div>
 					</div>
 				{!! Form::close() !!}
 			</div>
