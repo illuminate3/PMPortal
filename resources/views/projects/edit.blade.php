@@ -32,11 +32,13 @@
 
 							<tr>
 								<td class="span3 right"> {!! Form::label('users', 'Personnel:') !!} </td>
+
 								<td> <select id="projectusers" name="users[]" value="{{ old('users') }}" multiple>
 									@foreach ($users as $user)
 										<option value= {{ $user->id }} <?php if(in_array($user->name,$projectusers)) {echo("selected");} ?> >
 											{{ $user->name }}
 										</option>
+
 									@endforeach
 								</select> </td>
 							</tr>
@@ -137,5 +139,4 @@
 			</div>
 		</div>
 	</div>
-
 @stop

@@ -32,9 +32,11 @@
 
 							<tr>
 								<td class="span3 right"> {!! Form::label('users', 'Personnel:') !!} </td>
+
 								<td> <select class="span7" id = "projectusers" name="users[]" value="{{ old('users') }}" multiple>
 									@foreach ($users as $user)
 										<option value= {{ $user->id }} > {{ $user->name }}</option>
+
 									@endforeach
 								</select> </td>
 							</tr>
@@ -95,5 +97,5 @@
 			</div>
 		</div>
 	</div>	
-
 @stop
+

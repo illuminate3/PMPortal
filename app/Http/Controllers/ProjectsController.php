@@ -281,6 +281,7 @@ class ProjectsController extends Controller {
 	public function edit($id)
 	{	
 		$project = Project::find($id);
+
 		$projectusers = array_pluck($project -> users, 'name');
 
 		if($project['user_id'] == null)
@@ -291,6 +292,7 @@ class ProjectsController extends Controller {
 		{
 			$users = User::where('role','!=','System Administrator')->where('id','!=',Auth::user()->id)->where('id','!=',$project['user_id'])->get();//('role','Project Manager')->where('id','!=',Auth::user()->id)->get();
 		}
+
 		$managers = User::where('role','Project Manager')->get();
 		
 		return view('projects.edit', compact('project','managers','users','projectusers'));

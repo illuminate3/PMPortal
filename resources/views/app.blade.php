@@ -14,12 +14,14 @@
 	<script src="{{ asset('/js/bootstrap.min.js') }}" ></script>
 	<script src="{{ asset('/js/bootstrap-confirmation.js') }}"></script>
 	<script src="{{ asset('/js/sorttable.js') }}" ></script>
+
 	<script src="{{ asset('/js/select2.full.min.js') }}"></script>
 
 	<!-- CSS -->
 	<link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/select2.css') }}" rel="stylesheet">
-	
+
+
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
 
@@ -57,6 +59,7 @@
 		
 		<!-- Scripts -->
 		<script>
+
 			$('#projectusers').select2({
 				placeholder: 'Choose users'
 			}
