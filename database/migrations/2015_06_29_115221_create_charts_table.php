@@ -29,7 +29,12 @@ class CreateChartsTable extends Migration {
 			$table->string('strategic_procurement');
 			$table->string('audit');
 			$table->string('group_compliance');
-			$table->string('project_id');
+			$table->integer('project_id')->unsigned()->index();
+
+			$table->foreign('project_id')
+				  ->references('id')
+				  ->on('projects')
+				  ->onDelete('cascade');
 		});
 	}
 

@@ -42,6 +42,7 @@ class BackupController extends Controller {
 
 	public function loadBackup()
 	{
+		ini_set("max_execution_time", 0);
 		\DB::Connection('mysql2')->statement('CREATE DATABASE IF NOT EXISTS pmportal');
 		\DB::unprepared(file_get_contents('C:\xampp\htdocs\PMPortal\storage\app\backups\dump.sql'));
 		flash()->success('Database backup has been successfully loaded');

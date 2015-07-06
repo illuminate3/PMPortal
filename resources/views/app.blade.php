@@ -12,21 +12,27 @@
 	<!-- JS -->
 	<script src="{{ asset('/js/jquery-1.11.3.js') }}" ></script>
 	<script src="{{ asset('/js/bootstrap.min.js') }}" ></script>
-	<script src="{{ asset('/js/bootstrap-confirmation.js') }}"></script>
 	<script src="{{ asset('/js/sorttable.js') }}" ></script>
 
 	<script src="{{ asset('/js/select2.full.min.js') }}"></script>
+
+<script src="{{ asset('/js/jquery.orgchart.js') }}"></script>
+	
 
 	<!-- CSS -->
 	<link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/select2.css') }}" rel="stylesheet">
 
 
+<link rel="stylesheet" href="{{ asset('/css/jquery.orgchart.css') }}">
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
 
-	
-
+<script src="{{ asset('/js/bootstrap-confirmation.js') }}"></script>
+	<!-- 
+<link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/jqueryui-editable/css/jqueryui-editable.css" rel="stylesheet"/>
+<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/jqueryui-editable/js/jqueryui-editable.min.js"></script>
+ -->
 	<style type="text/css">
 		#SiteBody
 		{
@@ -59,7 +65,7 @@
 		
 		<!-- Scripts -->
 		<script>
-
+			@yield('footerscript')
 			$('#projectusers').select2({
 				placeholder: 'Choose users'
 			}
@@ -67,7 +73,6 @@
 			$('#flash-overlay-modal').modal();
 			$('div.alert').not('alert-important').delay(3000).slideUp(300);
 			$('[data-toggle=confirmation]').confirmation('hide');
-
 		</script> 
 	</body>
 </html>

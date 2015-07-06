@@ -149,5 +149,4 @@ class ChartsController extends Controller {
 
 		return redirect()->action('ProjectsController@show', $id);
 	}
-
 }

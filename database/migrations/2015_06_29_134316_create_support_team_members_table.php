@@ -20,10 +20,9 @@ class CreateSupportTeamMembersTable extends Migration {
 			$table->string('role');
 			$table->timestamps();
 			
-			
 			$table->foreign('project_id')
 				  ->references('id')
-				  ->on('charts')
+				  ->on('projects')
 				  ->onDelete('cascade');
 		});
 	}

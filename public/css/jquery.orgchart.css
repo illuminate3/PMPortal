@@ -1,0 +1,183 @@
+div.orgChart {
+    background-color      : white;
+    margin                : 10px;
+    padding               : 20px;
+    font-size             : 15px;
+}
+
+div.orgChart h2 {
+    margin                : 0px;
+    font-size             : 1em;
+    border-bottom         : none;
+}
+
+div.orgChart ul {
+    list-style            : none;
+    margin                : 4px;
+    padding               : 0px;
+    font-size             : 0.8em;
+    text-align            : left;
+}
+
+
+div.orgChart ul.stack,
+div.orgChart ul.stack ul {
+    text-align            : center;
+}
+
+div.orgChart table {
+    width                 : 100%;
+}
+
+div.orgChart tr.lines td.line {
+    width                 : 1%;
+    height                : 20px;
+}
+
+/*topline*/
+div.orgChart tr.lines:last-child td.line
+{
+    height                : 30px;
+    /*background-color: pink;*/
+}
+
+
+/*bottomline*/
+div.orgChart tr.lines:nth-of-type(3) td.line
+{
+    height                : 30px;
+    /*background-color: red;*/
+}
+
+div.orgChart tr.lines td.top {
+    border-top            : 3px solid black;
+}
+
+div.orgChart tr.lines td.left {
+    border-right          : 2px solid black;
+    
+}
+
+div.orgChart tr.lines td.right {
+    border-left           : 2px solid black;
+}
+
+div.orgChart td {
+    text-align            : center;
+    vertical-align        : top;
+    padding               : 0px 2px;
+}
+
+/*middle nodes*/
+div.orgChart div.node {
+    cursor                : default;
+    border                : 2px solid black;
+    display               : inline-block;
+    padding               : 0 4px;
+    width                 : 30%;
+    height                : 60px;
+    background-color      : white;
+    line-height           : 1.3em;
+    border-radius         : 8px;
+    box-shadow            : 4px 4px 6px #888888;
+    -moz-border-radius    : 8px;
+    -moz-box-shadow       : 4px 4px 6px #888888;
+    -webkit-border-radius : 8px;
+    -webkit-box-shadow    : 4px 4px 6px #888888;
+}
+
+/*for first and last nodes*/
+div.orgChart div.node:nth-child(1)
+{
+    width                 : 70%;
+    background-color: white;
+}
+
+div.orgChart div.hasChildren {
+    background-color      : white;
+}
+div.orgChart.interactive div.hasChildren {
+    cursor                : pointer;
+}
+div.orgChart div.node.hover {
+    background-color      : white;
+}
+
+div.orgChart div.adjunct.node,
+div.orgChart div.adjunct2.node,
+div.orgChart div.adjunct3.node {
+    position              : absolute;
+    margin-top            : 60px;
+    margin-left           : 25.75%;
+    width                 : 15%;
+    height                : 45px;
+    background-color      : white;
+    padding               : 5px 4px;
+}
+
+div.orgChart div.adjunct-link,
+div.orgChart div.adjunct2-link,
+div.orgChart div.adjunct3-link {
+    display               : inline-block;
+    position              : absolute;
+    margin-left           : 10.75%;
+    margin-top            : 95px;
+    width                 : 15%;
+    border                : 1px dashed black;
+}
+
+/*SUPPORT TEAM NODE*/
+div.orgChart div.adjunct3-link{
+    border                : 1px solid black;
+}
+div.orgChart div.adjunct3.node{
+    margin-top: 50px;
+    min-height: 45px;
+    height:auto;
+    overflow:visible;
+
+}
+
+/*GOVERNANCE TEAM NODE*/
+div.orgChart div.adjunct2.node{
+    margin-top            : -90px;
+    margin-left           : -20.8%;
+    height                : 160px;
+}
+div.orgChart div.adjunct2-link{
+    margin-left           : -4.75%;
+    margin-top            : -30px;
+    border                : 1px solid black;
+}
+/*inside the nodes divider for the roles*/
+.divider{
+    margin-top:-15px;
+    margin-bottom: -20px;
+    border: 0px;
+}
+.adjdivider{
+    margin-top: 8px;
+    margin-bottom: -10px;
+    border: 0px;
+}
+
+
+/*after project manager*/
+div.orgChart tr.lines.linelevel4 td.line
+{
+    height:60px;
+   /* background-color: orange;*/
+}
+
+/*last for the teams*/
+.node.level6.node0.level6-node0
+{
+    height:auto;
+    overflow: visible;
+    min-height: 60px;
+}
+/*first node*/
+.node.level0.node0.level0-node0.company.hasChildren.shownChildren
+{
+    width: 30%;
+}

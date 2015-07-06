@@ -114,6 +114,10 @@ class ProjectsController extends Controller {
 	public function create()
 	{	
 		$users = User::where('role','!=','System Administrator')->where('id','!=',Auth::user()->id)->get();//('role','Project Manager')->where('id','!=',Auth::user()->id)->get();
+		$users = array_values(array_sort($users, function($value)
+		{
+    		return $value['name'];
+		}));
 		return view('projects.create', compact('users'));
 	}
 
@@ -268,8 +272,8 @@ class ProjectsController extends Controller {
 		$issues = Issue::where('project_id', $id)->get();
 		$milestones = Milestone::where('project_id', $id)->get();
 		$risks = Risk::where('project_id', $id)->get();
-
-		return view('projects.show', compact('project', 'actions', 'accomplishments', 'expenses', 'issues', 'milestones', 'risks'));
+		$lastUser = $project->users->last();
+		return view('projects.show', compact('project', 'actions', 'accomplishments', 'expenses', 'issues', 'milestones', 'risks','lastUser'));
 	}
 
 	/**
@@ -478,8 +482,8 @@ class ProjectsController extends Controller {
 		$issues = Issue::where('project_id', $id)->get();
 		$milestones = Milestone::where('project_id', $id)->get();
 		$risks = Risk::where('project_id', $id)->get();
-
-		return view('projects.generate', compact('project', 'actions', 'accomplishments', 'expenses', 'issues', 'milestones', 'risks'));
+		$lastUser = $project->users->last();
+		return view('projects.generate', compact('project', 'actions', 'accomplishments', 'expenses', 'issues', 'milestones', 'risks','lastUser'));
 	}
 
 	public function search()
