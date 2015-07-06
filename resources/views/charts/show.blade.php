@@ -4,23 +4,23 @@
 @stop
 @section('content')
 <ul id="organisation" class="hide">
-    <li class="company"><em>Project Steering Committee<hr class="divider">(PSC)</em>
+    <li class="company"><b>Project Steering Committee<br>(PSC)</b>
         <ul>
             <li><adjunct>
-            	@if( $chart['project_sponsor'] == null)
+            	@if( $chart['audit'] == null)
             	--
             	@else
-            	{{ $chart['project_sponsor'] }}
+            	{{ $chart['audit'] }}
             	@endif
-            	<hr class="adjdivider">Audit</adjunct>
+            	<i><hr class="adjdivider">Audit</i></adjunct>
 
             	@if( $chart['project_sponsor'] == null)
             	--
             	@else
             	{{ $chart['project_sponsor'] }}
             	@endif
-            	<hr class="divider">
-            	 Project Sponsor
+            	<br>
+            	<i>Project Sponsor</i>
             	
         <ul>
         	<li><adjunct>
@@ -29,45 +29,45 @@
             	@else
             	{{ $chart['group_compliance'] }}
             	@endif
-            	<hr class="adjdivider">Group Compliance</adjunct>
+            	<hr class="adjdivider"><i>Group Compliance</adjunct></i>
 
         		@if( $chart['product_owner'] == null)
             	--
             	@else
             	{{ $chart['product_owner'] }}
             	@endif
-            	<hr class="divider">Product Owner
+            	<i><br>Product Owner</i>
         <ul>
         	<li><adjunct2>
 				<b>Governance Team</b>
-				<hr class="adjdivider">
+				<hr class="adjdivider2">
 					@if( $chart['quality_management'] == null)
 	            	--
 	            	@else
 	            	{{ $chart['quality_management'] }}
 	            	@endif
-	            	<hr class="adjdivider">Quality Management<hr class="adjdivider">
+	            	<hr class="adjdivider"><i>Quality Management</i><hr class="adjdivider2">
 
 	            	@if( $chart['it_security'] == null)
 	            	--
 	            	@else
 	            	{{ $chart['it_security'] }}
 	            	@endif
-	            	<hr class="adjdivider">IT Security<hr class="adjdivider">
+	            	<hr class="adjdivider"><i>IT Security</i><hr class="adjdivider2">
 
 	            	@if( $chart['enterprise_architecture'] == null)
 	            	--
 	            	@else
 	            	{{ $chart['enterprise_architecture'] }}
 	            	@endif
-	            	<hr class="adjdivider">Enterprise Architecture<hr class="adjdivider">
+	            	<hr class="adjdivider"><i>Enterprise Architecture</i><hr class="adjdivider2">
 
 	            	@if( $chart['strategic_procurement'] == null)
 	            	--
 	            	@else
 	            	{{ $chart['strategic_procurement'] }}
 	            	@endif
-	            	<hr class="adjdivider">Strategic Procurement<hr class="adjdivider">
+	            	<hr class="adjdivider"><i>Strategic Procurement</i><hr class="adjdivider2">
 	        		</adjunct2>
 
         		@if( $chart['project_director'] == null)
@@ -75,10 +75,10 @@
             	@else
             	{{ $chart['project_director'] }}
             	@endif
-        		<hr class="divider">Project Director
+        		<br><i>Project Director</i>
         <ul>
         	<li><adjunct3>
-        		Support Team
+        		<b>Support Team</b>
 
         		@if (Auth::guest())
 						@else
@@ -93,11 +93,31 @@
 					<hr class="adjdivider">
 					--
 				@else
+                <table class="memberstable">
 	        		@foreach ($support_team_members as $support_team_member)
-	        		<hr class="adjdivider">
-	        		<a href="#" id="support_team_member" data-type="text" data-pk="2" data-url="{{ action('SupportTeamMembersController@edit', [$support_team_member->project_id, $support_team_member->id]) }}" data-title="Enter support team member">
-	        		{{ $support_team_member-> name }} [{{ $support_team_member-> role}}]</a>
+    	        		<tr>
+                        <td>
+    	        		{{ $support_team_member-> name }} [{{ $support_team_member-> role}}]
+                        </td>
+                        @if (Auth::guest())
+                        @else
+                        @if ($project['user_id'] == null)
+                        @else
+                        @if ($project['user_id'] == Auth::user()['id'])
+                            <td>
+                                <a title="Edit member" href="{{ action('SupportTeamMembersController@edit', [$support_team_member->project_id, $support_team_member->id]) }}"><img src="{{ asset('img/glyphicons-31-pencil.png')}}" style="width:10px;" ></img></a>
+                            </td>
+                            <td>
+                                {!! Form::open(['route' => ['support_team_members.destroy', $support_team_member->project_id, $support_team_member->id], 'method' => 'delete', 'class' => 'delete' ]) !!}
+                                <input type="image" name="image" src="{{ asset('img/glyphicons-17-bin.png')}}" style="width:10px;" title="Delete member">
+                                {!! Form::close() !!}
+                            </td>
+                        </tr>
+                        @endif
+                        @endif
+                        @endif
 	        		@endforeach
+                </table>
 	        	@endif
         	</adjunct3>
         		@if( $chart['project_manager'] == null)
@@ -105,20 +125,20 @@
             	@else
             	{{ $chart['project_manager'] }}
             	@endif
-        		<hr class="divider">Project Manager
+        		<br><i>Project Manager</i>
         <ul>
         	<li>@if( $chart['technical_project_manager'] == null)
             	--
             	@else
             	{{ $chart['technical_project_manager'] }}
             	@endif
-        		<hr class="divider">Technical Project Manager
+        		<br><i>Technical Project Manager</i>
 
         			
 
 
         		<ul>
-        				<li>Technical Project Team
+        				<li><b>Technical Project Team</b>
 
         					@if (Auth::guest())
 						@else
@@ -131,15 +151,34 @@
 						@endif
 
 							@if ($technical_project_team_members == "[]")
-							<hr class="divider">
+							<br>
 							--
 							@else
+                            <table class="memberstable">
         					@foreach ($technical_project_team_members as $technical_project_team_member)
-								<hr class="divider">
-                                
-{{$technical_project_team_member->name}} [{{$technical_project_team_member->role}}]
-                                         
+                                <tr>
+                                    <td>
+                                    {{$technical_project_team_member->name}} [{{$technical_project_team_member->role}}]
+                                    </td>
+                                @if (Auth::guest())
+                                @else
+                                @if ($project['user_id'] == null)
+                                @else
+                                @if ($project['user_id'] == Auth::user()['id'])
+                                    <td>
+                                        <a title="Edit member" href="{{ action('TechnicalProjectTeamMembersController@edit', [$technical_project_team_member->project_id, $technical_project_team_member->id] ) }}"> <img src="{{ asset('img/glyphicons-31-pencil.png')}}" style="width:10px;" > </img></a>
+                                    </td>
+                                    <td>
+                                        {!! Form::open(['route' => ['technical_project_team_members.destroy', $technical_project_team_member->project_id, $technical_project_team_member->id], 'method' => 'delete' ]) !!}
+                                        <input type="image" name="image" src="{{ asset('img/glyphicons-17-bin.png')}}" style="width:10px;" title="Delete member">
+                                        {!! Form::close() !!}
+                                    </td>
+                                </tr>
+                                @endif
+                                @endif
+                                @endif
         					@endforeach
+                            </table>
         					@endif
         				</li>
         			</ul>
@@ -149,7 +188,7 @@
             	@else
             	{{ $chart['business_analyst'] }}
             	@endif
-        			<hr class="divider">Business Analyst
+        			<br><i>Business Analyst</i>
 
         		</li>
         		<li>
@@ -158,9 +197,9 @@
             	@else
             	{{ $chart['business_project_manager'] }}
             	@endif
-        			<hr class="divider">Business Project Manager
+        			<br><i>Business Project Manager</i>
         			<ul>
-        				<li>Business Project Team
+        				<li><b>Business Project Team</b>
 
         					@if (Auth::guest())
 						@else
@@ -173,13 +212,35 @@
 						@endif
 
 							@if ($business_project_team_members == "[]")
-							<hr class="divider">
+							<br>
 							--
 							@else
+                            <table class="memberstable">
         					@foreach ($business_project_team_members as $business_project_team_member)
-									<hr class="divider">
+									<tr>
+                                    <td>
 									{{ $business_project_team_member-> name }} [{{ $business_project_team_member-> role}}]
-        					@endforeach
+        					    </td>
+                                @if (Auth::guest())
+                                @else
+                                @if ($project['user_id'] == null)
+                                @else
+                                @if ($project['user_id'] == Auth::user()['id'])
+                                    <td>
+                                        <a title="Edit member" href="{{ action('BusinessProjectTeamMembersController@edit', [$business_project_team_member->project_id, $business_project_team_member->id] ) }}"> <img src="{{ asset('img/glyphicons-31-pencil.png')}}" style="width:10px;" > </img></a>
+                                    </td>
+                                    <td>
+                                        {!! Form::open(['route' => ['business_project_team_members.destroy', $business_project_team_member->project_id, $business_project_team_member->id], 'method' => 'delete' ]) !!}
+                                        <input type="image" name="image" src="{{ asset('img/glyphicons-17-bin.png')}}" style="width:10px;" title="Delete member">
+                                        {!! Form::close() !!}
+                                    </td>
+                                </tr>
+                                @endif
+                                @endif
+                                @endif
+
+                            @endforeach
+                            </table>
         					@endif
         				</li>
         			</ul>
