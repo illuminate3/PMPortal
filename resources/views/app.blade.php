@@ -16,7 +16,7 @@
 
 	<script src="{{ asset('/js/select2.full.min.js') }}"></script>
 
-<script src="{{ asset('/js/jquery.orgchart.js') }}"></script>
+	<script src="{{ asset('/js/jquery.orgchart.js') }}"></script>
 	
 
 	<!-- CSS -->
@@ -24,15 +24,12 @@
 	<link href="{{ asset('/css/select2.css') }}" rel="stylesheet">
 
 
-<link rel="stylesheet" href="{{ asset('/css/jquery.orgchart.css') }}">
+	<link rel="stylesheet" href="{{ asset('/css/jquery.orgchart.css') }}">
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
 
-<script src="{{ asset('/js/bootstrap-confirmation.js') }}"></script>
-	<!-- 
-<link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/jqueryui-editable/css/jqueryui-editable.css" rel="stylesheet"/>
-<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/jqueryui-editable/js/jqueryui-editable.min.js"></script>
- -->
+	<script src="{{ asset('/js/bootstrap-confirmation.js') }}"></script>
+
 	<style type="text/css">
 		#SiteBody
 		{

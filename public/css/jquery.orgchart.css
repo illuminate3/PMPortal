@@ -7,7 +7,10 @@ div.orgChart {
 
 div.orgChart h2 {
     margin                : 0px;
-    font-size             : 1em;
+    line-height: 20px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: normal;
     border-bottom         : none;
 }
 
@@ -73,9 +76,13 @@ div.orgChart div.node {
     cursor                : default;
     border                : 2px solid black;
     display               : inline-block;
-    padding               : 0 4px;
+    padding               : 0px 4px;
     width                 : 30%;
-    height                : 60px;
+    
+    height:auto;
+    overflow: visible;
+    min-height: 60px;
+    padding-top:10px;
     background-color      : white;
     line-height           : 1.3em;
     border-radius         : 8px;
@@ -112,7 +119,8 @@ div.orgChart div.adjunct3.node {
     width                 : 15%;
     height                : 45px;
     background-color      : white;
-    padding               : 5px 4px;
+    padding               : 0px 4px;
+    padding-top: 5px;
 }
 
 div.orgChart div.adjunct-link,
@@ -121,7 +129,7 @@ div.orgChart div.adjunct3-link {
     display               : inline-block;
     position              : absolute;
     margin-left           : 10.75%;
-    margin-top            : 95px;
+    margin-top            : 103px;
     width                 : 15%;
     border                : 1px dashed black;
 }
@@ -135,32 +143,34 @@ div.orgChart div.adjunct3.node{
     min-height: 45px;
     height:auto;
     overflow:visible;
-
+    padding-bottom: 10px;
 }
 
 /*GOVERNANCE TEAM NODE*/
 div.orgChart div.adjunct2.node{
     margin-top            : -90px;
     margin-left           : -20.8%;
-    height                : 160px;
+    min-height            : 60px;
+    height                : auto;
+    overflow              : visible;
 }
 div.orgChart div.adjunct2-link{
     margin-left           : -4.75%;
     margin-top            : -30px;
     border                : 1px solid black;
 }
+
 /*inside the nodes divider for the roles*/
-.divider{
-    margin-top:-15px;
-    margin-bottom: -20px;
-    border: 0px;
-}
 .adjdivider{
     margin-top: 8px;
     margin-bottom: -10px;
     border: 0px;
 }
-
+.adjdivider2{
+    margin-top: 15px;
+    margin-bottom: -10px;
+    border: 0px;
+}
 
 /*after project manager*/
 div.orgChart tr.lines.linelevel4 td.line
@@ -175,6 +185,7 @@ div.orgChart tr.lines.linelevel4 td.line
     height:auto;
     overflow: visible;
     min-height: 60px;
+    padding-bottom: 10px;
 }
 /*first node*/
 .node.level0.node0.level0-node0.company.hasChildren.shownChildren
