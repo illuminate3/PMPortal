@@ -11,6 +11,11 @@ use App\Risk;
 use App\Expense;
 use App\Accomplishment;
 use App\Action;
+use App\Deliverable;
+use App\BusinessProjectTeamMember;
+use App\SupportTeamMember;
+use App\TechnicalProjectTeamMember;
+use App\ProjectUser;
 use Request;
 use Spatie\Activitylog\Models\Activity;
 use Auth;
@@ -31,7 +36,11 @@ class AuditController extends Controller {
 	 */
 	public function changeLog()
 	{
-		$activities = Activity::whereIn('action',array('Created','Deleted','Updated'))->get();
+		$activities = Activity::whereIn('action',array('Created','Deleted','Updated'))
+								->where(function($query){
+									return $query->where('action','!=','Created')->orWhere('type','!=','Deliverable');
+								})
+								->get();
 		$projects = Project::all();
 		$milestones = Milestone::all();
 		$accomplishments = Accomplishment::all();
@@ -40,7 +49,11 @@ class AuditController extends Controller {
 		$users = User::all();
 		$expenses = Expense::all();
 		$actions = Action::all();
-		return view('audit.change_log', compact('activities','projects','milestones','accomplishments','issues','risks','users','expenses','actions'));
+		$deliverables = Deliverable::all();
+		$business_project_team_members = BusinessProjectTeamMember::all();
+		$technical_project_team_members = TechnicalProjectTeamMember::all();
+		$support_team_members = SupportTeamMember::all();
+		return view('audit.change_log', compact('activities','projects','milestones','accomplishments','issues','risks','users','expenses','actions', 'deliverables','business_project_team_members','technical_project_team_members','support_team_members'));
 	}
 
 	public function deleteOldestFiftyChanges()
@@ -61,7 +74,32 @@ class AuditController extends Controller {
 		return redirect()->action('AuditController@changeLog');
 	}
 
-
-
+	public function generate()
+	{
+		$activities = Activity::whereIn('action',array('Created','Deleted','Updated'))
+								->where(function($query){
+									return $query->where('action','!=','Created')->orWhere('type','!=','Deliverable');
+								})
+								->get();
+		$projects = Project::all();
+		$milestones = Milestone::all();
+		$accomplishments = Accomplishment::all();
+		$issues = Issue::all();
+		$risks = Risk::all();
+		$users = User::all();
+		$expenses = Expense::all();
+		$actions = Action::all();
+		$deliverables = Deliverable::all();
+		$business_project_team_members = BusinessProjectTeamMember::all();
+		$technical_project_team_members = TechnicalProjectTeamMember::all();
+		$support_team_members = SupportTeamMember::All();
+		return view('audit.generate', compact('activities','projects','milestones','accomplishments','issues','risks','users','expenses','actions', 'deliverables','business_project_team_members','technical_project_team_members','support_team_members'));
+	}
+	
+	public function generatePdf()
+    {
+    	$pdf = \PDF::loadHTML($this->generate());
+    	return $pdf->stream();
+    }
 
 }

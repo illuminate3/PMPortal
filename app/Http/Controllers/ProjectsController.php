@@ -381,7 +381,10 @@ class ProjectsController extends Controller {
 		{
 			$project->users()->sync($request->input('users'));
 		}
-		
+		else
+		{
+			DB::delete('delete from project_user where project_id = ?', array($project->id));
+		}
 
 		$deliverables = Deliverable::where('project_id', $id)->get();
 		$i = 0;

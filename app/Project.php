@@ -61,7 +61,8 @@ class Project extends Model implements LogsActivityInterface
 		'actual_mandays',
 		'hardware',
 		'software',
-		'updated_at'
+		'updated_at',
+		'personnel'
 	);
 
     protected $revisionFormattedFieldNames = array(
@@ -76,7 +77,9 @@ class Project extends Model implements LogsActivityInterface
 		'target_mandays'  => 'Target Mandays',
 		'actual_mandays' => 'Actual Mandays',
 		'hardware' => 'Hardware',
-		'software' => 'Software'
+		'software' => 'Software',
+
+		'personnel' => 'Personnel'
 	);
 
 	//Declaring 'target_date' as a Carbon instance

@@ -140,6 +140,78 @@
 								<?php } ?>
 							@endforeach
 						@endforeach
+						@foreach ($deliverables as $deliverable)
+							@foreach($deliverable->revisionHistory as $history )
+							<tr class = "project-row">
+								<td align="center">Deliverable</td>
+								<td align="center">{{ $deliverable->project['title'] }} ({{ $deliverable['deliverable'] }})</td>
+								<?php 
+								$user = App\User::where('id',$history['user_id'])->first();
+								if ($user == null) { ?>
+									<td align="center">User Deleted</td>
+									@include('includes.audit_trail')
+								</tr>
+								<?php } else { ?>
+									<td align="center">{{ $history->userResponsible()->name }}</td>
+									@include('includes.audit_trail')
+								</tr>
+								<?php } ?>
+							@endforeach
+						@endforeach
+						@foreach ($business_project_team_members as $business_project_team_member)
+							@foreach($business_project_team_member->revisionHistory as $history )
+							<tr class = "project-row">
+								<td align="center">Business Project Team</td>
+								<td align="center">{{ $business_project_team_member->project['title'] }} ({{ $business_project_team_member['name'] }})</td>
+								<?php 
+								$user = App\User::where('id',$history['user_id'])->first();
+								if ($user == null) { ?>
+									<td align="center">User Deleted</td>
+									@include('includes.audit_trail')
+								</tr>
+								<?php } else { ?>
+									<td align="center">{{ $history->userResponsible()->name }}</td>
+									@include('includes.audit_trail')
+								</tr>
+								<?php } ?>
+							@endforeach
+						@endforeach
+						@foreach ($technical_project_team_members as $technical_project_team_member)
+							@foreach($technical_project_team_member->revisionHistory as $history )
+							<tr class = "project-row">
+								<td align="center">Technical Project Team</td>
+								<td align="center">{{ $technical_project_team_member->project['title'] }} ({{ $technical_project_team_member['name'] }})</td>
+								<?php 
+								$user = App\User::where('id',$history['user_id'])->first();
+								if ($user == null) { ?>
+									<td align="center">User Deleted</td>
+									@include('includes.audit_trail')
+								</tr>
+								<?php } else { ?>
+									<td align="center">{{ $history->userResponsible()->name }}</td>
+									@include('includes.audit_trail')
+								</tr>
+								<?php } ?>
+							@endforeach
+						@endforeach
+						@foreach ($support_team_members as $support_team_member)
+							@foreach($support_team_member->revisionHistory as $history )
+							<tr class = "project-row">
+								<td align="center">Support Team</td>
+								<td align="center">{{ $support_team_member->project['title'] }} ({{ $support_team_member['name'] }})</td>
+								<?php 
+								$user = App\User::where('id',$history['user_id'])->first();
+								if ($user == null) { ?>
+									<td align="center">User Deleted</td>
+									@include('includes.audit_trail')
+								</tr>
+								<?php } else { ?>
+									<td align="center">{{ $history->userResponsible()->name }}</td>
+									@include('includes.audit_trail')
+								</tr>
+								<?php } ?>
+							@endforeach
+						@endforeach
 						@foreach ($users as $user)
 							@foreach($user->revisionHistory as $history )
 							<?php 

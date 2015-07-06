@@ -136,10 +136,8 @@
 							@else
         					@foreach ($technical_project_team_members as $technical_project_team_member)
 								<hr class="divider">
-                                
-{{$technical_project_team_member->name}} [{{$technical_project_team_member->role}}]
-                                         
-        					@endforeach
+                                {{$technical_project_team_member->name}} {{$technical_project_team_member->role}}
+                                @endforeach
         					@endif
         				</li>
         			</ul>
@@ -179,7 +177,7 @@
         					@foreach ($business_project_team_members as $business_project_team_member)
 									<hr class="divider">
 									{{ $business_project_team_member-> name }} [{{ $business_project_team_member-> role}}]
-        					@endforeach
+                                    @endforeach
         					@endif
         				</li>
         			</ul>

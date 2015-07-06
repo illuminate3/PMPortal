@@ -128,6 +128,7 @@ Route::post('users/{id}', 'UsersController@postUpdateAccount');
 Route::get('backup', 'BackupController@backup');
 Route::get('backup/load', 'BackupController@loadBackup');
 Route::get('change_log', 'AuditController@changeLog');
+Route::get('change_log/generate', 'AuditController@generatePdf');
 Route::get('activity_log/clean', ['middleware' => 'system_admin', function()
 {
 	Activity::cleanLog();
