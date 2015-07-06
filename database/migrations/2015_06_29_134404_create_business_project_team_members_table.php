@@ -22,7 +22,7 @@ class CreateBusinessProjectTeamMembersTable extends Migration {
 			
 			$table->foreign('project_id')
 				  ->references('id')
-				  ->on('charts')
+				  ->on('projects')
 				  ->onDelete('cascade');
 		});
 	}
