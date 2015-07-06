@@ -20,7 +20,7 @@ class CreateTechnicalProjectTeamMembersTable extends Migration {
 			$table->string('name');
 			$table->string('role');
 			
-			$table->foreign('project_id')
+		$table->foreign('project_id')
 				  ->references('id')
 				  ->on('projects')
 				  ->onDelete('cascade');

@@ -35,10 +35,6 @@
 					<td class="span2 right"> {!! Form::label('target_start', 'Target End:') !!} </td>
 					<td class="span8 left"> {{ $project['target_end'] ->toFormattedDateString()}}</td>
 				</tr>
-				<tr>
-
-				</tr>
-
 							<!-- 'Nov 30, -0001' is the default value when the input field is read as null -->
 					
 								@if ( $project['actual_start'] ->toFormattedDateString() == 'Nov 30, -0001')
@@ -53,11 +49,12 @@
 								@else
 									<?php $actual_end = $project['actual_end']->toFormattedDateString() ?>
 								@endif
-					
+				<tr>
 					<td class="span3 right">{!! Form::label('actual_start', 'Actual Start:') !!}</td>																						
 					<td class="span3 left">{{ $actual_start}}</td>
 					<td class="span2 right">{!! Form::label('actual_end', 'Actual End:') !!}</td>
 					<td class="span8 left">{{ $actual_end }}</td>
+				</tr>
 				<tr>
 					<td class= "span3 right">Budget: </td>
 					<td class="span3 left">{{ $project['budget ']}}</td>
@@ -89,7 +86,11 @@
 					<td class= "span3 right">Personnel: </td>
 					<td>
 						@foreach($project->users as $user)
-							{{ $user->name }}<br>
+							@if ($user == $lastUser)
+							{{ $user->name }}
+							@else
+							{{ $user->name }}, 
+							@endif
 						@endforeach
 					</td>
 				</tr>

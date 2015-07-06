@@ -133,11 +133,6 @@
 				<hr class="divider">
 			</li>
 			@if (Auth::guest())
-				<li>
-					{!! Form::open(['route' => ['projects.generatepdf', $project['id']], 'method' => 'get' ]) !!}
-						{!! Form::button('<i class="glyphicon glyphicon-file"></i> Generate Report', ['type' => 'submit', 'class' => 'btn btn-warning span12 option']) !!}
-					{!! Form::close() !!}
-				</li>	
 			@else
 				@if (Auth::user()->role = "Project Manager") 
 					@if ($project->user_id == null)
