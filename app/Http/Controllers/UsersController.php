@@ -43,7 +43,7 @@ class UsersController extends Controller {
 	{
 		$input = Request::all();
 		$q = $input['query'];
-		$users = User::where('email', 'LIKE', "%$q%" )->get();
+		$users = User::where('email', 'LIKE', "%$q%" )->orWhere('email', 'LIKE', "%$q%" )->get();
 
 		return view('users.results', compact('users', 'q'));
 	}
