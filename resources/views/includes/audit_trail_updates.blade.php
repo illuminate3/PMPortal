@@ -212,6 +212,7 @@
 								<?php } ?>
 							@endforeach
 						@endforeach
+						@if (Auth::user()->role == "System Administrator")
 						@foreach ($users as $user)
 							@foreach($user->revisionHistory as $history )
 							<?php 
@@ -256,6 +257,8 @@
 							<?php } ?>
 							@endforeach
 						@endforeach
+						@else
+						@endif
 						</tbody>
 					</table>
 				</center>

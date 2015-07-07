@@ -26,7 +26,7 @@ class AuditController extends Controller {
 	public function __construct()
 	{
 		$this->middleware('auth');	
-		$this->middleware('system_admin'['except' =>['changeLog']]);
+		$this->middleware('system_admin',['except' =>['changeLog']]);
 
 	}
 	
@@ -38,33 +38,40 @@ class AuditController extends Controller {
 	public function changeLog()
 	{
 		
-		if (Auth::user()->role = "Project Manager"){
-			$activities = Activity::whereIn('action',array('Created','Deleted','Updated'))
-								->where(function($query){
-									return $query->where('action','!=','Created')->orWhere('type','!=','Deliverable');
-								})
-								->get();
-		$projects = Project::where(user_id,Auth::user()->id)->get();
-		$milestones = Milestone::where(project()->user_id,Auth::user()->id)->get();
-		$accomplishments = Accomplishment::where(project()->user_id,Auth::user()->id)->get();
-		$issues = Issue::where(project()->user_id,Auth::user()->id)->get();
-		$risks = Risk::where(project()->user_id,Auth::user()->id)->get();
+		if (Auth::user()->role = "Project Manager")
+		{
+		$activities = Activity::whereIn('action',array('Created','Deleted','Updated'))
+							->where(function($query){
+								return $query->where('action','!=','Created')->orWhere('type','!=','Deliverable');
+							})
+							->where('user_id',Auth::user()->id)
+							->get();
+
+		$projects = Project::where('user_id',Auth::user()->id)->get();
+		$projectids = array_pluck($projects, 'id');
+
+		$milestones = Milestone::whereIn('project_id',$projectids)->get();
 		
-		$expenses = Expense::where(project()->user_id,Auth::user()->id)->get();
-		$actions = Action::where(project()->user_id,Auth::user()->id)->get();
-		$deliverables = Deliverable::where(project()->user_id,Auth::user()->id)->get();
-		$business_project_team_members = BusinessProjectTeamMember::where(project()->user_id,Auth::user()->id)->get();
-		$technical_project_team_members = TechnicalProjectTeamMember::where(project()->user_id,Auth::user()->id)->get();
-		$support_team_members = SupportTeamMember::where(project()->user_id,Auth::user()->id)->get();
+		$accomplishments = Accomplishment::whereIn('project_id',$projectids)->get();
+		$issues = Issue::whereIn('project_id',$projectids)->get();
+		$risks = Risk::whereIn('project_id',$projectids)->get();
+		
+		$expenses = Expense::whereIn('project_id',$projectids)->get();
+		$actions = Action::whereIn('project_id',$projectids)->get();
+		$deliverables = Deliverable::whereIn('project_id',$projectids)->get();
+		$business_project_team_members = BusinessProjectTeamMember::whereIn('project_id',$projectids)->get();
+		$technical_project_team_members = TechnicalProjectTeamMember::whereIn('project_id',$projectids)->get();
+		$support_team_members = SupportTeamMember::whereIn('project_id',$projectids)->get();
+		
 		return view('audit.change_log', compact('activities','projects','milestones','accomplishments','issues','risks','expenses','actions', 'deliverables','business_project_team_members','technical_project_team_members','support_team_members'));
 	
 		}
 		elseif(Auth::user()->role = "System Administrator"){
-			$activities = Activity::whereIn('action',array('Created','Deleted','Updated'))
-								->where(function($query){
-									return $query->where('action','!=','Created')->orWhere('type','!=','Deliverable');
-								})
-								->get();
+		$activities = Activity::whereIn('action',array('Created','Deleted','Updated'))
+							->where(function($query){
+								return $query->where('action','!=','Created')->orWhere('type','!=','Deliverable');
+							})
+							->get();
 		$projects = Project::all();
 		$milestones = Milestone::all();
 		$accomplishments = Accomplishment::all();

@@ -77,4 +77,5 @@ class Milestone extends Model implements LogsActivityInterface{
 	{
 		return 'Milestone';
 	}
+
 }
