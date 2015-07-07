@@ -37,17 +37,13 @@
 }
 
 body{
-background-color: #AAAAAA;
-background-color:#222222;
-background: url(../img/bg.png); 
-        background-repeat: no-repeat;
-        -webkit-background-size: cover;
-        background-position: 50% 50%;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-        background-attachment:fixed;
-        background-size:100%;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background: url(../img/bg.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .register
