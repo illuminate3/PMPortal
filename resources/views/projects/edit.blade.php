@@ -74,7 +74,7 @@
 							</tr>
 
 							<tr>
-								<td class="span3 right"> {!! Form::label('confidentiality', 'Confidentiality:') !!} </td>
+								<td class="span3 right"> {!! Form::label('confidentiality', 'Classification:') !!} </td>
 								<td> <select class="span5" name="confidentiality" value="{{ old('confidentiality') }}">
 									<option value="Confidential">Confidential</option>
 									<option value="Public">Public</option>

@@ -70,16 +70,14 @@ class Project extends Model implements LogsActivityInterface
 		'pm' => 'Project Manager',
 		'status' => 'Status',
 		'rationale' => 'Rationale',
-
 		'color' => 'Color',
 		'target_date' => 'Target Date',
-
 		'target_mandays'  => 'Target Mandays',
 		'actual_mandays' => 'Actual Mandays',
 		'hardware' => 'Hardware',
 		'software' => 'Software',
-
-		'personnel' => 'Personnel'
+		'personnel' => 'Personnel',
+		'confidetiality' => 'Classification'
 	);
 
 	//Declaring 'target_date' as a Carbon instance

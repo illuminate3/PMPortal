@@ -78,7 +78,7 @@
 				</tr>
 
 				<tr>
-					<td class= "span3 right">Confidentiality: </td>
+					<td class= "span3 right">Classification: </td>
 					<td>{{ $project-> confidentiality }}</td>
 				</tr>
 

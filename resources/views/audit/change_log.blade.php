@@ -16,6 +16,7 @@
 				<table class="etable table-condensed table-hover project-show table-head"> <tbody>
 				<tr> 
 					<th colspan="2"> <b>Updates</b> </th> 
+					@if (Auth::user()->role == "System Administrator")
 					<th class="pull-right add">
 						<a  href="{{ url('/change_log/clean') }}" data-singleton="true" data-popout="true" data-toggle="confirmation" data-placement="top"
 							data-btn-ok-label="Delete" data-btn-ok-icon="glyphicon glyphicon-trash" data-btn-ok-class="btn-warning"
@@ -28,6 +29,8 @@
 							data-btn-cancel-label="Cancel" data-btn-cancel-icon="glyphicon glyphicon-ban-circle" data-title="<center><b>Are you sure you want to delete the oldest 50 records?</b></center>">
 							Delete Oldest 50 records</button></a>
 					</th>
+					@else
+					@endif
 				</tr>
 			</tbody> </table>
 			</div>
@@ -38,6 +41,7 @@
 				<table class="etable table-condensed table-hover project-show table-head"> <tbody>
 				<tr> 
 					<th colspan="2"> <b>Actions</b> </th> 
+					@if (Auth::user()->role == "System Administrator")
 					<th class="pull-right add">
 						<a  href="{{ url('/activity_log/clean') }}" data-singleton="true" data-popout="true" data-toggle="confirmation" data-placement="top"
 							data-btn-ok-label="Delete" data-btn-ok-icon="glyphicon glyphicon-trash" data-btn-ok-class="btn-warning"
@@ -50,6 +54,8 @@
 							data-btn-cancel-label="Cancel" data-btn-cancel-icon="glyphicon glyphicon-ban-circle" data-title="<center><b>Are you sure you want to delete the oldest 50 records?</b></center>">
 							Delete Oldest 50 records</button></a>
 					</th>
+					@else
+					@endif
 				</tr>
 			</tbody> </table>
 			</div>

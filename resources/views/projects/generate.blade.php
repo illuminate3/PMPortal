@@ -136,7 +136,7 @@
 				</tr>
 
 				<tr>
-					<td>Confidentiality: </td>
+					<td>Classification: </td>
 					<td>{{ $project-> confidentiality }}</td>
 				</tr>
 

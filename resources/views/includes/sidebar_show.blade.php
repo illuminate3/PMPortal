@@ -134,7 +134,7 @@
 			</li>
 			@if (Auth::guest())
 			@else
-				@if (Auth::user()->role = "Project Manager") 
+				@if (Auth::user()->role == "Project Manager") 
 					@if ($project->user_id == null)
 					@else
 						@if (Auth::user()->id == $project->user_id)
@@ -157,6 +157,17 @@
 				{!! Form::button('<i class="glyphicon glyphicon-file"></i> Generate Report', ['type' => 'submit', 'class' => 'btn btn-warning span12 option']) !!}
 				{!! Form::close() !!}		
 			</li>
+			@if (Auth::guest())
+			@else
+				@if (Auth::user()->role == "Project Manager") 
+				<li>
+					{!! Form::open(['url' => '/change_log', 'method' => 'get' ]) !!}
+					{!! Form::button('<i class="glyphicon glyphicon-book"></i> Audit Trail', ['type' => 'submit', 'class' => 'btn btn-warning span12 option']) !!}
+					{!! Form::close() !!}		
+				</li>
+				@else
+				@endif
+			@endif
 		</ul>
 	</div>		
 
@@ -164,59 +175,59 @@
 	<div>
 	<ul class="nav nav-list nav-stacked">
 		@if (Auth::guest())
-		@elseif (Auth::user()->role == 'System Administrator')	
-			<li class="nav-header"> 
-				Admin
-				<hr class="divider">
-			</li>
-			<div class="panel-group filters" id="accordion">
-		<!-- PROJECT MANAGERS DROPDOWN -->
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<p class="panel-title">
-						<a style="font-size:13px" class="darker accordion-toggle" data-toggle="collapse" href="#collapseAB">
-							User Management
-						</a>			
-					</p>
-				</div>
-				<div id="collapseAB" class="panel-collapse collapse ">
-					<div class="panel-body">
-						<ul class="nav nav-list">
-							<li role="presentation"><a role="menuitem" href="{{ url('/auth/register') }}">Add User</a></li>
-							<li role="presentation"><a role="menuitem" href="{{ url('/users') }}">Edit/Delete User</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<!-- PROJECT MANAGERS DROPDOWN -->
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<p class="panel-title">
-						<a style="font-size:13px" class="darker accordion-toggle" data-toggle="collapse" href="#collapseAC">
-							Database Management
-						</a>			
-					</p>
-				</div>
-				<div id="collapseAC" class="panel-collapse collapse ">
-					<div class="panel-body">
-						<ul class="nav nav-list">
-							<li role="presentation"><a role="menuitem" href="{{ url('/backup') }}">Backup Database</a></li>
-							<li role="presentation"><a role="menuitem" href="{{ url('/backup/load') }}">Load Backup</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<p class="panel-title">
-						<a style="font-size:13px" class="darker accordion-toggle" href="{{ url('/change_log') }}">
-							Audit Trail
-						</a>			
-					</p>
-				</div>
-			</div>
-		</div>
 		@else
+			@if (Auth::user()->role == 'System Administrator')	
+				<li class="nav-header"> 
+					Admin
+					<hr class="divider">
+				</li>
+				<div class="panel-group filters" id="accordion">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<p class="panel-title">
+							<a style="font-size:13px" class="darker accordion-toggle" data-toggle="collapse" href="#collapseAB">
+								User Management
+							</a>			
+						</p>
+					</div>
+					<div id="collapseAB" class="panel-collapse collapse ">
+						<div class="panel-body">
+							<ul class="nav nav-list">
+								<li role="presentation"><a role="menuitem" href="{{ url('/auth/register') }}">Add User</a></li>
+								<li role="presentation"><a role="menuitem" href="{{ url('/users') }}">Edit/Delete User</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<p class="panel-title">
+							<a style="font-size:13px" class="darker accordion-toggle" data-toggle="collapse" href="#collapseAC">
+								Database Management
+							</a>			
+						</p>
+					</div>
+					<div id="collapseAC" class="panel-collapse collapse ">
+						<div class="panel-body">
+							<ul class="nav nav-list">
+								<li role="presentation"><a role="menuitem" href="{{ url('/backup') }}">Backup Database</a></li>
+								<li role="presentation"><a role="menuitem" href="{{ url('/backup/load') }}">Load Backup</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<p class="panel-title">
+							<a style="font-size:13px" class="darker accordion-toggle" href="{{ url('/change_log') }}">
+								Audit Trail
+							</a>			
+						</p>
+					</div>
+				</div>
+			</div>
+			@else
+			@endif
 		@endif
 	</ul>
 	</div>

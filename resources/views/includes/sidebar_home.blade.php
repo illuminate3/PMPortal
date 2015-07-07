@@ -127,17 +127,26 @@
 	<div>
 	<ul class="nav nav-list nav-stacked">
 		@if (Auth::guest())
-		@elseif ((Auth::user()->role == 'Project Manager'))
-		<li class="nav-header" style="margin-top: 10px;"> 
-			Options
-			<hr class="divider">
-		</li>
-			<ul class="nav nav-list nav-stacked">
-				{!! Form::open(['route' => ['projects.create'], 'method' => 'get' ]) !!}
-					{!! Form::button('<i class="glyphicon glyphicon-pencil"></i> Create Project', ['type' => 'submit', 'class' => 'btn btn-warning span12 option']) !!}
-				{!! Form::close() !!}
-			</ul>	
 		@else
+			@if ((Auth::user()->role == 'Project Manager'))
+				<li class="nav-header" style="margin-top: 10px;"> 
+					Options
+					<hr class="divider">
+				</li>
+				<ul class="nav nav-list nav-stacked">
+					<li>
+						{!! Form::open(['route' => ['projects.create'], 'method' => 'get' ]) !!}
+							{!! Form::button('<i class="glyphicon glyphicon-pencil"></i> Create Project', ['type' => 'submit', 'class' => 'btn btn-warning span12 option']) !!}
+						{!! Form::close() !!}
+					</li>
+					<li>
+						{!! Form::open(['url' => '/change_log', 'method' => 'get' ]) !!}
+						{!! Form::button('<i class="glyphicon glyphicon-book"></i> Audit Trail', ['type' => 'submit', 'class' => 'btn btn-warning span12 option']) !!}
+						{!! Form::close() !!}		
+					</li>
+				</ul>	
+			@else
+			@endif
 		@endif
 	</ul>
 	</div>
