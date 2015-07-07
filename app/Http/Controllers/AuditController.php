@@ -26,7 +26,7 @@ class AuditController extends Controller {
 	public function __construct()
 	{
 		$this->middleware('auth');	
-		$this->middleware('system_admin',['except' =>['changeLog']]);
+		$this->middleware('system_admin',['except' =>['changeLog','generate','generatePdf']]);
 
 	}
 	
@@ -108,24 +108,54 @@ class AuditController extends Controller {
 
 	public function generate()
 	{
-		$activities = Activity::whereIn('action',array('Created','Deleted','Updated'))
-								->where(function($query){
-									return $query->where('action','!=','Created')->orWhere('type','!=','Deliverable');
-								})
-								->get();
-		$projects = Project::all();
-		$milestones = Milestone::all();
-		$accomplishments = Accomplishment::all();
-		$issues = Issue::all();
-		$risks = Risk::all();
-		$users = User::all();
-		$expenses = Expense::all();
-		$actions = Action::all();
-		$deliverables = Deliverable::all();
-		$business_project_team_members = BusinessProjectTeamMember::all();
-		$technical_project_team_members = TechnicalProjectTeamMember::all();
-		$support_team_members = SupportTeamMember::All();
-		return view('audit.generate', compact('activities','projects','milestones','accomplishments','issues','risks','users','expenses','actions', 'deliverables','business_project_team_members','technical_project_team_members','support_team_members'));
+		if (Auth::user()->role == "Project Manager")
+		{
+			$activities = Activity::whereIn('action',array('Created','Deleted','Updated'))
+							->where(function($query){
+								return $query->where('action','!=','Created')->orWhere('type','!=','Deliverable');
+							})
+							->where('user_id',Auth::user()->id)
+							->get();
+			$projects = Project::where('user_id',Auth::user()->id)->get();
+			$projectids = array_pluck($projects, 'id');
+			$milestones = Milestone::whereIn('project_id',$projectids)->get();
+			$accomplishments = Accomplishment::whereIn('project_id',$projectids)->get();
+			$issues = Issue::whereIn('project_id',$projectids)->get();
+			$risks = Risk::whereIn('project_id',$projectids)->get();
+			$expenses = Expense::whereIn('project_id',$projectids)->get();
+			$actions = Action::whereIn('project_id',$projectids)->get();
+			$deliverables = Deliverable::whereIn('project_id',$projectids)->get();
+			$business_project_team_members = BusinessProjectTeamMember::whereIn('project_id',$projectids)->get();
+			$technical_project_team_members = TechnicalProjectTeamMember::whereIn('project_id',$projectids)->get();
+			$support_team_members = SupportTeamMember::whereIn('project_id',$projectids)->get();
+			return view('audit.generate', compact('activities','projects','milestones','accomplishments','issues','risks','expenses','actions', 'deliverables','business_project_team_members','technical_project_team_members','support_team_members'));
+		}
+		elseif(Auth::user()->role == "System Administrator")
+		{
+			$activities = Activity::whereIn('action',array('Created','Deleted','Updated'))
+							->where(function($query){
+								return $query->where('action','!=','Created')->orWhere('type','!=','Deliverable');
+							})
+							->get();
+			$projects = Project::all();
+			$milestones = Milestone::all();
+			$accomplishments = Accomplishment::all();
+			$issues = Issue::all();
+			$risks = Risk::all();
+			$users = User::all();
+			$expenses = Expense::all();
+			$actions = Action::all();
+			$deliverables = Deliverable::all();
+			$business_project_team_members = BusinessProjectTeamMember::all();
+			$technical_project_team_members = TechnicalProjectTeamMember::all();
+			$support_team_members = SupportTeamMember::all();
+			return view('audit.generate', compact('activities','projects','milestones','accomplishments','issues','risks','users','expenses','actions', 'deliverables','business_project_team_members','technical_project_team_members','support_team_members'));
+		}
+		else
+		{
+			flash()->error('You are not authorized to proceed.');
+			return redirect()->action('ProjectsController@index');
+		}
 	}
 	
 	public function generatePdf()
