@@ -74,7 +74,7 @@
 
 				<tr>
 					<td class= "span3 right">Applicability: </td>
-					<td>{{ $project-> applicability }}</td>
+					<td class= "span4">{{ $project-> applicability }}</td>
 				</tr>
 
 				<tr>

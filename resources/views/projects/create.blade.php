@@ -15,20 +15,14 @@
 					<div class="panel-body">
 						<table class="table-condensed table-hover"> <tbody>
 							<tr>
-								<td class="span3 right"> {!! Form::label('cac', 'CAC No.:')!!} </td>
+								<td class="span3 right"> {!! Form::label('cac', '* CAC No.:')!!} </td>
 								<td> {!! Form::text('cac', null, ['class' => 'span6']) !!} </td>
 							</tr>
 
 							<tr>
-								<td class="span3 right"> {!! Form::label('title', 'Title:')!!} </td>
+								<td class="span3 right"> {!! Form::label('title', '* Title:')!!} </td>
 								<td> {!! Form::text('title', null, ['class' => 'span6']) !!} </td>
 							</tr>
-
-														
-							<!--<tr>
-								<td class="span3 right"> {!! Form::label('users', 'Members:')!!} </td>
-								<td> {!! Form::select('users[]', $users, null,['class' => 'span7','multiple']) !!} </td>
-							</tr>-->
 
 							<tr>
 								<td class="span3 right"> {!! Form::label('users', 'Personnel:') !!} </td>
@@ -42,22 +36,22 @@
 							</tr>
 							
 							<tr>
-								<td class="span3 right">{!! Form::label('target_start', 'Target Start:') !!}</td>
+								<td class="span3 right">{!! Form::label('target_start', '* Target Start:') !!}</td>
 								<td>{!! Form::input('date','target_start', date('Y-m-d'), ['class' => 'span3']) !!}</td>
 							</tr>
 
 							<tr>
-								<td class="span3 right">{!! Form::label('target_end', 'Target End:') !!}</td>
+								<td class="span3 right">{!! Form::label('target_end', '* Target End:') !!}</td>
 								<td>{!! Form::input('date','target_end', date('Y-m-d'), ['class' => 'span3']) !!}</td>
 							</tr>
 
 							<tr>
-								<td class="span3 right"> {!! Form::label('target_mandays', 'Target mandays: ') !!}</td>
+								<td class="span3 right"> {!! Form::label('target_mandays', '* Target mandays: ') !!}</td>
 								<td> {!! Form::input('number','target_mandays', null, ['class' => 'span3', 'step' => '1']) !!} </td>
 							</tr>
 
 							<tr>
-								<td class="span3 right"> {!! Form::label('budget', 'Budget: ') !!}</td>
+								<td class="span3 right"> {!! Form::label('budget', '* Budget: ') !!}</td>
 								<td> {!! Form::input('number','budget', null, ['class' => 'span3', 'step' => '0.01']) !!} </td>
 							</tr>
 
@@ -72,7 +66,7 @@
 							</tr>
 
 							<tr>
-								<td class="span3 right"> {!! Form::label('confidentiality', 'Classification:') !!} </td>
+								<td class="span3 right"> {!! Form::label('confidentiality', '* Classification:') !!} </td>
 								<td> <select class="span3" name="confidentiality" value="{{ old('confidentiality') }}">
 									<option value="Confidential">Confidential</option>
 									<option value="Public">Public</option>
@@ -80,7 +74,7 @@
 							</tr>
 
 							<tr>
-								<td class="span3 right"> {!! Form::label('applicability', 'Applicability:') !!} </td>
+								<td class="span3 right"> {!! Form::label('applicability', '* Applicability:') !!} </td>
 								<td> <select class="span6" name="applicability" value="{{ old('applicability') }}">
 									<option value="New or Replacement of IT Solution"> New or Replacement of IT Solution</option>
 									<option value="Enhancement or Application System Upgrade"> Enhancement or Application System Upgrade</option>

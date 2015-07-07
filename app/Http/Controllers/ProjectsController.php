@@ -311,14 +311,9 @@ class ProjectsController extends Controller {
 	 */
 	public function update(CreateProjectRequest $request, $id)
 	{
-		//$managers = User::where('role','Project Manager')->get();
 		$project = Project::find($id);
-		//$id = Auth::user()->id;
-		
 		$users = User::all();
-
 		$input = Request::all();
-
 		foreach($users as $user){
 			if ($user->id == $input['pm'])
 			{
@@ -326,8 +321,6 @@ class ProjectsController extends Controller {
 				$pmname = User::find($pmid);
 			}
 		}
-
-
 		if ($input['target_mandays'] >= 60 or $input['budget'] >= 2000000)
 		{
 			$importance = "MAJOR";
@@ -336,8 +329,6 @@ class ProjectsController extends Controller {
 		{
 			$importance = "MINOR";
 		}
-
-		
 			$project->update([
 			'cac' => $input['cac'],
 			'title' => $input['title'],

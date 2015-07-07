@@ -10,12 +10,12 @@
 					<table class="sortable full">
 						<thead>
 							<tr>
-								<th width="10%">CAC</th>
+								<th width="8%">CAC</th>
 								<th width="15%">Title</th>
-								<th width="10%">PM</th>								
+								<th width="15%">PM</th>								
 								<th width="13%">Status</th>
 								<th width="7%">% Done</th>
-								<th width="5%">Color</th>										
+								<th width="2%">Color</th>										
 								<th width="10%">Target Start</th>
 								<th width="10%">Target End</th>											
 								<th width="15%">Last Update</th>
