@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use App\User;
 use App\Http\Requests;
 use Request;
+use DB;
 class AuthController extends Controller {
 
 	/*
@@ -33,8 +34,11 @@ class AuthController extends Controller {
 	{
 		$this->auth = $auth;
 		$this->registrar = $registrar;
+		$sysad = DB::select('select * from users where role=?',array("System Administrator"));
+		if ($sysad != null)
+		{
+			$this->middleware('system_admin', ['except' => ['getLogout','getLogin','postLogin']]);
+		}
 
-		//$this->middleware('system_admin', ['except' => ['getLogout','getLogin','postLogin']]);
 	}
-
 }
