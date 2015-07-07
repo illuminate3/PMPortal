@@ -57,9 +57,9 @@
 				</tr>
 				<tr>
 					<td class= "span3 right">Budget: </td>
-					<td class="span3 left">{{ $project['budget ']}}</td>
+					<td class="span3 left">{{ $project['budget']}}</td>
 					<td class= "span2 right">Utilization: </td>
-					<td class="span8 left"> {{ $project[' utilization'] }} </td>
+					<td class="span8 left"> {{ $project['utilization'] }} </td>
 				</tr>
 
 				<tr>

@@ -320,9 +320,10 @@ class ProjectsController extends Controller {
 		$input = Request::all();
 
 		foreach($users as $user){
-			if ($user->name == $input['pm'])
+			if ($user->id == $input['pm'])
 			{
-				$pmid=$user->id;
+				$pmid = $user->id;
+				$pmname = User::find($pmid);
 			}
 		}
 
@@ -341,7 +342,7 @@ class ProjectsController extends Controller {
 			'cac' => $input['cac'],
 			'title' => $input['title'],
 			'user_id' => $pmid,
-			'pm' => $input['pm'],
+			'pm' => $pmname->name,
 
 			'percent' => $input['percent'],
 			'target_start' => $input['target_start'],

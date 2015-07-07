@@ -25,7 +25,7 @@
 								<td class="span3 right"> {!! Form::label('pm', 'Project Manager:') !!} </td>
 								<td> <select class="span5" name="pm" value="{{ old('name') }}">
 									@foreach ($managers as $manager)
-										<option value= {{ $manager -> name }} <?php if($project->pm == $manager->name) {echo("selected");} ?> > {{ $manager-> name }}</option>
+										<option value= {{ $manager -> id }} <?php if($project->pm == $manager->name) {echo("selected");} ?> > {{ $manager-> name }}</option>
 									@endforeach
 								</select> </td>
 							</tr>
