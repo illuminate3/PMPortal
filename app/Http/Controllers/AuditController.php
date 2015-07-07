@@ -27,6 +27,7 @@ class AuditController extends Controller {
 	{
 		$this->middleware('auth');	
 		$this->middleware('system_admin'); 
+		
 	}
 	
 	/**
@@ -41,6 +42,23 @@ class AuditController extends Controller {
 									return $query->where('action','!=','Created')->orWhere('type','!=','Deliverable');
 								})
 								->get();
+		if (Auth::user()->role = "Project Manager"){
+		$projects = Project::where(user_id,Auth::user()->id)->get();
+		$milestones = Milestone::where(project()->user_id,Auth::user()->id)->get();
+		$accomplishments = Accomplishment::where(project()->user_id,Auth::user()->id)->get();
+		$issues = Issue::where(project()->user_id,Auth::user()->id)->get();
+		$risks = Risk::where(project()->user_id,Auth::user()->id)->get();
+		
+		$expenses = Expense::where(project()->user_id,Auth::user()->id)->get();
+		$actions = Action::where(project()->user_id,Auth::user()->id)->get();
+		$deliverables = Deliverable::where(project()->user_id,Auth::user()->id)->get();
+		$business_project_team_members = BusinessProjectTeamMember::where(project()->user_id,Auth::user()->id)->get();
+		$technical_project_team_members = TechnicalProjectTeamMember::where(project()->user_id,Auth::user()->id)->get();
+		$support_team_members = SupportTeamMember::where(project()->user_id,Auth::user()->id)->get();
+		return view('audit.change_log', compact('activities','projects','milestones','accomplishments','issues','risks','expenses','actions', 'deliverables','business_project_team_members','technical_project_team_members','support_team_members'));
+	
+		}
+		elseif(Auth::user()->role = "System Administrator"){
 		$projects = Project::all();
 		$milestones = Milestone::all();
 		$accomplishments = Accomplishment::all();
@@ -54,6 +72,7 @@ class AuditController extends Controller {
 		$technical_project_team_members = TechnicalProjectTeamMember::all();
 		$support_team_members = SupportTeamMember::all();
 		return view('audit.change_log', compact('activities','projects','milestones','accomplishments','issues','risks','users','expenses','actions', 'deliverables','business_project_team_members','technical_project_team_members','support_team_members'));
+		}
 	}
 
 	public function deleteOldestFiftyChanges()
