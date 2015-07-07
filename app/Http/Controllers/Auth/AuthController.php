@@ -33,7 +33,7 @@ class AuthController extends Controller {
 	{
 		$this->auth = $auth;
 		$this->registrar = $registrar;
-
+		
 		//$this->middleware('system_admin', ['except' => ['getLogout','getLogin','postLogin']]);
 	}
 
