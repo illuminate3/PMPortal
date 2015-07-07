@@ -26,8 +26,8 @@ class AuditController extends Controller {
 	public function __construct()
 	{
 		$this->middleware('auth');	
-		$this->middleware('system_admin'); 
-		
+		$this->middleware('system_admin'['except' =>['changeLog']]);
+
 	}
 	
 	/**
@@ -37,12 +37,13 @@ class AuditController extends Controller {
 	 */
 	public function changeLog()
 	{
-		$activities = Activity::whereIn('action',array('Created','Deleted','Updated'))
+		
+		if (Auth::user()->role = "Project Manager"){
+			$activities = Activity::whereIn('action',array('Created','Deleted','Updated'))
 								->where(function($query){
 									return $query->where('action','!=','Created')->orWhere('type','!=','Deliverable');
 								})
 								->get();
-		if (Auth::user()->role = "Project Manager"){
 		$projects = Project::where(user_id,Auth::user()->id)->get();
 		$milestones = Milestone::where(project()->user_id,Auth::user()->id)->get();
 		$accomplishments = Accomplishment::where(project()->user_id,Auth::user()->id)->get();
@@ -59,6 +60,11 @@ class AuditController extends Controller {
 	
 		}
 		elseif(Auth::user()->role = "System Administrator"){
+			$activities = Activity::whereIn('action',array('Created','Deleted','Updated'))
+								->where(function($query){
+									return $query->where('action','!=','Created')->orWhere('type','!=','Deliverable');
+								})
+								->get();
 		$projects = Project::all();
 		$milestones = Milestone::all();
 		$accomplishments = Accomplishment::all();
@@ -72,6 +78,9 @@ class AuditController extends Controller {
 		$technical_project_team_members = TechnicalProjectTeamMember::all();
 		$support_team_members = SupportTeamMember::all();
 		return view('audit.change_log', compact('activities','projects','milestones','accomplishments','issues','risks','users','expenses','actions', 'deliverables','business_project_team_members','technical_project_team_members','support_team_members'));
+		}
+		else{
+			flash()->error('You are not authorized to proceed.');
 		}
 	}
 
