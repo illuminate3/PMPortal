@@ -22,7 +22,7 @@ class CreateProjectRequest extends Request {
 	public function rules()
 	{
 		return [
-			'cac' => 'required|unique:projects',
+			'cac' => 'required',
 			'title' => 'required',		
 			'target_start' => 'required',
 			'target_end' => 'required',

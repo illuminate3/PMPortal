@@ -21,6 +21,8 @@ use App\Http\Controllers\DeliverablesController;
 use DB;
 use App\Http\Controllers\ChartsController;
 use App\Chart;
+use Input;
+use Validator;
 
 use Session;
 
@@ -311,119 +313,138 @@ class ProjectsController extends Controller {
 	 */
 	public function update(CreateProjectRequest $request, $id)
 	{
-		$project = Project::find($id);
-		$users = User::all();
-		$input = Request::all();
-		foreach($users as $user){
-			if ($user->id == $input['pm'])
-			{
-				$pmid = $user->id;
-				$pmname = User::find($pmid);
+		$project = Project::findOrFail($id);
+		$validator = Validator::make(Input::all(),
+			array(
+				'cac' => 'required|cac|unique:projects,cac,'.$id,
+				'title' => 'required',		
+				'target_start' => 'required',
+				'target_end' => 'required',
+				'target_mandays' => 'required',
+				'budget' => 'required',
+				'confidentiality' => 'required'	
+				)
+			);
+		if($validator->fails())
+		{
+	   		return redirect()->action('ProjectsController@edit',$project->id)->withErrors($validator);
+		}
+		else
+		{
+			$users = User::all();
+			$input = Request::all();
+			foreach($users as $user){
+				if ($user->id == $input['pm'])
+				{
+					$pmid = $user->id;
+					$pmname = User::find($pmid);
+				}
 			}
-		}
-		if ($input['target_mandays'] >= 60 or $input['budget'] >= 2000000)
-		{
-			$importance = "MAJOR";
-		}
-		else
-		{
-			$importance = "MINOR";
-		}
-			$project->update([
-			'cac' => $input['cac'],
-			'title' => $input['title'],
-			'user_id' => $pmid,
-			'pm' => $pmname->name,
+			if ($input['target_mandays'] >= 60 or $input['budget'] >= 2000000)
+			{
+				$importance = "MAJOR";
+			}
+			else
+			{
+				$importance = "MINOR";
+			}
+				$project->update([
+				'cac' => $input['cac'],
+				'title' => $input['title'],
+				'user_id' => $pmid,
+				'pm' => $pmname->name,
 
-			'percent' => $input['percent'],
-			'target_start' => $input['target_start'],
-			'target_end' => $input['target_end'],
+				'percent' => $input['percent'],
+				'target_start' => $input['target_start'],
+				'target_end' => $input['target_end'],
 
-			'status' => $input['status'],
-			'color' => $input['color'],
-			'rationale' => $input['rationale'],
+				'status' => $input['status'],
+				'color' => $input['color'],
+				'rationale' => $input['rationale'],
 
-			'actual_start' => $input['actual_start'],
-			'actual_end' => $input['actual_end'],
-			'budget' => $input['budget'],
-			'utilization' => $input['utilization'],
-			'target_mandays' => $input['target_mandays'],
-			'actual_mandays' => $input['actual_mandays'],
-			'hardware' => $input['hardware'],
-			'software' => $input['software'],
+				'actual_start' => $input['actual_start'],
+				'actual_end' => $input['actual_end'],
+				'budget' => $input['budget'],
+				'utilization' => $input['utilization'],
+				'target_mandays' => $input['target_mandays'],
+				'actual_mandays' => $input['actual_mandays'],
+				'hardware' => $input['hardware'],
+				'software' => $input['software'],
 
-			'importance' => $importance,
-			'applicability' => $input['applicability'],
-			'confidentiality' => $input['confidentiality']
+				'importance' => $importance,
+				'applicability' => $input['applicability'],
+				'confidentiality' => $input['confidentiality']
+				
+				]);
+
+			if ($input['status'] != 'Not Started')
+				$project->update([
+					'actual_start' => $input['actual_start']
+					]);
 			
-			]);
 
-		if ($input['status'] != 'Not Started')
-			$project->update([
-				'actual_start' => $input['actual_start']
-				]);
+			if ($input['status'] == 'Completed' or $input['status'] == 'Cancelled')
+				$project->update([
+					'actual_end' => $input['actual_end']
+					]);	
+			
+			if($request->input('users'))
+			{
+				$project->users()->sync($request->input('users'));
+			}
+			else
+			{
+				DB::delete('delete from project_user where project_id = ?', array($project->id));
+			}
+
+			$deliverables = Deliverable::where('project_id', $id)->get();
+			$i = 0;
+
+			$required = [];
+			if ($input['applicability'] == 'New or Replacement of IT Solution')
+			{
+				$required = ['M', 'O', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 
+							'M', 'O', 'M', 'M', 'O', 'M', 'M', 'M', 'M', 'O', 'O',
+							'O', 'N/A',
+							'M', 'M', 'M', 'M', 'O', 'M', 'O', 'O', 'M', 'M', 'M', 'O', 'O', 'O',
+							'M','M','O','O','O','M','M','M','M','M','M','M','M','O','O',
+							'M','M','M','M',
+							'O','O'];
+			}
+			elseif ($input['applicability'] == 'Enhancement or Application System Upgrade')
+			{
+				$required = ['M', 'O', '-', '-', '-', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 
+							'-', 'O', 'M', 'M', 'O', '-', '-', 'M', 'M', 'O', 'O',
+							'O', 'N/A',
+							'M', 'M', 'M', 'M', 'O', 'M', 'O', 'O', 'M', 'M', 'M', 'O', 'O', 'O',
+							'M','M','O','O','O','M','M','M','M','M','M','M','M','O','O',
+							'O','O','O','M',
+							'O','O'];
+			}
+			elseif ($input['applicability'] == 'IT Infrastructure')
+			{
+				$required = ['M', '-', '-', '-', '-', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 
+							'-', '-', '-', '-', '-', '-', 'M', 'M', 'M', 'O', 'O',
+							'O', 'N/A',
+							'M', 'M', 'M', 'M', 'O', 'M', 'O', 'O', 'M', 'M', 'M', 'O', '-', '-',
+							'M','M','O','O','O','M','-','-','M','-','M','M','M','-','O',
+							'O','O','O','M',
+							'O','O'];
+			}
+
+			foreach($deliverables as $deliverable)
+			{
+				$deliverable->update([
+					'required' => $required[$i]
+					]);
+				$i = $i + 1;
+			}
+
+			flash()->success('Your project has been successfully updated!');
+			return redirect()->action('ProjectsController@show', [$id]);
+
+		}
 		
-
-		if ($input['status'] == 'Completed' or $input['status'] == 'Cancelled')
-			$project->update([
-				'actual_end' => $input['actual_end']
-				]);	
-		
-		if($request->input('users'))
-		{
-			$project->users()->sync($request->input('users'));
-		}
-		else
-		{
-			DB::delete('delete from project_user where project_id = ?', array($project->id));
-		}
-
-		$deliverables = Deliverable::where('project_id', $id)->get();
-		$i = 0;
-
-		$required = [];
-		if ($input['applicability'] == 'New or Replacement of IT Solution')
-		{
-			$required = ['M', 'O', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 
-						'M', 'O', 'M', 'M', 'O', 'M', 'M', 'M', 'M', 'O', 'O',
-						'O', 'N/A',
-						'M', 'M', 'M', 'M', 'O', 'M', 'O', 'O', 'M', 'M', 'M', 'O', 'O', 'O',
-						'M','M','O','O','O','M','M','M','M','M','M','M','M','O','O',
-						'M','M','M','M',
-						'O','O'];
-		}
-		elseif ($input['applicability'] == 'Enhancement or Application System Upgrade')
-		{
-			$required = ['M', 'O', '-', '-', '-', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 
-						'-', 'O', 'M', 'M', 'O', '-', '-', 'M', 'M', 'O', 'O',
-						'O', 'N/A',
-						'M', 'M', 'M', 'M', 'O', 'M', 'O', 'O', 'M', 'M', 'M', 'O', 'O', 'O',
-						'M','M','O','O','O','M','M','M','M','M','M','M','M','O','O',
-						'O','O','O','M',
-						'O','O'];
-		}
-		elseif ($input['applicability'] == 'IT Infrastructure')
-		{
-			$required = ['M', '-', '-', '-', '-', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 
-						'-', '-', '-', '-', '-', '-', 'M', 'M', 'M', 'O', 'O',
-						'O', 'N/A',
-						'M', 'M', 'M', 'M', 'O', 'M', 'O', 'O', 'M', 'M', 'M', 'O', '-', '-',
-						'M','M','O','O','O','M','-','-','M','-','M','M','M','-','O',
-						'O','O','O','M',
-						'O','O'];
-		}
-
-		foreach($deliverables as $deliverable)
-		{
-			$deliverable->update([
-				'required' => $required[$i]
-				]);
-			$i = $i + 1;
-		}
-
-		flash()->success('Your project has been successfully updated!');
-		return redirect()->action('ProjectsController@show', [$id]);
-
 	}
 
 	/**

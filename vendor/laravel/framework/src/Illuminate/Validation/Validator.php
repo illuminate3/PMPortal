@@ -1187,6 +1187,10 @@ class Validator implements ValidatorContract {
 	{
 		return filter_var($value, FILTER_VALIDATE_EMAIL) !== false;
 	}
+	protected function validateCac($attribute, $value)
+	{
+		return filter_var($value, FILTER_SANITIZE_NUMBER_INT) !== false;
+	}
 
 	/**
 	 * Validate that an attribute is a valid URL.
