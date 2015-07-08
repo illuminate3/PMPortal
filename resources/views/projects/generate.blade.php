@@ -42,6 +42,10 @@
 		{
 			margin-left: 3px;
 		}
+		.generatetable td
+		{
+			padding:5px;
+		}
 	</style>
 </head>
 <body>
@@ -57,7 +61,7 @@
 	<div class="content">
 		<h1>{{ $project-> title }}</h1>
 		as of {{ $project['updated_at']->format('M j, Y h:i A') }}<br /> <br />
-<table class="table-condensed details"> <tbody>
+		<table class="table-condensed details"> <tbody>
 				<tr>
 					<td>CAC: </td>
 					<td> {{ $project['cac'] }} </td>
@@ -77,22 +81,21 @@
 						@endif
 					</td>
 				<tr>
-					</td>
 					<td> % Done: </td>
 					<td>{{ $project['percent']}}%</td>
 				</tr>
 
 				<tr>
 					<td>Rationale: </td>
-					<td> {{ $project['rationale'] }} </td>
+					<td colspan="3"> {{ $project['rationale'] }} </td>
 				</tr>
 				
 
 				<tr>
-					<td> {!! Form::label('target_start', 'Target Start:') !!} </td>
-					<td> {{ $project['target_start'] ->toFormattedDateString() }} </td>
-					<td> {!! Form::label('target_start', 'Target End:') !!} </td>
-					<td> {{ $project['target_end'] ->toFormattedDateString()}}</td>
+					<td width="20%"> {!! Form::label('target_start', 'Target Start:') !!} </td>
+					<td width="30%"> {{ $project['target_start'] ->toFormattedDateString() }} </td>
+					<td width="20%"> {!! Form::label('target_start', 'Target End:') !!} </td>
+					<td width="30%"> {{ $project['target_end'] ->toFormattedDateString()}}</td>
 				</tr>
 							
 								@if ( $project['actual_start'] ->toFormattedDateString() == 'Nov 30, -0001')
@@ -115,9 +118,9 @@
 				</tr>
 				<tr>
 					<td>Budget: </td>
-					<td>{{ $project['budget ']}}</td>
+					<td>{{ $project['budget']}}</td>
 					<td>Utilization: </td>
-					<td> {{ $project[' utilization'] }} </td>
+					<td> {{ $project['utilization'] }} </td>
 				</tr>
 
 				<tr>
@@ -155,25 +158,10 @@
 
 </tbody> </table>
 
-		<!-- Target Date: {{ $project-> target_date }} <br />
-		Project Status: {{ $project-> status }} 
-		 - 
-		 @if ($project-> color == "Green")
-			<img src="{{ asset('img/green.png') }}" class="color-img">
-		@elseif ($project-> color == "Amber")
-			<img src="{{ asset('img/amber.png') }}" class="color-img">
-		@elseif ($project-> color == "Red")
-			<img src="{{ asset('img/red.png') }}" class="color-img">
-		@elseif ($project-> color == "Blue")
-			<img src="{{ asset('img/blue.png') }}" class="color-img">
-		@endif
-		 <br />
-		Rationale: {{ $project-> rationale }} <br />  -->
-
 		<br />
 
-		Milestones: <br />
-		<table class="border full">
+		<b>Milestones </b><br /><br />
+		<table class="border full generatetable">
 			<thead>
 				<tr>
 					<th width="40%" class="border">Milestone</th>
@@ -187,22 +175,27 @@
 				<tr>
 					<td class = "border">{{ $milestone-> milestone }}</td>
 					<td class = "border" align ="center">{{ $milestone-> status }} </td>
-					<td class = "border" align ="center">{{ $milestone-> target_date }}</td>
-					<td class = "border" align ="center">{{ $milestone -> actual_date }} </td>
+					<td class = "border" align ="center">{{ $milestone-> target_date ->toFormattedDateString()}}</td>
+					@if ( $milestone -> actual_date ->toFormattedDateString() == 'Nov 30, -0001')
+						<?php $actual_date = 'TBA' ?>
+					@else
+						<?php $actual_date = $milestone->actual_date->toFormattedDateString() ?>
+					@endif
+					<td class = "border" align ="center">{{ $actual_date}} </td>
 				</tr>
 			@endforeach
 			</tbody>
 		</table> <br />
 
-		Last Week's Accomplishments <br />
+		<b>Last Week's Accomplishments  </b><br /><br />
 		<ul>
 			@foreach ($accomplishments as $accomplishment)
 				<li>{{ $accomplishment-> accomplishment }}</li>
 			@endforeach
 		</ul> <br />
 
-		Week's Action Items <br />
-		<table class="border full">
+		<b>Week's Action Items  </b><br /><br />
+		<table class="border full generatetable">
 			<?php $number = 1 ?>
 			<thead>
 				<tr>
@@ -221,7 +214,7 @@
 					<td class = "border">{{ $action-> action_item }}</td>
 					<td class = "border" align ="center">{{ $action-> status }} </td>
 					<td class = "border" align ="center">{{ $action-> owner }}</td>
-					<td class = "border" align ="center">{{ $action -> target_date }} </td>
+					<td class = "border" align ="center">{{ $action -> target_date->toFormattedDateString() }} </td>
 					<td class = "border">{{ $action -> comment }} </td>
 				</tr>
 				<?php $number = $number + 1 ?>
@@ -229,8 +222,8 @@
 			</tbody>
 		</table> <br />
 
-		Issues <br />
-		<table class="border full">
+		<b>Issues  </b><br /><br />
+		<table class="border full generatetable">
 			<?php $number = 1 ?>
 			<thead>
 				<tr>
@@ -257,8 +250,8 @@
 			</tbody>
 		</table> <br />
 
-		Risks <br />
-		<table class="border full">
+		<b>Risks </b><br /><br />
+		<table class="border full generatetable">
 			<?php $number = 1 ?>
 			<thead>
 				<tr>
@@ -283,8 +276,8 @@
 			</tbody>
 		</table> <br />
 
-		Expenses <br />
-		<table class="border full">
+		<b>Expenses </b><br /><br />
+		<table class="border full generatetable">
 			<?php $number = 1 ?>
 			<thead>
 				<tr>
