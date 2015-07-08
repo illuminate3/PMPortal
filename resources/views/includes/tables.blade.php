@@ -6,7 +6,7 @@
 						@if ($project->user_id == null)
 						@else
 							@if (Auth::user()->id == $project->user_id)
-								<th class="pull-right add"><a href="{{ action('MilestonesController@create', [$project->id] ) }}" class="add"> <i class="glyphicon glyphicon-plus"></i> Add Milestone</a></th> 
+								<th class="pull-right add"><a href="{{ action('MilestonesController@create', [$project->id] ) }}" class="add" title="Add Milestone"> <i class="glyphicon glyphicon-plus"></i></a></th> 
 							@endif
 						@endif
 					@endif
@@ -73,7 +73,7 @@
 						@if ($project->user_id == null)
 						@else
 							@if (Auth::user()->id == $project->user_id)
-							<th class="pull-right add">	<a class="add" href="{{ action('AccomplishmentsController@create', [$project->id] ) }}"> <i class="glyphicon glyphicon-plus"></i> Add Accomplishment</a></th>
+							<th class="pull-right add">	<a class="add" href="{{ action('AccomplishmentsController@create', [$project->id] ) }}" title="Add Accomplishment"> <i class="glyphicon glyphicon-plus"></i></a></th>
 							@endif
 						@endif
 					@endif
@@ -118,7 +118,7 @@
 						@if ($project->user_id == null)
 						@else
 							@if (Auth::user()->id == $project->user_id)
-							<th class="pull-right add"><a class="add" href="{{ action('ActionsController@create', [$project->id] ) }}"> <i class="glyphicon glyphicon-plus"></i> Add Action Item</a> </th> 
+							<th class="pull-right add"><a class="add" href="{{ action('ActionsController@create', [$project->id] ) }}"> <i class="glyphicon glyphicon-plus" title="Add Action Item"></i> </a> </th> 
 							@endif
 						@endif
 					@endif
@@ -179,7 +179,7 @@
 						@if ($project->user_id == null)
 						@else
 							@if (Auth::user()->id == $project->user_id)
-							<th class="pull-right add"><a class="add" href="{{ action('IssuesController@create', [$project->id] ) }}"> <i class="glyphicon glyphicon-plus"></i> Add Issue</a></th> 
+							<th class="pull-right add"><a class="add" href="{{ action('IssuesController@create', [$project->id] ) }}" title="Add Issue"> <i class="glyphicon glyphicon-plus"></i></a></th> 
 							@endif
 						@endif
 					@endif
@@ -240,7 +240,7 @@
 						@if ($project->user_id == null)
 						@else
 							@if (Auth::user()->id == $project->user_id)
-							<th class="pull-right add"><a class="add" href="{{ action('RisksController@create', [$project->id] ) }}"> <i class="glyphicon glyphicon-plus"></i> Add Risk</a></th>
+							<th class="pull-right add"><a class="add" href="{{ action('RisksController@create', [$project->id] ) }}" title="Add Risk"> <i class="glyphicon glyphicon-plus"></i></a></th>
 							@endif
 						@endif
 					@endif
@@ -299,7 +299,7 @@
 						@if ($project->user_id == null)
 						@else
 							@if (Auth::user()->id == $project->user_id)
-							<th class="pull-right add"><a class="add" href="{{ action('ExpensesController@create', [$project->id] ) }}"> <i class="glyphicon glyphicon-plus"></i> Add Expense</a>  </th>
+							<th class="pull-right add"><a class="add" href="{{ action('ExpensesController@create', [$project->id] ) }}" title="Add Expense"> <i class="glyphicon glyphicon-plus"></i></a>  </th>
 							@endif
 						@endif
 					@endif
