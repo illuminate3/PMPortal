@@ -47,7 +47,8 @@ trait AuthenticatesAndRegistersUsers {
 			);
 		}
 
-		$this->auth->login($this->registrar->create($request->all()));
+		//$this->auth->login($this->registrar->create($request->all()));
+		$this->registrar->create($request->all());
 		flash()->success('User has been successfully added!');
 		
 		return redirect($this->redirectPath());
