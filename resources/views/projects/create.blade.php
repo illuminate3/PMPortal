@@ -4,7 +4,6 @@
 	<div class="row-fluid">
 		<!--sidebar content-->
 		@include('includes.sidebar_home')		
-			
 
 		<div class="span9 pull-right">
 			<div class="container panel panel-default full">

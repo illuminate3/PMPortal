@@ -18,7 +18,7 @@ class CreateProjectsTable extends Migration {
 			$table->increments('id')->unsigned()->index();
 			$table->integer('user_id')->unsigned()->nullable();
 			$table->string('pm');
-			$table->string('cac');
+			$table->string('cac')->unique();
 			$table->string('title');
 			$table->string('status');
 			$table->double('percent')->unsigned();
