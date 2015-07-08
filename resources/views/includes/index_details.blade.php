@@ -17,5 +17,5 @@
 										 </td>
 										<td align="center">{{ $project -> target_start->toFormattedDateString() }} </td>
 										<td align="center">{{ $project -> target_end->toFormattedDateString() }} </td>											
-										<td align="center">{{ $project -> updated_at->format('F j h:i A') }}</td>
+										<td align="center">{{ $project -> updated_at->format('M j, Y h:i A') }}</td>
 									</tr>

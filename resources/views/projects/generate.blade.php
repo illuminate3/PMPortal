@@ -1,5 +1,5 @@
 <head>
-	<title>{{ $project-> title }} - {{ $project-> updated_at }}</title>
+	<title>{{ $project-> title }} - {{ $project-> updated_at->format('M j, Y h:i A')  }}</title>
 	<link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet">
 	<style type="text/css">
 		.header {
@@ -56,7 +56,7 @@
 
 	<div class="content">
 		<h1>{{ $project-> title }}</h1>
-		as of {{ $project['updated_at']->format('F j h:i A') }}<br /> <br />
+		as of {{ $project['updated_at']->format('M j, Y h:i A') }}<br /> <br />
 <table class="table-condensed details"> <tbody>
 				<tr>
 					<td>CAC: </td>

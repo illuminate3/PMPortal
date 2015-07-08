@@ -1,22 +1,22 @@
 
 				<center>
-					<table class="etable table-condensed table-hover project-show full sortable">
+					<table class="etable table-condensed table-hover project-show sortable wrap" style="width:97%;table-layout:fixed;">
 						<thead>
 							<tr>
-								<th width="15%">Type</th>
-								<th width="10%">Project/User</th>
-								<th width="10%">Updated By</th>
-								<th width="10%">Field</th>
-								<th width="10%">Old Value</th>
-								<th width="10%">New Value</th>
-								<th width="10%">Updated At</th>
+								<th width="12%">Type</th>
+								<th width="11%">Project/ User</th>
+								<th width="14%">Updated By</th>
+								<th width="11%">Field</th>
+								<th width="19%">Old Value</th>
+								<th width="19%">New Value</th>
+								<th width="14%">Updated At</th>
 							</tr>
 						</thead>
 						<tbody>
 
 						@foreach ($projects as $project)
 							@foreach($project->revisionHistory as $history )
-							<tr class = "project-row">
+							<tr>
 								<td align="center">Project</td>
 								<td align="center">{{ $project['title'] }}</td>
 							<?php 
@@ -226,7 +226,7 @@
 									<td align="center">{{ $history->fieldName() }} </td>
 									<td align="center">***</td>
 									<td align="center">***</td>
-									<td align="center">{{ $history->updated_at }}</td>
+									<td align="center">{{ $history->updated_at->format('M j, Y h:i A') }}</td>
 								</tr>
 								@else
 									<tr class = "project-row">
@@ -245,7 +245,7 @@
 										<td align="center">{{ $history->fieldName() }} </td>
 										<td align="center">***</td>
 										<td align="center">***</td>
-										<td align="center">{{ $history->updated_at }}</td>
+										<td align="center">{{ $history->updated_at->format('M j, Y h:i A') }}</td>
 									</tr>
 								@else
 								<tr class = "project-row">

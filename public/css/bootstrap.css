@@ -21,7 +21,10 @@ section {
   display: block;
 }
 
-
+.wrap th,
+.wrap td{
+word-wrap: break-word;
+}
 
 .color-img{
     width:25px;

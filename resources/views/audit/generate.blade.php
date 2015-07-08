@@ -47,7 +47,7 @@
 <body>
 	<div class="header">
 		<div class="htitle">
-			Audit Trail as of <?php echo Carbon\Carbon::now()->format('F j Y h:i A'); ?>
+			Audit Trail as of <?php echo Carbon\Carbon::now()->format('M j, Y h:i A'); ?>
 		</div>
 		<div class="himg">
      		 <img src="img/maybankheader.jpg" width="45%" >
