@@ -1,12 +1,12 @@
 <table class="etable table-condensed table-hover project-show"> <tbody>
 				<tr>
 					<td class="span3 right">CAC: </td>
-					<td class="span3 left"> {{ $project['cac'] }} </td>
+					<td class="span3 left" colspan="3"> {{ $project['cac'] }} </td>
 				</tr>
 				<tr>
 
 					<td class= "span3 right">Project Status: </td>
-					<td class="span3 left">{{ $project['status'] }} - 
+					<td class="span3 left" colspan="3">{{ $project['status'] }} - 
 						@if ($project-> color == "Green")
 							<img src="{{ asset('img/green.png') }}" class="color-img">
 						@elseif ($project-> color == "Amber")
@@ -20,12 +20,12 @@
 				<tr>
 					</td>
 					<td class="span2 right"> % Done: </td>
-					<td class-"span8 left">{{ $project['percent']}}%</td>
+					<td class-"span8 left" colspan="3">{{ $project['percent']}}%</td>
 				</tr>
 
 				<tr>
 					<td class="span3 right" style="width: 800px; height: 80px;">Rationale: </td>
-					<td colspan="3"> {{ $project['rationale'] }} </td>
+					<td colspan="3" > {{ $project['rationale'] }} </td>
 				</tr>
 				
 
@@ -64,27 +64,27 @@
 
 				<tr>
 					<td class= "span3 right">Target Mandays: </td>
-					<td>{{ $project['target_mandays'] }}</td>
+					<td colspan="3">{{ $project['target_mandays'] }}</td>
 				</tr>		
 				
 				<tr>
 					<td class= "span3 right">Importance: </td>
-					<td>{{ $project['importance'] }}</td>
+					<td colspan="3">{{ $project['importance'] }}</td>
 				</tr>
 
 				<tr>
 					<td class= "span3 right">Applicability: </td>
-					<td class= "span4">{{ $project-> applicability }}</td>
+					<td class= "span4" colspan="3">{{ $project-> applicability }}</td>
 				</tr>
 
 				<tr>
 					<td class= "span3 right">Classification: </td>
-					<td>{{ $project-> confidentiality }}</td>
+					<td colspan="3">{{ $project-> confidentiality }}</td>
 				</tr>
 
 				<tr>
 					<td class= "span3 right">Personnel: </td>
-					<td>
+					<td colspan="3">
 						@foreach($project->users as $user)
 							@if ($user == $lastUser)
 							{{ $user->name }}
