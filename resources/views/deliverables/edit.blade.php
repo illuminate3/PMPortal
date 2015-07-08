@@ -74,6 +74,7 @@
 							<th width="10%">{{ $project->applicability}}</th>
 							<th width="15%">In-charge</td>
 							<th width="25%">Required with Condition</th>
+							
 						</tr>
 					</thead>
 					<tbody>
@@ -93,7 +94,7 @@
 							@endif
 							<td>{{ $deliverable->deliverable }}</td>
 							<td align = "center">
-								<select name="required{{ $i }}" class="width90" value={{ old('status') }}>
+								<select name="required{{ $i }}" style="width: 70px;" value={{ old('status') }}>
 									<option value= "-" <?php if($deliverable->required == '-') {echo("selected");} ?>> 
 										- </option>
 									<option value= "M" <?php if($deliverable->required == 'M') {echo("selected");} ?>> 
@@ -138,7 +139,7 @@
 							@endif
 							<td>{{ $deliverable->deliverable }}</td>
 							<td align = "center">
-								<select name="required{{ $i }}" class="width90" value={{ old('status') }}>
+								<select name="required{{ $i }}" style="width: 70px;" value={{ old('status') }}>
 									<option value= "-" <?php if($deliverable->required == '-') {echo("selected");} ?>> 
 										- </option>
 									<option value= "M" <?php if($deliverable->required == 'M') {echo("selected");} ?>> 
@@ -185,7 +186,7 @@
 							@endif
 							<td>{{ $deliverable->deliverable }}</td>
 							<td align = "center">
-								<select name="required{{ $i }}" class="width90" value={{ old('status') }}>
+								<select name="required{{ $i }}" style="width: 70px;" value={{ old('status') }}>
 									<option value= "-" <?php if($deliverable->required == '-') {echo("selected");} ?>> 
 										- </option>
 									<option value= "M" <?php if($deliverable->required == 'M') {echo("selected");} ?>> 
@@ -236,7 +237,7 @@
 							@endif
 							<td>{{ $deliverable->deliverable }}</td>
 							<td align = "center">
-								<select name="required{{ $i }}" class="width90" value={{ old('status') }}>
+								<select name="required{{ $i }}" style="width: 70px;" value={{ old('status') }}>
 									<option value= "-" <?php if($deliverable->required == '-') {echo("selected");} ?>> 
 										- </option>
 									<option value= "M" <?php if($deliverable->required == 'M') {echo("selected");} ?>> 
@@ -279,7 +280,7 @@
 							@endif
 							<td>{{ $deliverable->deliverable }}</td>
 							<td align = "center">
-								<select name="required{{ $i }}" class="width90" value={{ old('status') }}>
+								<select name="required{{ $i }}" style="width: 70px;" value={{ old('status') }}>
 									<option value= "-" <?php if($deliverable->required == '-') {echo("selected");} ?>> 
 										- </option>
 									<option value= "M" <?php if($deliverable->required == 'M') {echo("selected");} ?>> 
@@ -320,7 +321,7 @@
 							<td align = "center">  </td>
 							<td>{{ $deliverable->deliverable }}</td>
 							<td align = "center">
-								<select name="required{{ $i }}" class="width90" value={{ old('status') }}>
+								<select name="required{{ $i }}" style="width: 70px;" value={{ old('status') }}>
 									<option value= "-" <?php if($deliverable->required == '-') {echo("selected");} ?>> 
 										- </option>
 									<option value= "M" <?php if($deliverable->required == 'M') {echo("selected");} ?>> 
