@@ -22,7 +22,8 @@ class CreateTeamMemberRequest extends Request {
 	public function rules()
 	{
 		return [
-			'name' => 'required'
+			'name' => 'required',
+			'role' => 'required'
 		];
 	}
 
