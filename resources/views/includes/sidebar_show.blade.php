@@ -177,7 +177,7 @@
 		@if (Auth::guest())
 		@else
 			@if (Auth::user()->role == 'System Administrator')	
-				<li class="nav-header"> 
+				<li class="nav-header" style="margin-top: 10px;"> 
 					Admin
 					<hr class="divider">
 				</li>

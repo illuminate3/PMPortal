@@ -155,7 +155,7 @@
 	<ul class="nav nav-list nav-stacked">
 		@if (Auth::guest())
 		@elseif (Auth::user()->role == 'System Administrator')	
-		<li class="nav-header"> 
+		<li class="nav-header" style="margin-top: 10px;"> 
 			Admin
 			<hr class="divider">
 		</li>
