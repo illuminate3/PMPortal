@@ -311,7 +311,7 @@ class ProjectsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update(CreateProjectRequest $request, $id)
+	public function update($id)
 	{
 		$project = Project::findOrFail($id);
 		$validator = Validator::make(Input::all(),
@@ -331,8 +331,10 @@ class ProjectsController extends Controller {
 		}
 		else
 		{
+
 			$users = User::all();
-			$input = Request::all();
+			//$input = Request::all();
+			$input = Input::all();
 			foreach($users as $user){
 				if ($user->id == $input['pm'])
 				{
@@ -340,10 +342,12 @@ class ProjectsController extends Controller {
 					$pmname = User::find($pmid);
 				}
 			}
+
 			if ($input['target_mandays'] >= 60 or $input['budget'] >= 2000000)
 			{
 				$importance = "MAJOR";
 			}
+
 			else
 			{
 				$importance = "MINOR";
@@ -388,14 +392,17 @@ class ProjectsController extends Controller {
 					'actual_end' => $input['actual_end']
 					]);	
 			
-			if($request->input('users'))
+			//$input = Request::all();
+			//$request = new CreateProjectRequest;
+			if(isset($input['users']) == true)
 			{
-				$project->users()->sync($request->input('users'));
+				$project->users()->sync($input['users']);
 			}
 			else
 			{
 				DB::delete('delete from project_user where project_id = ?', array($project->id));
 			}
+			
 
 			$deliverables = Deliverable::where('project_id', $id)->get();
 			$i = 0;
