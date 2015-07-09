@@ -17,13 +17,13 @@
 				<table class="etable table-condensed table-hover project-show table-head"> <tbody>
 					<tr> <th colspan="2"> Planning Stage </th> </tr>
 				</tbody> </table>
-				<table class="etable table-condensed table-hover project-show sortable full">
+				<table class="etable table-condensed table-hover project-show sortable full" style="table-layout:fixed;">
 					<thead>
 						<tr>
-							<th width="5%">Template Number</th>
+							<th width="10%">Template Number</th>
 							<th width="5%">Submitted</th>
-							<th width="15%">Activities</th>
-							<th width="25%">Deliverables</th>
+							<th width="13%">Activities</th>
+							<th width="22%">Deliverables</th>
 							<th width="10%">{{ $project->applicability}}</th>
 							<th width="15%">In-charge</td>
 							<th width="25%">Required with Condition</th>
@@ -44,7 +44,7 @@
 							@endif
 							<td>{{ $deliverable->deliverable }}</td>
 							<td align = "center">
-								<select name="required{{ $i }}" style="width: 70px;" value={{ old('status') }}>
+								<select name="required{{ $i }}" style="width:100%;" value={{ old('status') }}>
 									<option value= "-" <?php if($deliverable->required == '-') {echo("selected");} ?>> 
 										- </option>
 									<option value= "M" <?php if($deliverable->required == 'M') {echo("selected");} ?>> 
@@ -54,8 +54,8 @@
 									<option value= "N/A" <?php if($deliverable->required == 'N/A') {echo("selected");} ?>> 
 										N/A</option>
 								</td>
-							<td align = "center"> {!! Form::text("incharge$i", null) !!} </td>
-							<td>{!! Form::text("condition$i", null) !!}</td>
+							<td align = "center"> {!! Form::text("incharge$i", null,['style' => 'width:80%;']) !!} </td>
+							<td>{!! Form::text("condition$i", null,['style' => 'width:80%;']) !!}</td>
 						</tr>
 						@endfor
 					</tbody>
@@ -94,7 +94,7 @@
 							@endif
 							<td>{{ $deliverable->deliverable }}</td>
 							<td align = "center">
-								<select name="required{{ $i }}" style="width: 70px;" value={{ old('status') }}>
+								<select name="required{{ $i }}" style="width: 100%;" value={{ old('status') }}>
 									<option value= "-" <?php if($deliverable->required == '-') {echo("selected");} ?>> 
 										- </option>
 									<option value= "M" <?php if($deliverable->required == 'M') {echo("selected");} ?>> 
@@ -104,8 +104,8 @@
 									<option value= "N/A" <?php if($deliverable->required == 'N/A') {echo("selected");} ?>> 
 										N/A</option>
 								</td>
-							<td align = "center"> {!! Form::text("incharge$i", null, ['class' => 'width90']) !!} </td>
-							<td>{!! Form::text("condition$i", null, ['class' => 'width90']) !!}</td>
+							<td align = "center"> {!! Form::text("incharge$i", null, ['style' => 'width:80%;']) !!} </td>
+							<td>{!! Form::text("condition$i", null, ['style' => 'width:80%;']) !!}</td>
 						</tr>
 						@endfor
 					</tbody>
@@ -139,7 +139,7 @@
 							@endif
 							<td>{{ $deliverable->deliverable }}</td>
 							<td align = "center">
-								<select name="required{{ $i }}" style="width: 70px;" value={{ old('status') }}>
+								<select name="required{{ $i }}" style="width: 100%;" value={{ old('status') }}>
 									<option value= "-" <?php if($deliverable->required == '-') {echo("selected");} ?>> 
 										- </option>
 									<option value= "M" <?php if($deliverable->required == 'M') {echo("selected");} ?>> 
@@ -149,8 +149,8 @@
 									<option value= "N/A" <?php if($deliverable->required == 'N/A') {echo("selected");} ?>> 
 										N/A</option>
 								</td>
-							<td align = "center"> {!! Form::text("incharge$i", null, ['class' => 'width90']) !!} </td>
-							<td>{!! Form::text("condition$i", null, ['class' => 'width90']) !!}</td>
+							<td align = "center"> {!! Form::text("incharge$i", null, ['style' => 'width:80%;']) !!} </td>
+							<td>{!! Form::text("condition$i", null, ['style' => 'width:80%;']) !!}</td>
 						</tr>
 						@endfor
 					</tbody>
@@ -186,7 +186,7 @@
 							@endif
 							<td>{{ $deliverable->deliverable }}</td>
 							<td align = "center">
-								<select name="required{{ $i }}" style="width: 70px;" value={{ old('status') }}>
+								<select name="required{{ $i }}" style="width: 100%;" value={{ old('status') }}>
 									<option value= "-" <?php if($deliverable->required == '-') {echo("selected");} ?>> 
 										- </option>
 									<option value= "M" <?php if($deliverable->required == 'M') {echo("selected");} ?>> 
@@ -196,8 +196,8 @@
 									<option value= "N/A" <?php if($deliverable->required == 'N/A') {echo("selected");} ?>> 
 										N/A</option>
 								</td>
-							<td align = "center"> {!! Form::text("incharge$i", null, ['class' => 'width90']) !!} </td>
-							<td>{!! Form::text("condition$i", null, ['class' => 'width90']) !!}</td>
+							<td align = "center"> {!! Form::text("incharge$i", null, ['style' => 'width:80%;']) !!} </td>
+							<td>{!! Form::text("condition$i", null, ['style' => 'width:80%;']) !!}</td>
 						</tr>
 						@endfor
 					</tbody>
@@ -237,7 +237,7 @@
 							@endif
 							<td>{{ $deliverable->deliverable }}</td>
 							<td align = "center">
-								<select name="required{{ $i }}" style="width: 70px;" value={{ old('status') }}>
+								<select name="required{{ $i }}" style="width: 100%;" value={{ old('status') }}>
 									<option value= "-" <?php if($deliverable->required == '-') {echo("selected");} ?>> 
 										- </option>
 									<option value= "M" <?php if($deliverable->required == 'M') {echo("selected");} ?>> 
@@ -247,8 +247,8 @@
 									<option value= "N/A" <?php if($deliverable->required == 'N/A') {echo("selected");} ?>> 
 										N/A</option>
 								</td>
-							<td align = "center"> {!! Form::text("incharge$i", null, ['class' => 'width90']) !!} </td>
-							<td>{!! Form::text("condition$i", null, ['class' => 'width90']) !!}</td>
+							<td align = "center"> {!! Form::text("incharge$i", null, ['style' => 'width:80%;']) !!} </td>
+							<td>{!! Form::text("condition$i", null, ['style' => 'width:80%;']) !!}</td>
 						</tr>
 						@endfor
 					</tbody>
@@ -280,7 +280,7 @@
 							@endif
 							<td>{{ $deliverable->deliverable }}</td>
 							<td align = "center">
-								<select name="required{{ $i }}" style="width: 70px;" value={{ old('status') }}>
+								<select name="required{{ $i }}" style="width: 100%;" value={{ old('status') }}>
 									<option value= "-" <?php if($deliverable->required == '-') {echo("selected");} ?>> 
 										- </option>
 									<option value= "M" <?php if($deliverable->required == 'M') {echo("selected");} ?>> 
@@ -290,8 +290,8 @@
 									<option value= "N/A" <?php if($deliverable->required == 'N/A') {echo("selected");} ?>> 
 										N/A</option>
 								</td>
-							<td align = "center"> {!! Form::text("incharge$i", null, ['class' => 'width90']) !!} </td>
-							<td>{!! Form::text("condition$i", null, ['class' => 'width90']) !!}</td>
+							<td align = "center"> {!! Form::text("incharge$i", null, ['style' => 'width:80%;']) !!} </td>
+							<td>{!! Form::text("condition$i", null, ['style' => 'width:80%;']) !!}</td>
 						</tr>
 						@endfor
 					</tbody>
@@ -321,7 +321,7 @@
 							<td align = "center">  </td>
 							<td>{{ $deliverable->deliverable }}</td>
 							<td align = "center">
-								<select name="required{{ $i }}" style="width: 70px;" value={{ old('status') }}>
+								<select name="required{{ $i }}" style="width: 100%;" value={{ old('status') }}>
 									<option value= "-" <?php if($deliverable->required == '-') {echo("selected");} ?>> 
 										- </option>
 									<option value= "M" <?php if($deliverable->required == 'M') {echo("selected");} ?>> 
@@ -331,8 +331,8 @@
 									<option value= "N/A" <?php if($deliverable->required == 'N/A') {echo("selected");} ?>> 
 										N/A</option>
 								</td>
-							<td align = "center"> {!! Form::text("incharge$i", null, ['class' => 'width90']) !!} </td>
-							<td>{!! Form::text("condition$i", null, ['class' => 'width90']) !!}</td>
+							<td align = "center"> {!! Form::text("incharge$i", null, ['style' => 'width:80%;']) !!} </td>
+							<td>{!! Form::text("condition$i", null, ['style' => 'width:80%;']) !!}</td>
 						</tr>
 						@endfor
 					</tbody>

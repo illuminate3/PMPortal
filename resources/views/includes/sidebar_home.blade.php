@@ -11,7 +11,7 @@
 			</li>
 				<div class="container" style="width:100%; height: 50%; overflow:hidden; ">
 				{!!  Form::open(['route' => ['projects.search'], 'method' => 'get'])  !!}
-				{!!  Form::text('query', null, ['style' => 'width:100%; ','placeholder' => 'Search query...'])  !!} 
+				{!!  Form::text('query', null, ['style' => 'width:100%; ','placeholder' => 'Search with CAC or title'])  !!} 
 				</div>
 				{!!  Form::submit('Search', ['class' => 'btn', 'style' => 'width:100%; position:relative;'])  !!}
 				{!!  Form::close() !!}
