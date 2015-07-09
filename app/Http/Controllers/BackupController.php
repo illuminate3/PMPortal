@@ -34,6 +34,7 @@ class BackupController extends Controller {
 	public function backup()
 	{
 		//Event::fire('audit.user.backup',Auth::user());
+		ini_set("max_execution_time", 0);
 		$exitCode = Artisan::call('backup:clean');
 		$exitCode = Artisan::call('backup:run',  ['--only-db'=>null]);
 		flash()->success('Database has been successfully backed up under /storage/app/backups!'); //go to PMPortal/storage/app/backups
