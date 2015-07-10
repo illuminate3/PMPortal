@@ -76,17 +76,22 @@
 							<tr>
 								<td width="15%"> {!! Form::label('confidentiality', '*Classification:') !!} </td>
 								<td colspan="3"> <select class="span5" name="confidentiality" value="{{ old('confidentiality') }}">
-									<option value="Confidential">Confidential</option>
-									<option value="Public">Public</option>
+									<option value= "Confidential" <?php if($project->confidentiality == 'Confidential') {echo("selected");} ?>> 
+										Confidential</option>
+									<option value= "Public" <?php if($project->confidentiality == 'Public') {echo("selected");} ?>> 
+										Public</option>
 								</select> </td>
 							</tr>
 
 							<tr>
 								<td width="15%"> {!! Form::label('applicability', '*Applicability:') !!} </td>
 								<td colspan="3"> <select class="span5" style="width: 325px;"name="applicability" value="{{ old('applicability') }}">
-									<option value="New or Replacement of IT Solution" > New or Replacement of IT Solution</option>
-									<option value="Enhancement or Application System Upgrade"> Enhancement or Application System Upgrade</option>
-									<option value="IT Infrastructure"> IT Infrastructure</option>
+									<option value= "New or Replacement of IT Solution" <?php if($project->applicability == 'New or Replacement of IT Solution') {echo("selected");} ?>> 
+										New or Replacement of IT Solution</option>
+									<option value= "Enhancement or Application System Upgrade" <?php if($project->applicability == 'Enhancement or Application System Upgrade') {echo("selected");} ?>> 
+										Enhancement or Application System Upgrade</option>
+									<option value= "IT Infrastructure" <?php if($project->applicability == 'IT Infrastructure') {echo("selected");} ?>> 
+										IT Infrastructure</option>
 								</select> </td>
 							</tr>
 							<tr>
