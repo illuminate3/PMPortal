@@ -15,6 +15,7 @@ Route::get('/', 'ProjectsController@index');
 
 //Route::get('projects/{id}/create','ProjectsController@create');
 Route::get('home','ProjectsController@index');
+Route::get('my_projects','ProjectsController@myProjects');
 //Route::post('projects', 'ProjectsController@store');
 Route::get('projects/search', ['as' => 'projects.search', 'uses' => 'ProjectsController@search']);
 //Route::get('projects/{projects}/status', ['as' => 'projects.status', 'uses' => 'ProjectsController@status']);

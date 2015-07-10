@@ -34,10 +34,10 @@ class ProjectsController extends Controller {
 	//CONSTRUCTOR!!!!!!!! 
 	public function __construct()
 	{
-		$this->middleware('auth', ['except' => ['index', 'show', 'search']]);
-		$this->middleware('manager', ['except' => ['index', 'show', 'search']]);
+		$this->middleware('auth', ['except' => ['index', 'show', 'search','myProjects']]);
+		$this->middleware('manager', ['except' => ['index', 'show', 'search','myProjects']]);
 		$this->middleware('owner', ['only' => ['edit','update','destroy']]);
-		$this->middleware('manager_or_member', ['except' => ['index','search','create','store']]);
+		$this->middleware('manager_or_member', ['except' => ['index','search','create','store','myProjects']]);
 	}
 
 	/**
@@ -529,5 +529,12 @@ class ProjectsController extends Controller {
 		}
 				
 		return view('pages.index', compact('projects', 'managers'));
+	}
+
+	public function myProjects()
+	{
+		$projects = Project::all();
+
+		return view('pages.my_projects', compact('projects'));
 	}
 }

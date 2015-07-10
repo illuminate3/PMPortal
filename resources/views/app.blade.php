@@ -47,7 +47,7 @@
 							@if (Auth::guest())
 								<a href="{{ url('/auth/login') }}" class="logout">Login</a>
 							@else
-								<img src="{{ asset('img/admin.png') }}"> {{ Auth::user()->role }} - {{ Auth::user()->name }} | <a class="logout" href="{{ url('/auth/logout') }}">Logout</a>
+								<img src="{{ asset('img/admin.png') }}"> {{ Auth::user()->role }} - <a href="{{ url('/my_projects') }}" title="My Projects"> {{ Auth::user()->name }}</a> | <a class="logout" href="{{ url('/auth/logout') }}">Logout</a>
 							@endif
 						</ul>
 					</div>
