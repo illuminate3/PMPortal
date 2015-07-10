@@ -1,7 +1,7 @@
 @extends('auth.app')
 @section('header')
 	<link href="{{ asset('/css/signin.css') }}" rel="stylesheet">
-	<title>Login</title>
+	<title>Users</title>
 @stop
 @section('content')
 
