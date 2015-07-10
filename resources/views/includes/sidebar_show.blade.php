@@ -84,7 +84,7 @@
 					</div>
 				</div>
 
-				<div class="panel panel-default">
+				<!--<div class="panel panel-default">
 					<div class="panel-heading">
 						<P class="panel-title">
 							<a data-toggle="collapse" style="font-size:13px" class="darker accordion-toggle" data-parent="#accordion" href="#collapseMonth">
@@ -110,7 +110,7 @@
 							</ul>
 						</div>
 					</div>
-				</div>
+				</div>-->
 			</div> <br>
 			<center>
 			<div class="panel panel-default" style="margin-top: -15px;">
