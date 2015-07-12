@@ -46,6 +46,10 @@
 		{
 			padding:5px;
 		}
+		.generate h1{
+			font-size: 20px;
+			font-family:Tahoma, Geneva, sans-serif;
+		}
 	</style>
 </head>
 <body>
@@ -58,18 +62,18 @@
  		</div>
 	</div>
 
-	<div class="content">
+	<div class="content generate">
 		<h1>{{ $project-> title }}</h1>
 		as of {{ $project['updated_at']->format('M j, Y h:i A') }}<br /> <br />
 		<table class="table-condensed details"> <tbody>
 				<tr>
 					<td>CAC: </td>
-					<td> {{ $project['cac'] }} </td>
+					<td colspan="3"> {{ $project['cac'] }} </td>
 				</tr>
 				<tr>
 
 					<td>Project Status: </td>
-					<td>{{ $project['status'] }} - 
+					<td colspan="3">{{ $project['status'] }} - 
 						@if ($project-> color == "Green")
 							<img src="{{ asset('img/green.png') }}" class="color-img">
 						@elseif ($project-> color == "Amber")
@@ -82,7 +86,7 @@
 					</td>
 				<tr>
 					<td> % Done: </td>
-					<td>{{ $project['percent']}}%</td>
+					<td colspan="3">{{ $project['percent']}}%</td>
 				</tr>
 
 				<tr>
@@ -125,27 +129,27 @@
 
 				<tr>
 					<td>Target Mandays: </td>
-					<td>{{ $project['target_mandays'] }}</td>
+					<td colspan="3">{{ $project['target_mandays'] }}</td>
 				</tr>		
 				
 				<tr>
 					<td>Importance: </td>
-					<td>{{ $project['importance'] }}</td>
+					<td colspan="3">{{ $project['importance'] }}</td>
 				</tr>
 
 				<tr>
 					<td>Applicability: </td>
-					<td>{{ $project-> applicability }}</td>
+					<td colspan="3">{{ $project-> applicability }}</td>
 				</tr>
 
 				<tr>
 					<td>Classification: </td>
-					<td>{{ $project-> confidentiality }}</td>
+					<td colspan="3">{{ $project-> confidentiality }}</td>
 				</tr>
 
 				<tr>
 					<td>Personnel: </td>
-					<td>
+					<td colspan="3">
 						@foreach($project->users as $user)
 							@if ($user == $lastUser)
 							{{ $user->name }}
