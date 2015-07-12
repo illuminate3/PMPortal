@@ -10,16 +10,20 @@
 		<div class="container panel panel-default full">
 			<div class="panel-heading">
 				{{ $project-> title }} - SDLC Deliverables Checklist
+				<div class="pull-right">
 			@if (Auth::guest())
 			@else
 				@if ($project['user_id'] == null)
 				@else
 					@if ($project['user_id'] == Auth::user()['id'])
-						<a class="pull-right add" href="{{ action('DeliverablesController@edit', [$project->id] ) }}"> <i class="glyphicon glyphicon-pencil"></i> Edit Checklist</a>
+						<a class="add" href="{{ action('DeliverablesController@edit', [$project->id] ) }}"> <i class="glyphicon glyphicon-pencil"></i> Edit Checklist</a>
 					@else
 					@endif
 				@endif
 			@endif
+			<a class="add" href="{{ action('ProjectsController@show', [$project->id] ) }}"> <i class="glyphicon glyphicon-check"></i> Back to Project</a>
+                
+		</div>
 			</div>
 			<div class ="panel-body">
 

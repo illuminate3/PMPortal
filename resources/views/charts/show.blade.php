@@ -273,17 +273,20 @@
 		<div class="container panel panel-default full">
 			<div class="panel-heading">
 				{{ $project-> title }} - Organizational Chart
+                <div class="pull-right">
 				@if (Auth::guest())
 				@else
 					@if ($project['user_id'] == null)
 					@else
 						@if ($project['user_id'] == Auth::user()['id'])
-							<a class="pull-right add" href="{{ action('ChartsController@edit', [$project->id] ) }}"> <i class="glyphicon glyphicon-pencil"></i> Edit Chart</a>
+							<a class="add" href="{{ action('ChartsController@edit', [$project->id] ) }}"> <i class="glyphicon glyphicon-pencil"></i> Edit Chart</a>
 						     
                         @else
 						@endif
 					@endif
 				@endif
+                <a class="add" href="{{ action('ProjectsController@show', [$project->id] ) }}"> <i class="glyphicon glyphicon-check"></i> Back to Project</a>
+                </div>
 			</div>
 			<div id="main">
             </div>

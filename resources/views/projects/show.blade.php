@@ -12,7 +12,7 @@
 	<div class="span9 pull-right">
 		<div class="container panel panel-default full">
 			<div class="panel-heading">
-					{{ $project['title'] }} - as of {{ $project['updated_at']->format('M j, Y h:i A') }}
+					{{ $project['title'] }} - <small>as of {{ $project['updated_at']->format('M j, Y h:i A') }}</small>
 					
 
 					
