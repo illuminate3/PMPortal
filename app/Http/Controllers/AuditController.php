@@ -108,6 +108,7 @@ class AuditController extends Controller {
 
 	public function generate()
 	{
+		ini_set("max_execution_time", 0);
 		if (Auth::user()->role == "Project Manager")
 		{
 			$activities = Activity::whereIn('action',array('Created','Deleted','Updated'))
@@ -160,6 +161,7 @@ class AuditController extends Controller {
 	
 	public function generatePdf()
     {
+    	ini_set("max_execution_time", 0);
     	$pdf = \PDF::loadHTML($this->generate());
     	return $pdf->stream();
     }

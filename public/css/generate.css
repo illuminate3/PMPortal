@@ -1,0 +1,66 @@
+body {
+	  margin: 0;
+	  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	  font-size: 14px;
+	  line-height: 20px;
+	  color: #333333;
+	  background-color: #ffffff;
+	
+	}
+	.auditupdate{
+		width:97%;table-layout:fixed;
+	}
+	.auditupdate td{
+		text-align: center;
+	}
+		.wrap th,
+		.wrap td{
+		word-wrap: break-word;
+		}
+		.table-head
+		{
+		  background-color: #f5f5f5;
+		  text-align: left;
+		  margin-top: 5px;
+		  width: 100%;
+		}
+		.header {
+			width: 100%;
+		    position: fixed;
+		    top: -50px;
+		    height: 50px;
+			background-color: white;
+		    border-bottom: 1px solid black;
+		}
+		.htitle{
+			width: 50%;
+			height: 50px;
+			left: 10px;
+			top:0px;
+			position: absolute;
+  			padding-top: 25px;
+		}
+		.himg{
+			width: 50%;
+			text-align: right;
+			position: absolute;
+			right: 10px;
+			top:0px;
+			height: 50px;
+			vertical-align: text-bottom;
+		}
+		.footer {
+		    bottom: 0px;
+		    width: 100%;
+		    position: fixed;
+		    text-align: right;
+		}
+		.pagenum:before {
+		    content: counter(page); 
+		}
+		 @page { margin: 70px; }
+			
+		.details
+		{
+			margin-left: 3px;
+		}

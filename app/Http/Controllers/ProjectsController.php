@@ -125,6 +125,7 @@ class ProjectsController extends Controller {
 
 	public function generatepdf($id)
     {
+    	ini_set("max_execution_time", 0);
     	$pdf = \PDF::loadHTML($this->generate($id));
     	return $pdf->stream();
     }
@@ -498,6 +499,7 @@ class ProjectsController extends Controller {
 
 	public function generate($id)
 	{
+		ini_set("max_execution_time", 0);
 		$project = Project::find($id);
 		$accomplishments = Accomplishment::where('project_id', $id)->get();
 		$actions = Action::where('project_id', $id)->get();
