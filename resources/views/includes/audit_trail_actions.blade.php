@@ -1,7 +1,7 @@
 
 
 				<center>
-					<table class="etable table-condensed table-hover project-show full sortable wrap">
+					<table class="auditactions etable table-condensed table-hover project-show full sortable wrap">
 						<thead>
 							<tr>
 								<th width="20%">Type</th>
@@ -18,20 +18,20 @@
 							if ($user == null) {
 								?>
 								<tr class = "project-row">
-								<td align="center">{{ $activity['type'] }}</td>
-								<td align="center">{{ $activity['name'] }}</td>
-								<td align="center">{{ $activity['action'] }}</td>
-								<td align="center">User Deleted</td>
-								<td align="center">{{ $activity['created_at']->format('M j, Y h:i A') }}</td>
+								<td>{{ $activity['type'] }}</td>
+								<td>{{ $activity['name'] }}</td>
+								<td>{{ $activity['action'] }}</td>
+								<td>User Deleted</td>
+								<td>{{ $activity['created_at']->format('M j, Y h:i A') }}</td>
 								</tr>
 							<?php } elseif (($activity['user']->name == $activity['name']) && ($activity['type'] == "User") && ($activity['action'] = "Updated") ){ ?>
 							<?php } else { ?>
 								<tr class = "project-row">
-								<td align="center">{{ $activity['type'] }}</td>
-								<td align="center">{{ $activity['name'] }}</td>
-								<td align="center">{{ $activity['action'] }}</td>
-								<td align="center">{{ $activity['user']->name }}</td>
-								<td align="center">{{ $activity['created_at'] ->format('M j, Y h:i A') }}</td>
+								<td>{{ $activity['type'] }}</td>
+								<td>{{ $activity['name'] }}</td>
+								<td>{{ $activity['action'] }}</td>
+								<td>{{ $activity['user']->name }}</td>
+								<td>{{ $activity['created_at'] ->format('M j, Y h:i A') }}</td>
 								</tr>
 							<?php } ?>
 						@endforeach

@@ -10,7 +10,8 @@ body {
 	.auditupdate{
 		width:97%;table-layout:fixed;
 	}
-	.auditupdate td{
+	.auditupdate td,
+	.auditactions td{
 		text-align: center;
 	}
 		.wrap th,

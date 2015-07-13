@@ -1,6 +1,7 @@
 
 				<center>
-					<table class="auditupdate wrap">
+					
+					<table class="auditupdate etable table-condensed table-hover project-show full sortable wrap" style="width:97%;table-layout:fixed;">
 						<thead>
 							<tr>
 								<th width="12%">Type</th>
@@ -34,7 +35,7 @@
 						@endforeach
 						@foreach ($milestones as $milestone)
 							@foreach($milestone->revisionHistory as $history )
-							<tr>
+							<tr class = "project-row">
 								<td>Milestone</td>
 								<td>{{ $milestone->project['title'] }} ({{ $milestone['milestone'] }})</td>
 								<?php 
@@ -47,13 +48,12 @@
 									<td>{{ $history->userResponsible()->name }}</td>
 									@include('includes.audit_trail')
 								</tr>
-								
 								<?php } ?>
 							@endforeach
 						@endforeach
 						@foreach ($accomplishments as $accomplishment)
 							@foreach($accomplishment->revisionHistory as $history )
-							<tr>
+							<tr class = "project-row">
 								<td>Accomplishment</td>
 								<td>{{ $accomplishment->project['title'] }} ({{ $accomplishment['accomplishment'] }})</td>
 								<?php 
@@ -71,7 +71,7 @@
 						@endforeach
 						@foreach ($issues as $issue)
 							@foreach($issue->revisionHistory as $history )
-							<tr>
+							<tr class = "project-row">
 								<td>Issue</td>
 								<td>{{ $issue->project['title'] }} ({{ $issue['issue'] }})</td>
 								<?php 
@@ -89,7 +89,7 @@
 						@endforeach
 						@foreach ($actions as $action)
 							@foreach($action->revisionHistory as $history )
-							<tr>
+							<tr class = "project-row">
 								<td>Action</td>
 								<td>{{ $action->project['title'] }} ({{ $action['action_item'] }})</td>
 								<?php 
@@ -107,7 +107,7 @@
 						@endforeach
 						@foreach ($risks as $risk)
 							@foreach($risk->revisionHistory as $history )
-							<tr>
+							<tr class = "project-row">
 								<td>Risk</td>
 								<td>{{ $risk->project['title'] }} ({{ $risk['risk'] }})</td>
 								<?php 
@@ -125,7 +125,7 @@
 						@endforeach
 						@foreach ($expenses as $expense)
 							@foreach($expense->revisionHistory as $history )
-							<tr>
+							<tr class = "project-row">
 								<td>Expense</td>
 								<td>{{ $expense->project['title'] }} ({{ $expense['item'] }})</td>
 								<?php 
@@ -145,7 +145,7 @@
 					 	@foreach ($deliverables as $deliverable)
 
 							@foreach($deliverable->revisionHistory as $history )
-							<tr>
+							<tr class = "project-row">
 								<td>Deliverable</td>
 								<td>{{ $deliverable->project['title'] }} ({{ $deliverable['deliverable'] }})</td>
 								
@@ -162,7 +162,7 @@
 
 						@foreach ($business_project_team_members as $business_project_team_member)
 							@foreach($business_project_team_member->revisionHistory as $history )
-							<tr>
+							<tr class = "project-row">
 								<td>Business Project Team</td>
 								<td>{{ $business_project_team_member->project['title'] }} ({{ $business_project_team_member['name'] }})</td>
 								<?php 
@@ -180,7 +180,7 @@
 						@endforeach 
 						@foreach ($technical_project_team_members as $technical_project_team_member)
 							@foreach($technical_project_team_member->revisionHistory as $history )
-							<tr>
+							<tr class = "project-row">
 								<td>Technical Project Team</td>
 								<td>{{ $technical_project_team_member->project['title'] }} ({{ $technical_project_team_member['name'] }})</td>
 								<?php 
@@ -198,7 +198,7 @@
 						@endforeach
 						@foreach ($support_team_members as $support_team_member)
 							@foreach($support_team_member->revisionHistory as $history )
-							<tr>
+							<tr class = "project-row">
 								<td>Support Team</td>
 								<td>{{ $support_team_member->project['title'] }} ({{ $support_team_member['name'] }})</td>
 								<?php 
@@ -221,7 +221,7 @@
 							$user = App\User::where('id',$history['revisionable_id'])->first();
 							if ($user == null) { ?>
 								@if($history->fieldName() == 'Password')
-								<tr>
+								<tr class = "project-row">
 									<td>User</td>
 									<td>User Deleted</td>
 									<td>{{ $history->userResponsible()->name }}</td>
@@ -231,7 +231,7 @@
 									<td>{{ $history->updated_at->format('M j, Y h:i A') }}</td>
 								</tr>
 								@else
-									<tr>
+									<tr class = "project-row">
 									<td>User</td>
 									<td>User Deleted</td>
 									<td>{{ $history->userResponsible()->name }}</td>
@@ -240,7 +240,7 @@
 								@endif
 							<?php } else { ?>
 								@if($history->fieldName() == 'Password')
-									<tr>
+									<tr class = "project-row">
 										<td>User</td>
 										<td>-</td>
 										<td>{{ $history->userResponsible()->name }}</td>
@@ -250,7 +250,7 @@
 										<td>{{ $history->updated_at->format('M j, Y h:i A') }}</td>
 									</tr>
 								@else
-								<tr>
+								<tr class = "project-row">
 									<td>User</td>
 									<td>-</td>
 									@include('includes.audit_trail')

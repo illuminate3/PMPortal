@@ -37,7 +37,10 @@ section {
 .break{
   display: inline-block;
 }
-
+.auditupdate td,
+  .auditactions td{
+    text-align: center;
+  }
 .wrap th,
 .wrap td{
 word-wrap: break-word;
