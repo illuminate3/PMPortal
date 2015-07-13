@@ -48,6 +48,7 @@ class BackupController extends Controller {
 		\DB::unprepared(file_get_contents('C:\xampp\htdocs\PMPortal\storage\app\backups\dump.sql'));
 		flash()->success('Database backup has been successfully loaded');
 		return redirect()->action('ProjectsController@index');
+
 	}
 
 }
