@@ -19,7 +19,7 @@
 							</tr>
 							<tr>
 								<td width="15%"> {!! Form::label('title', '*Title:')!!} </td>
-								<td colspan="3"> {!! Form::text('title', null, ['class' => 'span4']) !!} </td>
+								<td colspan="3"> {!! Form::text('title', null, ['class' => 'span7']) !!} </td>
 							</tr>
 							<tr>
 								<td width="15%"> {!! Form::label('pm', '*Project Manager:') !!} </td>

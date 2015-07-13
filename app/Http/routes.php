@@ -76,7 +76,8 @@ Route::get('filters/projects', ['as' => 'filters.projects', 'uses' => 'FiltersCo
 Route::get('filters/search', ['as' => 'filters.userSearch', 'uses' => 'FiltersController@userSearch']);
 Route::get('filters/status/{status}', ['as' => 'filter.status', 'uses' => 'FiltersController@showStatus']);
 Route::get('filters/color/{color}', ['as' => 'filter.color', 'uses' => 'FiltersController@showColor']);
-Route::get('filters/month/{month}', ['as' => 'filter.month', 'uses' => 'FiltersController@showMonth']);
+Route::get('filters/startmonth/{month}', ['as' => 'filter.startmonth', 'uses' => 'FiltersController@showStartmonth']);
+Route::get('filters/endmonth/{month}', ['as' => 'filter.endmonth', 'uses' => 'FiltersController@showEndmonth']);
 Route::resource('filters', 'FiltersController');
 
 /*

@@ -54,7 +54,28 @@ class FiltersController extends Controller {
 		return view('pages.index', compact('projects'));
 	}
 
-	public function showMonth($month)
+	// public function showMonth($month)
+	// {	 
+	// 	$projects = [];
+	// 	if (Auth::guest())
+	// 		$projects1 = Project::where('confidentiality','Public')->get();
+	// 	else
+	// 		$projects1 = Project::all();
+	// 	foreach ($projects1 as $project) 
+	// 	{
+	// 		if ($project['target_start']->month == $month)
+	// 		{
+	// 			$projects[] = $project;
+	// 		}
+	// 	}
+	// 	if ($projects == null)
+	// 	{
+	// 		flash()->error('There are no projects that match your query!');
+	// 		return redirect()->action('ProjectsController@index', compact('projects'));
+	// 	}
+	// 	return view('pages.index', compact('projects'));
+	// }
+	public function showStartmonth($month)
 	{	 
 		$projects = [];
 		if (Auth::guest())
@@ -68,6 +89,10 @@ class FiltersController extends Controller {
 				$projects[] = $project;
 			}
 		}
+		$projects = array_values(array_sort($projects, function($value)
+		{
+    		return $value['target_start'];
+		}));
 		if ($projects == null)
 		{
 			flash()->error('There are no projects that match your query!');
@@ -75,7 +100,31 @@ class FiltersController extends Controller {
 		}
 		return view('pages.index', compact('projects'));
 	}
-
+	public function showEndmonth($month)
+	{	 
+		$projects = [];
+		if (Auth::guest())
+			$projects1 = Project::where('confidentiality','Public')->get();
+		else
+			$projects1 = Project::all();
+		foreach ($projects1 as $project) 
+		{
+			if ($project['target_end']->month == $month)
+			{
+				$projects[] = $project;
+			}
+		}
+		$projects = array_values(array_sort($projects, function($value)
+		{
+    		return $value['target_end'];
+		}));
+		if ($projects == null)
+		{
+			flash()->error('There are no projects that match your query!');
+			return redirect()->action('ProjectsController@index', compact('projects'));
+		}
+		return view('pages.index', compact('projects'));
+	}
 	/**
 	 * Display a listing of the resource.
 	 *

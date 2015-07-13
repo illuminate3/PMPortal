@@ -40,17 +40,24 @@
 	<body>
 		<div id = "SiteBody">
 			<div class="dimension">
-				<div class = "dimension-left">  
-					<img src="{{ asset('img/maybankLogo.png') }}"><a href="{{ url('/') }}" class = "dimension-home"> Maybank Project Management Portal</a>
-
-					<div class="pull-right">
-							@if (Auth::guest())
-								<a href="{{ url('/auth/login') }}" class="logout">Login</a>
-							@else
-								<img src="{{ asset('img/admin.png') }}"> {{ Auth::user()->role }} - <a href="{{ url('/my_projects') }}" title="My Projects"> {{ Auth::user()->name }}</a> | <a class="logout" href="{{ url('/auth/logout') }}">Logout</a>
-							@endif
-						</ul>
-					</div>
+				<div class = "dimension-left" > 
+				<table width="100%">
+					<tr>
+						<td class="apptitleheader" width="70%">
+						<img src="{{ asset('img/maybankLogo.png') }}"><a href="{{ url('/') }}" class = "dimension-home"> Maybank Project Management Portal</a>
+						</td>
+						<td align="right">
+						<div class="pull-right">
+								@if (Auth::guest())
+									<a href="{{ url('/auth/login') }}" class="logout">Login</a>
+								@else
+									<img src="{{ asset('img/admin.png') }}"> {{ Auth::user()->role }} - <span class="break"> <a href="{{ url('/my_projects') }}" title="My Projects"> {{ Auth::user()->name }}</a> |</span> <span class="break"><a class="logout" href="{{ url('/auth/logout') }}"> Logout</a></span>
+								@endif
+							</ul>
+						</div>
+						</td>
+					</tr>
+				</table>
 				</div>
 			</div>
 			<br />

@@ -20,6 +20,23 @@ nav,
 section {
   display: block;
 }
+@media screen and (max-width: 748px) {
+  .apptitleheader a{
+   font-size:20px;
+  }
+}
+@media screen and (max-width: 630px) {
+  .apptitleheader a{
+   font-size:15px;
+   font-weight: bold;
+  }
+}
+.projectheading{
+  width: 100%;
+}
+.break{
+  display: inline-block;
+}
 
 .wrap th,
 .wrap td{

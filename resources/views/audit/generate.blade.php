@@ -56,13 +56,13 @@
 
 	<div class="content">
 		
-<div class="container panel panel-default full">
+		<div class="container panel panel-default full">
 			<div class="panel-body">
 				<table class="etable table-condensed table-hover project-show table-head"> <tbody>
 				<tr> 
 					<th colspan="2"> <b>Updates</b> </th> 
 				</tr>
-			</tbody> </table>
+				</tbody> </table>
 			</div>
 			@include('includes.audit_trail_updates')
 
@@ -71,12 +71,13 @@
 				<tr> 
 					<th colspan="2"> <b>Actions</b> </th> 
 				</tr>
-			</tbody> </table>
+				</tbody> </table>
 			</div>
 			@include('includes.audit_trail_actions')
 		</div>
-
 	</div>
+
+	
 	<div class="footer">
 	    Page <span class="pagenum"></span>
 	</div>
