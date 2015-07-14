@@ -45,7 +45,7 @@
 
 							<tr>
 								<td width="15%">{!! Form::label('percent', 'Percent:') !!}</td>
-								<td colspan="3">{!! Form::input('number','percent',null,['class' => 'span2']) !!}</td>
+								<td colspan="3">{!! Form::input('number','percent',null,['class' => 'span2', 'step'=>'0.01']) !!}</td>
 							</tr>
 							<tr>
 								<td width="15%">{!! Form::label('target_start', '*Target Start:') !!}</td>
@@ -68,9 +68,9 @@
 							</tr>
 							<tr>
 								<td width="15%">{!! Form::label('budget', '*Budget:') !!}</td>
-								<td>{!! Form::input('number','budget',null) !!}</td>
+								<td>{!! Form::input('number','budget',null, ['step'=>'0.01']) !!}</td>
 								<td width="15%">{!! Form::label('utilization', 'Utilization:') !!}</td>
-								<td>{!! Form::input('number','utilization',null) !!}</td>
+								<td>{!! Form::input('number','utilization',null, ['step'=>'0.01']) !!}</td>
 							</tr>
 
 							<tr>
