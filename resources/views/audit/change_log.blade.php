@@ -7,7 +7,7 @@
 			<div class="panel-heading">
 				Audit trail
 				<div class = "pull-right">
-					<a class="add" href="{{ action('AuditController@generatePdf') }}"> <i class="glyphicon glyphicon-check"></i>Generate Pdf</a>
+					<a class="add" href="{{ action('AuditController@generatePdf') }}" id="generateclick"> <i class="glyphicon glyphicon-check"></i>Generate Pdf</a>
 				</div>
 			</div>
 			

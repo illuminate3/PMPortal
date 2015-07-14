@@ -193,7 +193,7 @@
 				@if (Auth::user()->role == "Project Manager") 
 				<li>
 					{!! Form::open(['url' => '/change_log', 'method' => 'get' ]) !!}
-					{!! Form::button('<i class="glyphicon glyphicon-book"></i> Audit Trail', ['type' => 'submit', 'class' => 'btn btn-warning span12 option']) !!}
+					{!! Form::button('<i class="glyphicon glyphicon-book"></i> Audit Trail', ['type' => 'submit', 'class' => 'btn btn-warning span12 option', 'id'=>'audittrailclick']) !!}
 					{!! Form::close() !!}		
 				</li>
 				@else

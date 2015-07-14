@@ -19,7 +19,7 @@
 	<script src="{{ asset('/js/jquery.orgchart.js') }}"></script>
 	<script src="{{ asset('/js/bootstrap-confirmation.js') }}"></script>
 
-	<script src="{{ asset('/js/pace.min.js') }}"></script>
+	<script src="{{ asset('/js/pace.js') }}"></script>
 	
 
 	<!-- CSS -->
@@ -79,6 +79,16 @@
 			$('#flash-overlay-modal').modal();
 			$('div.alert').not('alert-important').delay(3000).slideUp(300);
 			$('[data-toggle=confirmation]').confirmation('hide');
+			
+			$(document).ajaxStart(function() {
+    Pace.restart();
+}).ajaxStop( function() { 
+    Pace.stop();
+}).ajaxError( function(event, request, settings) { 
+    Pace.stop();
+}).ajaxComplete( function(event, request, settings) { 
+    Pace.stop();
+});
 		</script> 
 	</body>
 </html>

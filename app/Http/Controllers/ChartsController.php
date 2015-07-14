@@ -15,8 +15,19 @@ class ChartsController extends Controller {
 
 	public function __construct()
 	{
-		$this->middleware('owner', ['only' => ['edit','update','destroy']]);
+		
 		$this->middleware('auth', ['except' => ['show']]);	
+		$this->middleware('manager', ['except' => ['show']]);
+		$this->middleware('owner', ['only' => ['edit','update','destroy']]);
+		$this->middleware('manager_or_member', ['except' => ['edit','update','destroy']]);
+	
+
+
+		// $this->middleware('auth', ['except' => ['index', 'show', 'search','myProjects','generate','generatepdf']]);
+		// $this->middleware('manager', ['except' => ['show', 'search','myProjects','generate','generatepdf']]);
+		// $this->middleware('owner', ['only' => ['edit','update','destroy']]);
+		// $this->middleware('manager_or_member', ['except' => ['index','search','create','store','myProjects']]);
+	
 	}
 	
 	/**

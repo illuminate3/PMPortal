@@ -28,6 +28,9 @@ class DeliverablesController extends Controller {
 	{
 		$this->middleware('owner', ['only' => ['edit','update']]);
 		$this->middleware('auth', ['except' => ['show']]);	 	
+		$this->middleware('manager', ['except' => ['show']]);	
+		$this->middleware('manager_or_member', ['except' => ['edit','update']]);
+	
 	}
 
 	public function index()
