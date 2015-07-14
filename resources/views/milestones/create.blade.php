@@ -15,12 +15,12 @@
 					<div class="panel-body">
 						<table class="table-condensed table-hover"> <tbody>
 							<tr>
-								<td class="span3 right"> {!! Form::label('milestone', 'Milestone: ') !!} </td>
+								<td class="span3 right"> {!! Form::label('milestone', '*Milestone: ') !!} </td>
 								<td> {!! Form::text('milestone', null, ['class' => 'span7']) !!} </td>
 							</tr>
 
 							<tr>
-								<td class="span3 right"> {!! Form::label('status', 'Status: ') !!} </td>
+								<td class="span3 right"> {!! Form::label('status', '*Status: ') !!} </td>
 								<td>
 									<select class="span5" name="status" value="{{ old('status') }}">
 										<option value="Not Started">Not Started</option>
@@ -31,7 +31,7 @@
 							</tr>
 
 							<tr>
-								<td class="span3 right">{!! Form::label('target_date', 'Target Date:') !!}</td>
+								<td class="span3 right">{!! Form::label('target_date', '*Target Date:') !!}</td>
 								<td>{!! Form::input('date','target_date', date('Y-m-d'), ['class' => 'span5']) !!}</td>
 							</tr>
 						</tbody> </table>

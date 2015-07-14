@@ -58,6 +58,7 @@ class AuditController extends Controller {
 			$business_project_team_members = BusinessProjectTeamMember::whereIn('project_id',$projectids)->get();
 			$technical_project_team_members = TechnicalProjectTeamMember::whereIn('project_id',$projectids)->get();
 			$support_team_members = SupportTeamMember::whereIn('project_id',$projectids)->get();
+			
 			return view('audit.change_log', compact('activities','projects','milestones','accomplishments','issues','risks','expenses','actions', 'deliverables','business_project_team_members','technical_project_team_members','support_team_members'));
 		}
 		elseif(Auth::user()->role == "System Administrator")

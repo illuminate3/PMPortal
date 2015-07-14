@@ -15,11 +15,11 @@
 						<table class="table-condensed table-hover"> 
 							<tbody>
 								<tr>
-									<td class="span3 right"> {!! Form::label('name', 'Name: ') !!} </td>
+									<td class="span3 right"> {!! Form::label('name', '*Name: ') !!} </td>
 									<td> {!! Form::text('name', old('name'), ['class' => 'span7']) !!} </td>
 								</tr>
 								<tr>
-									<td class="span3 right"> {!! Form::label('role', 'Role: ') !!} </td>
+									<td class="span3 right"> {!! Form::label('role', '*Role: ') !!} </td>
 									<td> {!! Form::text('role', old('role'), ['class' => 'span7']) !!} </td>
 								</tr>
 							</tbody>

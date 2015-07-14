@@ -1,6 +1,7 @@
 <head>
 	<title>{{ $project-> title }} - {{ $project-> updated_at->format('M j, Y h:i A')  }}</title>
 	<link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet">
+	
 	<style type="text/css">
 		.header {
 			width: 100%;

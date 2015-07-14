@@ -83,7 +83,7 @@
 					@foreach ($accomplishments as $accomplishment)
 						<tr>
 							<td class="span11">
-								{{ $accomplishment-> accomplishment }} |
+								- {{ $accomplishment-> accomplishment }}
 							</td>
 								@if (Auth::guest())
 								@else

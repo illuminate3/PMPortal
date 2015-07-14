@@ -21,7 +21,7 @@ class CreateProjectsTable extends Migration {
 			$table->string('cac')->unique();
 			$table->string('title');
 			$table->string('status');
-			$table->double('percent')->unsigned();
+			$table->float('percent')->unsigned();
 			$table->text('rationale');
 			$table->string('software');
 		    $table->string('hardware');
@@ -30,8 +30,8 @@ class CreateProjectsTable extends Migration {
 			$table->date('target_end');
 			$table->date('actual_start');
 			$table->date('actual_end');
-			$table->double('budget')->unsigned();
-			$table->double('utilization')->unsigned();
+			$table->decimal('budget',19,2)->unsigned();
+			$table->decimal('utilization',19,2)->unsigned();
 			$table->string('importance');
 			$table->integer('target_mandays')->unsigned();
 		    $table->integer('actual_mandays')->unsigned();

@@ -34,8 +34,8 @@ class ProjectsController extends Controller {
 	//CONSTRUCTOR!!!!!!!! 
 	public function __construct()
 	{
-		$this->middleware('auth', ['except' => ['index', 'show', 'search','myProjects']]);
-		$this->middleware('manager', ['except' => ['index', 'show', 'search','myProjects']]);
+		$this->middleware('auth', ['except' => ['index', 'show', 'search','myProjects','generate','generatepdf']]);
+		$this->middleware('manager', ['except' => ['index', 'show', 'search','myProjects','generate','generatepdf']]);
 		$this->middleware('owner', ['only' => ['edit','update','destroy']]);
 		$this->middleware('manager_or_member', ['except' => ['index','search','create','store','myProjects']]);
 	}

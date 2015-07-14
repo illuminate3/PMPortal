@@ -15,7 +15,7 @@
 					<div class="panel-body">
 						<table class="table-condensed table-hover"> <tbody>
 							<tr>
-								<td class="span3 right"> {!! Form::label('accomplishment', 'Accomplishment: ') !!} </td>
+								<td class="span3 right"> {!! Form::label('accomplishment', '*Accomplishment: ') !!} </td>
 								<td> {!! Form::textarea('accomplishment', null, ['class' => 'span7']) !!} </td>
 							</tr>
 						</tbody> </table>

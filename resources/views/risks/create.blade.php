@@ -15,12 +15,12 @@
 					<div class="panel-body">
 						<table class="table-condensed table-hover"> <tbody>
 							<tr>
-								<td class="span3 right">{!! Form::label('risk', 'Risk: ') !!}</td>
+								<td class="span3 right">{!! Form::label('risk', '*Risk: ') !!}</td>
 								<td> {!! Form::text('risk', null, ['class' => 'span7']) !!} </td>
 							</tr>
 
 							<tr>
-								<td class="span3 right"> {!! Form::label('impact', 'Impact: ') !!} </td>
+								<td class="span3 right"> {!! Form::label('impact', '*Impact: ') !!} </td>
 								<td> <select class="span5" name="impact" value="{{ old('impact') }}">
 										<option value="High"> High</option>
 										<option value="Medium">Medium</option>
@@ -29,7 +29,7 @@
 							</tr>
 
 							<tr>
-								<td class="span3 right"> {!! Form::label('probability', 'Probability: ') !!} </td>
+								<td class="span3 right"> {!! Form::label('probability', '*Probability: ') !!} </td>
 								<td> <select class="span5" name="probability" value="{{ old('probability') }}">
 										<option value="High"> High</option>
 										<option value="Medium"> Medium</option>
@@ -39,7 +39,7 @@
 
 							<tr>
 								<td class="span3 right">{!! Form::label('mitigation', 'Mitigation: ') !!}</td>
-								<td>{!! Form::text('mitigation', null, ['class' => 'span7']) !!}</td>
+								<td>{!! Form::textarea('mitigation', null, ['class' => 'span7']) !!}</td>
 							</tr>
 
 						</tbody> </table>

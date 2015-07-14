@@ -13,6 +13,8 @@
 	<script src="{{ asset('/js/jquery-1.11.3.js') }}" ></script>
 	<script src="{{ asset('/js/bootstrap.min.js') }}" ></script>
 	<script src="{{ asset('/js/bootstrap-confirmation.js') }}"></script>
+	<script src="{{ asset('/js/pace.min.js') }}"></script>
+	
     <!-- CSS -->
 	<link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/sbadmin.css') }}" rel="stylesheet">

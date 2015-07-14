@@ -17,8 +17,8 @@ class CreateExpensesTable extends Migration {
 			$table->increments('id');
 			$table->integer('project_id')->unsigned();
 			$table->string('item');
-			$table->float('amount');
-			$table->float('balance');
+			$table->decimal('amount',19,2);
+			$table->decimal('balance',19,2);
 			$table->text('comment');
 			$table->timestamps();
 

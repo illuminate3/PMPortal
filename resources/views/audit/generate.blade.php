@@ -1,6 +1,7 @@
 <head>
 	<title>Audit Trail</title>
 	<link href="{{ asset('/css/generate.css') }}" rel="stylesheet">
+	
 </head>
 <body>
 	<div class="header">

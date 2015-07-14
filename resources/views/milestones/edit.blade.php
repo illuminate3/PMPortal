@@ -14,12 +14,12 @@
 					<div class="panel-body">
 						<table class="table-condensed table-hover"> <tbody>
 							<tr>
-								<td class="span3 right"> {!! Form::label('milestone', 'Milestone: ') !!} </td>
+								<td class="span3 right"> {!! Form::label('milestone', '*Milestone: ') !!} </td>
 								<td> {!! Form::text('milestone', null, ['class' => 'span7']) !!} </td>
 							</tr>
 
 							<tr>
-								<td class="span3 right"> {!! Form::label('status', 'Status: ') !!} </td>
+								<td class="span3 right"> {!! Form::label('status', '*Status: ') !!} </td>
 								<td> <select class="span5" name="status" value="{{ old('status') }}">
 										<option value="Done" <?php if($milestone->status == 'Done') {echo("selected");} ?>> 
 											Done</option>
@@ -31,7 +31,7 @@
 							</tr>
 
 							<tr>
-								<td class="span3 right">{!! Form::label('target_date', 'Target Date:') !!}</td>
+								<td class="span3 right">{!! Form::label('target_date', '*Target Date:') !!}</td>
 								<td><input type="date" name="target_date" value="{{ old('custom_date', $milestone['target_date']->format('Y-m-d')) }}"></td>
 								
 							</tr>

@@ -32,28 +32,28 @@
 
 						<table class = "register-table" cellpadding="5px"> <tbody>
 							<tr>
-								<td align="right">{!! Form::label('name', 'Name:') !!}</td>
+								<td align="right">{!! Form::label('name', '*Name:') !!}</td>
 								<td>{!! Form::text('name',old('name'), ['class' => 'form-control']) !!}</td>
 							</tr>
 							<tr>
-								<td align="right">{!! Form::label('email', 'Email:') !!}</td>
+								<td align="right">{!! Form::label('email', '*Email:') !!}</td>
 								<td>{!! Form::email('email',old('email'), ['class' => 'form-control']) !!}</td>
 							</tr>
 							<tr>
-								<td align="right">{!! Form::label('old_password', 'Old Password:') !!}</td>
+								<td align="right">{!! Form::label('old_password', '*Old Password:') !!}</td>
 								<td>{!! Form::password('old_password',null, ['class' => 'form-control']) !!}</td>
 							</tr>
 							<tr>
-								<td align="right">{!! Form::label('password', 'New Password:') !!}</td>
+								<td align="right">{!! Form::label('password', '*New Password:') !!}</td>
 								<td>{!! Form::password('password',null, ['class' => 'form-control']) !!}</td>
 							</tr>
 							<tr>
-								<td align="right">{!! Form::label('confirm_new_password', 'Confirm New Password:') !!}</td>
+								<td align="right">{!! Form::label('confirm_new_password', '*Confirm New Password:') !!}</td>
 								<td>{!! Form::password('confirm_new_password',null, ['class' => 'form-control']) !!}</td>
 							</tr>
 
 							<tr>
-								<td align="right">{!! Form::label('role', 'Role:') !!}</td>
+								<td align="right">{!! Form::label('role', '*Role:') !!}</td>
 								<td><select class="form-control" name="role" value={{ old('role') }}>
 									<option value= "Project Manager" <?php if($user->role == 'Project Manager') {echo("selected");} ?>> 
 										Project Manager</option>

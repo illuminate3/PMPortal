@@ -14,17 +14,17 @@
 					<div class="panel-body">
 						<table class="table-condensed table-hover"> <tbody>
 							<tr>
-								<td class="span3 right"> {!! Form::label('item', 'Item: ') !!}</td>
+								<td class="span3 right"> {!! Form::label('item', '*Item: ') !!}</td>
 								<td> {!! Form::text('item', null, ['class' => 'span7']) !!} </td>
 							</tr>
 
 							<tr>
-								<td class="span3 right"> {!! Form::label('amount', 'Amount: ') !!}</td>
+								<td class="span3 right"> {!! Form::label('amount', '*Amount: ') !!}</td>
 								<td> {!! Form::input('number','amount', null, ['class' => 'span5', 'step' => '0.01']) !!} </td>
 							</tr>
 
 							<tr>
-								<td class="span3 right"> {!! Form::label('balance', 'Balance: ') !!}</td>
+								<td class="span3 right"> {!! Form::label('balance', '*Balance: ') !!}</td>
 								<td> {!! Form::input('number','balance', null, ['class' => 'span5', 'step' => '0.01']) !!} </td>
 							</tr>
 

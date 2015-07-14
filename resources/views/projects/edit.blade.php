@@ -14,7 +14,7 @@
 					<div class="panel-body">
 						<table class="table-condensed" style="margin-left:25px;"> <tbody>
 							<tr>
-								<td width="15%" > {!! Form::label('cac', '*CAC:')!!} </td>
+								<td width="15%" > {!! Form::label('cac', '*CAC No.:')!!} </td>
 								<td colspan="3"> {!! Form::text('cac', null, ['class' => 'span4']) !!} </td>
 							</tr>
 							<tr>

@@ -15,12 +15,12 @@
 					<div class="panel-body">
 						<table class="table-condensed table-hover"> <tbody>
 							<tr>
-								<td class="span3 right"> {!! Form::label('issue', 'Issue: ') !!}</td>
+								<td class="span3 right"> {!! Form::label('issue', '*Issue: ') !!}</td>
 								<td> {!! Form::text('issue', null, ['class' => 'span7']) !!} </td>
 							</tr>
 
 							<tr>
-								<td class="span3 right"> {!! Form::label('status', 'Status: ') !!} </td>
+								<td class="span3 right"> {!! Form::label('status', '*Status: ') !!} </td>
 								<td> <select class="span5" name="status" value="{{ old('status') }}">
 										<option value="Open"> Open</option>
 										<option value="Closed">Closed</option>
@@ -28,7 +28,7 @@
 							</tr>
 
 							<tr>
-								<td class="span3 right"> {!! Form::label('severity', 'Severity: ') !!} </td>
+								<td class="span3 right"> {!! Form::label('severity', '*Severity: ') !!} </td>
 								<td> <select class="span5" name="severity" value="{{ old('severity') }}">
 										<option value="High"> High</option>
 										<option value="Medium"> Medium</option>
@@ -37,7 +37,7 @@
 							</tr>
 
 							<tr>
-								<td class="span3 right">{!! Form::label('owner', 'Owner: ') !!}</td>
+								<td class="span3 right">{!! Form::label('owner', '*Owner: ') !!}</td>
 								<td>{!! Form::text('owner', null, ['class' => 'span7']) !!}</td>
 							</tr>
 
